@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entropy | Innovative solutions for emerging-market ventures and investors</title>
+    <style>
+        /* ===== Base Styles ===== */
+        :root {
+            --primary: #CF2D2D;
+            /* Changed to red as primary */
+            --secondary: #2796B8;
+            /* Blue now secondary */
+            --dark: #2A3439;
+            --darker: #1A1E21;
+            --light: #FFFFFF;
+            --gray: #999999;
+            --dark-bg: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* ===== Sticky Header ===== */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--dark-bg);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Added hover animation from draft1 */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-bg);
+            min-width: 200px;
+            border-radius: 6px;
+            padding: 10px 0;
+            z-index: 1;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease, padding-left 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding-left: 28px;
+            color: var(--primary);
+        }
+
+        .header-cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-left: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add to your existing CSS */
+        header.transparent {
+            background-color: transparent !important;
+            border-bottom: 1px solid transparent !important;
+            backdrop-filter: blur(0px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(1px);
+            transform: scale(0.98);
+        }
+
+        header.scrolled .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.3s ease;
+        }
+
+        header.scrolled .header-cta {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(207, 45, 45, 0.3);
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--dark), var(--dark-bg));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(207, 45, 45, 0.1), transparent 70%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--light), #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== Credibility Strip ===== */
+        css .credibility-strip {
+            background-color: var(--darker);
+            padding: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .credibility-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .logos-scroll {
+            display: flex;
+            animation: scroll 10s linear infinite;
+            position: relative;
+            width: max-content;
+        }
+
+        .logos-scroll img {
+            height: 70px;
+            width: 70px;
+            margin: 20px 20px;
+            border-radius: 20px;
+        }
+
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .credibility-stats {
+            display: flex;
+            gap: 30px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        /* ===== Solutions Sections ===== */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .solution-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .solution-card p {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .solution-cta {
+            display: inline-block;
+            /* Change from block/inline-block if needed */
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: fit-content;
+            /* Add this to make width fit content */
+            max-width: 200px;
+            /* Optional: Set maximum width */
+            text-align: center;
+            /* Center the text */
+            margin-top: auto;
+            /* Keeps button at bottom if using flexbox */
+        }
+
+        .solution-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Merged Solutions Section */
+        .merged-solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .solutions-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .column-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .solution-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .solution-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .merged-solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .solutions-column {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* ===== Case Studies ===== */
+        .case-studies {
+            background-color: var(--darker);
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .case-study {
+            min-width: 300px;
+            scroll-snap-align: start;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== Interactive Stats ===== */
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* ===== Contact Form ===== */
+        .contact-band {
+            background-color: var(--primary);
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-band::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1), transparent 70%);
+            z-index: 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--dark);
+            padding: 40px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .form-submit {
+            background-color: var(--dark);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
+            border: 2px solid var(--light);
+        }
+
+        .form-submit:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--dark-bg);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            font-size: 16px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer-column a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-column a:hover::after {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--gray);
+            font-size: 12px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .header-cta {
+                margin: 15px 0 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .credibility-stats {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Sticky Header -->
+    <header class="transparent">
+        <a href="#" class="logo">
+            <img src="entropy-full.png" alt="Entropy Logo">
+        </a>
+        <nav>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a>Businesses <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Venture Development</a>
+                        <a href="#">Global Talent</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a>Investors <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Investment Advisory</a>
+                        <a href="#">Deal Flow</a>
+                    </div>
+                </div>
+                <a href="#">About</a>
+                <a href="#">Insights</a>
+            </div>
+            <a href="#contact" class="header-cta">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Innovative solutions for emerging-market ventures and investors</h1>
+                <p class="fade-in delay-1">We develop ventures, mobilize capital, and help investors structure deals
+                    that harness emerging-market potential.</p>
+                <a href="#contact" class="hero-cta fade-in delay-2">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Strip -->
+    <section class="credibility-strip">
+        <div class="container">
+            <div class="credibility-content">
+                <div class="logos-scroll">
+                    <!-- Original set -->
+                    <img src="nabriologo.jpeg" alt="Client1" >
+                    <img src="yabilogo.jpeg" alt="Client Logo">
+                    <img src="dummy1.jpeg" alt="Client Logo" >
+                    <img src="dummy2.jpeg" alt="Client Logo" >
+                    <img src="dummy3.png" alt="Client Logo">
+                    <!-- Duplicated set -->
+                    <img src="dummy4.png" alt="Client1">
+                    <img src="dummy5.png" alt="Client Logo">
+                    <img src="dummy6.png" alt="Client Logo">
+                    <img src="dummy7.png" alt="Client Logo">
+                    <img src="dummy8.png" alt="Client Logo">
+                </div>
+                <div class="credibility-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="capitalStat">0</div>
+                        <span>capital mobilised</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="marketsStat">0</div>
+                        <span>markets</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <span>years</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--darker);">
+        <div class="container">
+            <h2 class="fade-in">Our Solutions</h2>
+            <div class="merged-solutions-grid">
+                <!-- Business Solutions Column -->
+                <div class="solutions-column fade-in">
+                    <h3 class="column-title">For Businesses</h3>
+                    <div class="solution-card">
+                        <h4>Venture Development</h4>
+                        <p>We stress-test models, land value generating customers and partnerships, tune unit economics,
+                            and build repeatable growth engines. Our operators plug in exactly where you need capacity,
+                            then help you structure and secure investment for your next stage.</p>
+                        <a href="#contact?intent=consultation" class="solution-cta"
+                            style="background-color: var(--primary); color: white;">Book Consultation</a>
+                    </div>
+                </div>
+
+                <!-- Investor Solutions Column -->
+                <div class="solutions-column fade-in delay-1">
+                    <h3 class="column-title">For Investors</h3>
+                    <div class="solution-card">
+                        <h4>Investor Advisory</h4>
+                        <p>We source off-market opportunities, run granular diligence, and design cross-border vehicles
+                            that protect downside and amplify returns. From single tickets to pooled mandates, our
+                            on-ground experts curate and manage deals so disciplined capital meets credible
+                            emerging-market operators.</p>
+                        <a href="#contact?intent=investment" class="solution-cta"
+                            style="background-color: var(--secondary); color: white;">Join Investment List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Talent Solutions -->
+    <section>
+        <div class="container">
+            <h2 class="fade-in">Global Talent Solutions</h2>
+            <div class="solutions-grid">
+                <div class="solution-card fade-in delay-1">
+                    <h3>Employer of Record / BPO</h3>
+                    <p>Hire, pay, and manage frontier teams without the HR maze. Our Employer of Record service provides
+                        full cost transparency and shields you from local liabilities—so you scale with proven talent
+                        and zero hidden margins.</p>
+                    <a href="#contact?intent=assessment" class="solution-cta"
+                        style="background-color: var(--primary); color: white;">Request Value Assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="fade-in">By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number" id="venturesStat">0</div>
+                    <p>Ventures Supported</p>
+                </div>
+                <div class="stat-card fade-in delay-1">
+                    <div class="stat-number" id="investorsStat">0</div>
+                    <p>Investors Connected</p>
+                </div>
+                <div class="stat-card fade-in delay-2">
+                    <div class="stat-number" id="countriesStat">0</div>
+                    <p>Countries Operate In</p>
+                </div>
+                <div class="stat-card fade-in delay-3">
+                    <div class="stat-number" id="teamStat">0</div>
+                    <p>Team Members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="fade-in">Case Studies</h2>
+            <div class="carousel">
+                <div class="case-study fade-in">
+                    <h3>Fintech Expansion</h3>
+                    <p>Helped a payment platform expand to 3 new markets with 150% YoY growth and $5M in new funding.
+                    </p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Read more →</a>
+                </div>
+                <div class="case-study fade-in delay-1">
+                    <h3>Investor Syndicate</h3>
+                    <p>Structured a $12M cross-border investment vehicle for a group of family offices targeting African
+                        tech.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Read more →</a>
+                </div>
+                <div class="case-study fade-in delay-2">
+                    <h3>EOR Solution</h3>
+                    <p>Enabled a US startup to build a 25-person engineering team in 3 countries with 80% cost savings.
+                    </p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Read more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--darker);">
+        <div class="container">
+            <h2 class="fade-in">Latest Insights</h2>
+
+            <!-- Articles Grid -->
+            <div class="solutions-grid" style="margin-bottom: 40px;">
+                <div class="solution-card fade-in">
+                    <h3>Emerging Market Trends 2025</h3>
+                    <p>Analysis of the most promising sectors and regions for venture investment in the coming year.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Read Article
+                        →</a>
+                </div>
+                <div class="solution-card fade-in delay-1">
+                    <h3>Structuring Cross-Border Deals</h3>
+                    <p>Key considerations when setting up investment vehicles for emerging market opportunities.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Read Article
+                        →</a>
+                </div>
+                <div class="solution-card fade-in delay-2">
+                    <h3>EOR vs. Entity Setup</h3>
+                    <p>When to use Employer of Record services versus establishing your own legal entity.</p>
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-size: 14px;">Read Article
+                        →</a>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup Bar -->
+            <div class="contact-form fade-in delay-3" style="max-width: 800px; background: rgba(255,255,255,0.03);">
+                <h3 style="margin-bottom: 20px; text-align: center;">Stay Updated</h3>
+                <form id="newsletterForm" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div class="form-group" style="flex-grow: 1; min-width: 200px; margin-bottom: 0;">
+                        <input type="email" placeholder="Your email address" required style="width: 100%;">
+                    </div>
+                    <button type="submit" class="form-submit" style="width: auto; margin: 0;">
+                        Subscribe to Insights
+                    </button>
+                </form>
+                <p style="text-align: center; margin-top: 15px; font-size: 12px; color: var(--gray);">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" class="solution-cta"
+                    style="background-color: transparent; border: 1px solid var(--primary); color: var(--primary);">
+                    View All Insights
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Band -->
+    <section id="contact" class="contact-band">
+        <div class="container">
+            <h2 class="fade-in">Ready to Grow or Invest?</h2>
+            <p class="fade-in delay-1"
+                style="margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Get in touch to
+                discuss how we can support your venture or investment goals.</p>
+
+            <div class="contact-form fade-in delay-2">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">I'm interested in</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select an option</option>
+                            <option value="venture-dev">Venture Development</option>
+                            <option value="investor-advisory">Investor Advisory</option>
+                            <option value="eor-services">EOR Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#">
+                        <img src="entropy-full.png" alt="Entropy Logo" style="height: 30px; margin-bottom: 20px;">
+                    </a>
+                    <p style="color: var(--gray);">Turning market chaos into scalable ventures across emerging markets.
+                    </p>
+                </div>
+                <div class="footer-column">
+                    <h4>Businesses</h4>
+                    <ul>
+                        <li><a href="#">Venture Development</a></li>
+                        <li><a href="#">Global Talent</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Investors</h4>
+                    <ul>
+                        <li><a href="#">Investment Advisory</a></li>
+                        <li><a href="#">Deal Flow</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Insights</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Get in Touch</h4>
+                    <ul>
+                        <li><a href="mailto:info@useentropy.com">info@useentropy.com</a></li>
+                        <li>Methonis St. 1, 1070 Nicosia, Cyprus</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Engrow Entropy Growth Ltd. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle form intent from URL parameters
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const intent = urlParams.get('intent');
+
+            if (intent) {
+                const select = document.getElementById('interest');
+                switch (intent) {
+                    case 'consultation':
+                        select.value = 'venture-dev';
+                        break;
+                    case 'investment':
+                        select.value = 'investor-advisory';
+                        break;
+                    case 'assessment':
+                        select.value = 'eor-services';
+                        break;
+                }
+            }
+
+            // Form submission
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thank you for your message! We will contact you soon.');
+                this.reset();
+            });
+
+            // Animate stats
+            function animateValue(id, start, end, duration) {
+                const obj = document.getElementById(id);
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    obj.innerHTML = value.toLocaleString();
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // Initialize stats when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateValue('capitalStat', 0, 50, 2000);
+                        animateValue('marketsStat', 0, 15, 2000);
+                        animateValue('venturesStat', 0, 42, 2000);
+                        animateValue('investorsStat', 0, 78, 2000);
+                        animateValue('countriesStat', 0, 12, 2000);
+                        animateValue('teamStat', 0, 24, 2000);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Observe stats section
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+
+            // Add scroll animation to elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                fadeObserver.observe(element);
+            });
+        });
+
+        // Navbar scroll effect
+        const header = document.querySelector('header');
+        const heroSection = document.querySelector('.hero');
+        const heroHeight = heroSection.offsetHeight;
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+
+            if (scrollPosition < heroHeight - 100) {
+                // Still in hero section
+                header.classList.remove('scrolled');
+                header.classList.add('transparent');
+            } else {
+                // Scrolled past hero section
+                header.classList.remove('transparent');
+                header.classList.add('scrolled');
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            if (window.scrollY < heroHeight - 100) {
+                header.classList.add('transparent');
+            } else {
+                header.classList.add('scrolled');
+            }
+        });
+
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our insights!');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

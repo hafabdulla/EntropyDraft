@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entropy - Venture Acceleration & EOR Services</title>
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* ===== Base Styles ===== */
+        :root {
+            --primary: #2796B8;
+            /* Blue */
+            --secondary: #CF2D2D;
+            /* Red */
+            --dark: #2A3439;
+            /* Dark Gray */
+            --light: #FFFFFF;
+            /* White */
+            --gray: #999999;
+            /* For body text */
+            --dark-bg: #000000;
+            /* Pure Black */
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 5%;
+            position: relative;
+        }
+
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            right: 5%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a {
+            position: relative;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            /* use primary brand color */
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Dropdown Base */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark-bg);
+            min-width: 200px;
+            border-radius: 6px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            padding: 10px 0;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease, padding-left 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding-left: 28px;
+            color: var(--primary);
+        }
+
+        /* Show dropdown on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateX(-50%) translateY(5px);
+        }
+
+
+        /* ===== Hero Section ===== */
+
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* This makes it full screen height */
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(to bottom right, var(--dark), var(--dark-bg));
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--light), #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 220px;
+        }
+
+        .cta-primary {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .cta-secondary {
+            background-color: var(--secondary);
+            color: var(--light);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== Service Blocks ===== */
+        .services {
+            background-color: var(--dark-bg);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* EOR */
+        .eor-highlight {
+            background: linear-gradient(135deg, #111, #000);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .eor-highlight h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .eor-subtext {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+            font-size: 18px;
+        }
+
+        .eor-features {
+            list-style: none;
+            padding-left: 0;
+            margin: 20px auto 40px;
+            max-width: 600px;
+            text-align: left;
+            color: var(--light);
+        }
+
+        .eor-features li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .eor-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+
+        /* ===== Split Path Section ===== */
+        .split-path {
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+        }
+
+        .path-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .path-card {
+            padding: 50px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .startups-path {
+            background: rgba(58, 134, 255, 0.1);
+        }
+
+        .startups-path::before {
+            background: var(--primary);
+        }
+
+        .investors-path {
+            background: rgba(46, 196, 182, 0.1);
+        }
+
+        .investors-path::before {
+            background: var(--secondary);
+        }
+
+        .path-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .path-card ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .path-card li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .path-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        /* Why entropy */
+        .why-entropy {
+            background-color: var(--dark);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .why-entropy-text {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        .portfolio-showcase {
+            background: var(--dark-bg);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(120px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .portfolio-grid img {
+            max-height: 60px;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-grid img:hover {
+            opacity: 1;
+        }
+
+
+        /* ===== Visual Explainer ===== */
+        .explainer {
+            background-color: var(--dark-bg);
+            text-align: center;
+        }
+
+        .explainer-visual {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .explainer-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        /* ===== Testimonials ===== */
+        .testimonials {
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--gray);
+        }
+
+        /* ===== Final CTA ===== */
+        .final-cta {
+            text-align: center;
+            padding: 100px 0;
+            background-color: var(--dark);
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 5%;
+            right: 5%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .final-cta h2 {
+            margin-bottom: 30px;
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 1024px) {
+
+            .service-grid,
+            .path-container,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(120px, 1fr));
+                align-items: center;
+                justify-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .hero p,
+            .service-card p {
+                font-size: 16px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .service-card,
+            .path-card {
+                padding: 30px;
+            }
+
+            .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(120px, 1fr));
+                align-items: center;
+                justify-items: center;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="">
+            <div class="logo"><img src="entropy-full.png" alt="Entropy Logo"></div>
+        </a>
+        <div class="nav-links">
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Services</a>
+                <div class="dropdown-content">
+                    <a href="#">Startup Solutions</a>
+                    <a href="#">Investor Solutions</a>
+                    <a href="#">EOR Services</a>
+                </div>
+            </div>
+
+            <a href="#">Portfolio</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Bridging Startups and Investors in Emerging Markets</h1>
+            <p>Entropy provides hands-on support to tech startups and unique opportunities for investors in high-growth
+                emerging markets.</p>
+            <div class="cta-container">
+                <a href="#" class="cta-button cta-primary">For Startups: Accelerate Your Growth</a>
+                <a href="#" class="cta-button cta-secondary">For Investors: Discover Opportunities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Split Path Section -->
+    <section class="split-path">
+        <div class="container">
+            <h2>Your Path With Entropy</h2>
+            <div class="path-container">
+                <div class="path-card startups-path">
+                    <h3>For Startups</h3>
+                    <p>From MVP to Series A+, we support your venture’s growth at every turn.</p>
+                    <ul>
+                        <li>Validation & MVP Refinement</li>
+                        <li>Growth Planning & Investment Readiness</li>
+                        <li>Outsourced Operations / Technical Builds</li>
+                    </ul>
+                    <a href="#" class="cta-button cta-primary">Startup Solutions</a>
+                </div>
+                <div class="path-card investors-path">
+                    <h3>For Investors</h3>
+                    <p>Gain curated access to promising ventures and active deal flows in emerging markets.</p>
+                    <ul>
+                        <li>Portfolio Transparency & Stage Filtering</li>
+                        <li>GP-as-a-Service</li>
+                        <li>Special Situations & Custom Structuring</li>
+                    </ul>
+                    <a href="#" class="cta-button cta-secondary">Investor Solutions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <h2>What We Offer</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Venture Development</h3>
+                    <p>Advisory, validation, and investment readiness from pre-seed to Series A.</p>
+                    <a href="#" class="cta-button cta-primary">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-globe"></i></div>
+                    <h3>EOR Services</h3>
+                    <p>Hire global talent in 48 hours — no legal entity needed. Payroll, compliance & HR simplified.</p>
+                    <a href="#" class="cta-button cta-primary">Explore EOR</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Investor Advisory</h3>
+                    <p>Custom support for strategic investors, family offices, and VCs evaluating frontier markets.</p>
+                    <a href="#" class="cta-button cta-primary">Investor Hub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EOR Services Section -->
+    <section class="eor-highlight">
+        <div class="container">
+            <h2>Global EOR: Hire in Hours, Not Months</h2>
+            <p class="eor-subtext">
+                Expand your global team without entity setup. Entropy acts as your Employer of Record (EOR), handling
+                compliance, payroll, and local regulations — so you can focus on growth.
+            </p>
+            <ul class="eor-features">
+                <li>Hire in emerging markets with zero legal overhead</li>
+                <li>Fully compliant payroll & HR services</li>
+                <li>Onboard talent in <strong>48 hours</strong></li>
+            </ul>
+            <a href="#" class="cta-button cta-primary">Explore EOR Solutions</a>
+        </div>
+    </section>
+    <!-- Visual Explainer -->
+    <section class="explainer">
+        <div class="container">
+            <h2>Explore How Our EOR Model Works</h2>
+            <div class="explainer-visual">
+                <p style="margin-bottom: 30px;">Our unique model connects startups with investors while providing
+                    operational support to de-risk investments.</p>
+                <!-- Placeholder for visual diagram -->
+                <div
+                    style="background: rgba(255,255,255,0.1); height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: var(--gray);">
+                    [Visual Diagram: EOR working]
+                </div>
+                <a href="#" class="cta-button cta-primary" style="margin-top: 40px;">How It Works</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Why Entropy / Founders Note -->
+    <section class="why-entropy">
+        <div class="container">
+            <h2>Why Entropy?</h2>
+            <p class="why-entropy-text">
+                We’re not just consultants. We’re long-term partners embedded in your journey. From our founder-led
+                strategy to our global market insight, Entropy is built for real-world venture building.
+            </p>
+            <!-- Optional: Insert quote or founder image here -->
+        </div>
+    </section>
+
+    <section class="portfolio-showcase">
+        <div class="container">
+            <h2>Our Portfolio Companies</h2>
+            <div class="portfolio-grid">
+                <a href="#"><img src="nabriologo.jpeg" style="border-radius: 15%;" alt="Nabrio logo"></a>
+                <a href="#"><img src="yabilogo.jpeg" style="border-radius: 15%;" alt="Yabi Money Logo"></a>
+                <a href="#"><img src="dummy1.jpeg" style="border-radius: 15%;" alt="Dummy 1"></a>
+                <a href="#"><img src="dummy2.jpeg" style="border-radius: 15%;" alt="Dummy 2"></a>
+
+                <!-- row 2 -->
+                <a href="#"><img src="dummy3.png" style="border-radius: 15%;" alt="dummy3"></a>
+                <a href="#"><img src="dummy4.png" style="border-radius: 15%;" alt="dummy 4"></a>
+                <a href="#"><img src="dummy5.png" style="border-radius: 15%;" alt="Dummy 5"></a>
+                <a href="#"><img src="dummy6.png" style="border-radius: 15%;" alt="Dummy 6"></a>
+            </div>
+            <a href="#" class="cta-button cta-primary" style="margin-top: 30px;">See How We Help Companies Grow</a>
+        </div>
+
+    </section>
+
+
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Trusted By Founders & Investors</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Entropy has been an invaluable partner in helping us refine Nabrio's business plan into a
+                            truly scalable model. Their insights have been pivotal in improving our pricing strategies &
+                            structuring joint business plans (JBPs) that align with our pace & long-term goals.
+                            What stands out most is how they've kept us grounded in our core vision-empowering human
+                            potential through accessible Al-while driving actionable solutions. Thanks to their
+                            guidance, we've gained traction with our product, & we can better balance innovation with
+                            real-world value generation."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Mathus Thongkerd</h4>
+                            <p>CEO @ Nabrio Al</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I never thought I'd get into investing, especially in emerging markets, but Entropy made it
+                            so easy.
+                            They really took the time to break everything down and explain the market in a way that
+                            actually made sense. Plus, they have this incredible network of people they work with, so I
+                            felt like I was in good hands the whole time.
+                            What I thought would be complicated ended up being a really smooth and straightforward
+                            process"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Shantonu Abe</h4>
+                            <p>Personal Investor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"As an experienced investor and consultant, I was genuinely impressed by Entropy's
+                            professionalism and their deep understanding of how emerging markets really work. They
+                            helped me find a high-yield investment opportunity that matched my interests and made the
+                            most of unique market conditions.
+                            Their approach was practical; and with little effort, they secured an investment with
+                            limited risk and great results"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Jerome Sterckx</h4>
+                            <p>Partner @ Euracific
+                                Strategies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt repellendus iste id quia
+                            autem ex minima porro laboriosam cumque blanditiis tempore sapiente asperiores, voluptate
+                            non sequi temporibus modi dolorum magnam."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div>
+                            <h4>Michael T.</h4>
+                            <p>Family Office Investor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Grow or Invest?</h2>
+            <p style="max-width: 600px; margin: 0 auto 40px; color: var(--gray);">Whether you're a founder building the
+                next big thing or an investor seeking emerging market opportunities, Entropy bridges the gap.</p>
+            <div class="cta-container">
+                <a href="#" class="cta-button cta-primary">Get Started as a Startup</a>
+                <a href="#" class="cta-button cta-secondary">Explore as an Investor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--dark-bg); padding: 60px 0; color: var(--light); font-size: 14px;">
+        <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+
+            <div style="flex: 1 1 200px;">
+                <a href=""> <img src="entropy-full.png" alt="Entropy Logo"
+                        style="height: 40px; margin-bottom: 20px;"></a>
+                <p style="color: var(--gray); max-width: 300px;">Turning market chaos into scalable ventures across
+                    emerging markets.</p>
+            </div>
+
+            <div style="flex: 1 1 150px;">
+                <h4 style="margin-bottom: 12px; font-weight: 500;">Company</h4>
+                <ul style="list-style: none; padding: 0; color: var(--gray);">
+                    <li><a href="#" style="color: inherit; text-decoration: none;">About</a></li>
+                    <li><a href="#" style="color: inherit; text-decoration: none;">Services</a></li>
+                    <li><a href="#" style="color: inherit; text-decoration: none;">Contact</a></li>
+                </ul>
+            </div>
+
+            <div style="flex: 1 1 150px;">
+                <h4 style="margin-bottom: 12px; font-weight: 500;">Resources</h4>
+                <ul style="list-style: none; padding: 0; color: var(--gray);">
+                    <li><a href="#" style="color: inherit; text-decoration: none;">Blog</a></li>
+                    <li><a href="#" style="color: inherit; text-decoration: none;">Careers</a></li>
+                    <li><a href="#" style="color: inherit; text-decoration: none;">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div style="flex: 1 1 200px;">
+                <h4 style="margin-bottom: 12px; font-weight: 500;">Get in Touch</h4>
+                <p style="color: var(--gray); margin-bottom: 10px;">Email: info@useentropy.com</p>
+                <p style="color: var(--gray);">Location: Methonis St. 1, 1070 Nicosia, Cyprus</p>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: var(--gray); font-size: 12px;">
+            &copy; 2025 Engrow Entropy Growth Ltd. All rights reserved.
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
