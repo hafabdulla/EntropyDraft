@@ -795,7 +795,11 @@
         @media (min-width: 768px) {
             .hero {
                 background-size: contain !important;
-                background-position:right ;
+                background-position: calc(100% - 130px) center !important;
+            }
+
+            section.hero.fade-in>div.container {
+                margin-left: 130px;
             }
         }
 
@@ -811,7 +815,12 @@
                 align-items: center;
             }
 
-            .hero{
+            section.hero.fade-in>div.container {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .hero {
                 background-image: none !important;
             }
 
@@ -940,15 +949,14 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero fade-in"
-        style="background-image: url('bgs/bg11.svg');  background-repeat: no-repeat;">
+    <section class="hero fade-in" style="background-image: url('bg11.svg');  background-repeat: no-repeat;">
         <div class="container">
             <div class="hero-content fade-in">
                 <h1>Innovative solutions for emerging-market ventures and investors</h1>
                 <p class="typing-terminal">
                     <span id="static-text">We </span><span id="dynamic-text"></span><span class="cursor">|</span>
                 </p>
-                <a href="#contact" class="hero-cta fade-in delay-2">Contact Us</a>
+                <!-- <a href="#contact" class="hero-cta fade-in delay-2">Contact Us</a> -->
             </div>
         </div>
     </section>
