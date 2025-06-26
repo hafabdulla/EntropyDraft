@@ -953,9 +953,10 @@
     <section class="hero fade-in" style="background-image: url('bgs/bg11.svg');  background-repeat: no-repeat;">
         <div class="container">
             <div class="hero-content fade-in">
-                <h1>Innovative solutions for emerging-market ventures and investors</h1>
+                <h1 class="typing-terminal">
+                    <span id="static-text"></span>Innovative solutions for </span><span id="dynamic-text"></span><span class="cursor">|</span></h1>
                 <p class="typing-terminal">
-                    <span id="static-text">We </span><span id="dynamic-text"></span><span class="cursor">|</span>
+We develop ventures, mobilize capital and help investors structure deals that harness emerging-market potential
                 </p>
                 <!-- <a href="#contact" class="hero-cta fade-in delay-2">Contact Us</a> -->
             </div>
@@ -1363,9 +1364,8 @@
 
     <script>
         const phrases = [
-            "develop ventures",
-            "mobilize capital",
-            "help investors structure deals that harness emerging-market potential"
+            "ventures",
+            "investors"
         ];
 
         const dynamicEl = document.getElementById("dynamic-text");
