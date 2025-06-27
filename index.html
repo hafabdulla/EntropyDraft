@@ -276,6 +276,15 @@
             margin-top: 10px;
         }
 
+        #dynamic-text.ventures {
+            color: var(--primary);
+        }
+
+        #dynamic-text.investors {
+            color: var(--secondary);
+        }
+        
+
         .cursor {
             display: inline-block;
             color: var(--light);
@@ -1363,44 +1372,45 @@ We develop ventures, mobilize capital and help investors structure deals that ha
     </script>
 
     <script>
-        const phrases = [
-            "ventures",
-            "investors"
-        ];
+const phrases = [
+    { text: "ventures", class: "ventures" },
+    { text: "investors", class: "investors" }
+];
 
-        const dynamicEl = document.getElementById("dynamic-text");
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let typing = true;
+const dynamicEl = document.getElementById("dynamic-text");
+let phraseIndex = 0;
+let charIndex = 0;
+let typing = true;
 
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIndex];
+function typeLoop() {
+    const currentPhrase = phrases[phraseIndex];
 
-            if (typing) {
-                if (charIndex < currentPhrase.length) {
-                    dynamicEl.textContent += currentPhrase.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeLoop, 100);
-                } else {
-                    typing = false;
-                    setTimeout(typeLoop, 1200); // wait before backspacing
-                }
-            } else {
-                if (charIndex > 0) {
-                    dynamicEl.textContent = currentPhrase.substring(0, charIndex - 1);
-                    charIndex--;
-                    setTimeout(typeLoop, 50);
-                } else {
-                    typing = true;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    setTimeout(typeLoop, 500);
-                }
-            }
+    if (typing) {
+        if (charIndex < currentPhrase.text.length) {
+            // Set the class before adding text
+            dynamicEl.className = currentPhrase.class;
+            dynamicEl.textContent += currentPhrase.text.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeLoop, 100);
+        } else {
+            typing = false;
+            setTimeout(typeLoop, 1200);
         }
+    } else {
+        if (charIndex > 0) {
+            dynamicEl.textContent = currentPhrase.text.substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(typeLoop, 50);
+        } else {
+            typing = true;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            setTimeout(typeLoop, 500);
+        }
+    }
+}
 
-        // Start typing on load
-        document.addEventListener("DOMContentLoaded", typeLoop);
-    </script>
+// Start typing on load
+document.addEventListener("DOMContentLoaded", typeLoop);    </script>
 
 
 </body>
