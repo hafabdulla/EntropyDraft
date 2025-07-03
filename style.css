@@ -1,3 +1,41 @@
+/* Core Colors */
+/* --primary: #7F5A3F; 
+--secondary: #4A6B7D;
+--dark: #4A4A4A;      
+--darker: #3A3A3A;      
+--light: #F8F5F0;  
+--gray: #777777;       
+--dark-bg: #F0EAE2;   
+--background: #F5F0E8; 
+
+--nav-text: #4A4A4A;  
+--heading-text: #3A3A3A;
+--card-heading: #5D4037; 
+
+--hero-bg: #E5DED3;      
+--hero-gradient-start: rgba(93, 64, 55, 0.2); 
+
+--text-gradient-start: #1E1E1E;  
+--text-gradient-end: #4A4A4A;
+--card-bg: #F5F1EB;             
+--card-hover-bg: #EDE8E0;      
+--card-shadow: rgba(0, 0, 0, 0.15); 
+--nav-border: rgba(0, 0, 0, 0.2);  
+--dropdown-shadow: rgba(0, 0, 0, 0.2); 
+--dropdown-hover-bg: #D8D1C7;
+--input-bg: #F5F1EB;         
+--input-focus-bg: #EDE8E0;        
+--contact-band-gradient: rgba(93, 64, 55, 0.1); 
+--footer-border: rgba(0, 0, 0, 0.25); 
+--section-gradient-start: #ECE5DA; 
+--section-gradient-end: #D8D1C7;   
+--company-item-hover-bg: rgba(93, 64, 55, 0.1); 
+--company-item-hover-border: rgba(93, 64, 55, 0.3); 
+--bullet-color: var(--primary);   
+--stats-gradient-start: #ECE5DA;   
+--stats-gradient-end: #D8D1C7;  */
+
+
 /* ---------- 1. CSS Variables / Theme ----------- */
 :root {
     /* Brand Palette */
@@ -23,22 +61,24 @@
 }
 
 body {
-  background: #0A0F1A; /* Deep navy base */
+    background: #0A0F1A;
+    /* Deep navy base */
 }
 
 section {
-  background: transparent;
-  position: relative;
-  z-index: 1;
+    background: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(20, 25, 40, 0.8) 0%, rgba(10, 15, 30, 0.9) 100%);
-  z-index: -1;
-  border-radius: 0; /* Remove if not needed */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(20, 25, 40, 0.8) 0%, rgba(10, 15, 30, 0.9) 100%);
+    z-index: -1;
+    border-radius: 0;
+    /* Remove if not needed */
 }
 
 /* ---------- 2. Global Reset & Base ----------- */
@@ -134,7 +174,7 @@ h2 {
     transition: transform .3s ease, box-shadow .3s ease;
 }
 
-.portfolio-cta{
+.portfolio-cta {
     background-color: var(--primary);
     color: var(--light);
 }
@@ -165,17 +205,17 @@ header {
 }
 
 header.transparent {
-  background-color: transparent !important;
-  border-bottom: 1px solid transparent !important;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+    background-color: transparent !important;
+    border-bottom: 1px solid transparent !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
 header.scrolled {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  transform: scale(0.98);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transform: scale(0.98);
 }
 
 .logo img {
@@ -234,17 +274,17 @@ nav {
 }
 
 .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dark-bg);
-            min-width: 200px;
-            border-radius: 6px;
-            padding: 10px 0;
-            z-index: 1;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: translateY(10px);
+    display: none;
+    position: absolute;
+    background-color: var(--dark-bg);
+    min-width: 200px;
+    border-radius: 6px;
+    padding: 10px 0;
+    z-index: 1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(10px);
 }
 
 .dropdown:hover .dropdown-content {
@@ -371,7 +411,7 @@ nav {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
-.portfolio-matrix .company-item:hover{
+.portfolio-matrix .company-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -968,4 +1008,172 @@ header.open .burger span:nth-child(3) {
     }
 }
 
-/* ---------- End of File ---------- */
+
+
+/* ---------- Venture / EOR / Portfolio specific ---------- */
+
+.hero--business,
+.hero--eor,
+.hero--portfolio {
+    background: linear-gradient(135deg, #0a0f1a 0%, #000 100%);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.vd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px
+}
+
+.vd-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 32px;
+    transition: .3s
+}
+
+.vd-card:hover {
+    transform: translateY(-6px)
+}
+
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0
+}
+
+.stepper li {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    color: var(--light)
+}
+
+.stepper li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background: var(--primary)
+}
+
+.stepper span {
+    background: var(--primary);
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 14px
+}
+
+.eor-flow .flow-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px
+}
+
+.benefit-band .vd-card h3 {
+    color: var(--primary);
+    margin-bottom: 8px
+}
+
+.calc {
+    text-align: center;
+    padding: 60px 0;
+    background: var(--dark-bg)
+}
+
+.calc input {
+    padding: 14px 18px;
+    border: none;
+    border-radius: 6px;
+    width: 220px;
+    margin-right: 12px
+}
+
+.calc-note {
+    color: var(--gray);
+    font-size: 12px;
+    margin-top: 10px
+}
+
+.single-testimonial blockquote {
+    font-style: italic;
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto 10px
+}
+
+.stage-filter {
+    text-align: center;
+    padding: 40px 0
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--primary);
+    margin: 0 6px;
+    padding: 8px 16px;
+    border-radius: 99px;
+    color: var(--light);
+    cursor: pointer;
+    font-size: 14px
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary)
+}
+
+.portfolio-grid .grid-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 30px
+}
+
+.logo-card {
+    position: relative;
+    text-align: center
+}
+
+.logo-card img {
+    max-width: 120px;
+    filter: grayscale(100%);
+    transition: .3s
+}
+
+.logo-card:hover img {
+    filter: none;
+    transform: scale(1.05)
+}
+
+.stage-badge {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px
+}
+
+/* contact band reuse */
+.contact-band {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--dark-bg)
+}
+
+.contact-band.dark {
+    background: #111
+}
+
+.contact-band h2 {
+    margin-bottom: 24px
+}
