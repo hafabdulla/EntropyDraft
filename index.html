@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
@@ -23,10 +24,14 @@
         <nav>
             <div class="nav-links">
                 <div class="dropdown">
-                    <a>Businesses <i class="fas fa-chevron-down"></i></a>
+                    <a href="business.html" style="cursor: pointer;">Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#">Venture Development</a>
-                        <a href="#">Global Talent</a>
+                        <a href="business.html?persona=businesses#services" data-persona="businesses">
+                            Venture Development
+                        </a>
+                        <a href="business.html?persona=investors#services" data-persona="investors">
+                            Investor Advisory
+                        </a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -48,11 +53,14 @@
     <section class="hero fade-in" style="background-image: url('bgs/bg11.svg');  background-repeat: no-repeat;">
         <div class="container">
             <div class="hero-content fade-in">
-                <h1 class="typing-terminal">
-                    <span id="static-text"></span>Innovative solutions for </span>
-                    <span id="dynamic-text"></span>
-                    <span class="cursor">|</span>
-                </h1>
+<h1 class="typing-terminal">
+    <span id="dynamic-text" class="animated-keyword investors"></span>
+    <span class="cursor">|</span>
+  <div>
+  <span class="static-text"> for emerging markets</span>
+  </div>
+</h1>
+
                 <p class="typing-terminal">
                     We develop ventures, mobilize capital and help investors structure deals that harness
                     emerging-market potential
@@ -62,31 +70,40 @@
         </div>
     </section>
 
-
     <section style="background-color: var(--darker);">
         <div class="container">
-            <h2 class="fade-in">Our Solutions</h2>
+            <h2 data-aos="fade-up" class="fade-in">Our Solutions</h2>
             <div class="merged-solutions-grid">
                 <!-- Business Solutions Column -->
                 <div class="solutions-column fade-in">
                     <h3 class="column-title1">For Businesses</h3>
-                    <div class="solution-card">
+                    <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
                         <h4>Venture Development</h4>
-                        <p>Whether you’re refining your concept, improving revenue, or scaling up, we plug in where it matters most. We stress-test business models, win pilot customers, expand partnerships, tune unit economics, and build sustainable growth engines. Beyond this, we help structure collateral so you are prepared for the tough investor conversations.</p>
-                        <a href="business.html" class="solution-cta"
-                            style="background-color: var(--primary); color: white;">Book Consultation</a>
+                        <p>Whether you’re refining your concept, improving revenue, or scaling up, we plug in where it
+                            matters most. We stress-test business models, win pilot customers, expand partnerships, tune
+                            unit economics, and build sustainable growth engines. Beyond this, we help structure
+                            collateral so you are prepared for the tough investor conversations.</p>
+                        <a href="business.html?persona=businesses#services" class="solution-cta"
+                            style="background-color: var(--primary); color: white;">
+                            Book Consultation
+                        </a>
                     </div>
                 </div>
 
                 <!-- Investor Solutions Column -->
                 <div class="solutions-column fade-in delay-1">
                     <h3 class="column-title2">For Investors</h3>
-                    <div class="solution-card">
+                    <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
                         <h4>Investor Advisory</h4>
-                        <p>Funds, family offices, and corporates ask us to decode and navigate untapped opportunities, run disciplined de-risking diligence, and design creative structures for frictionless asset and capital flow. When a portfolio company is ready to scale and move to the next chapter, we step in as fractional operators and transformation leaders until the asset is steady.
-</p>
-                        <a href="#contact?intent=investment" class="solution-cta"
-                            style="background-color: var(--secondary); color: white;">Join Investment List</a>
+                        <p>Funds, family offices, and corporates ask us to decode and navigate untapped opportunities,
+                            run disciplined de-risking diligence, and design creative structures for frictionless asset
+                            and capital flow. When a portfolio company is ready to scale and move to the next chapter,
+                            we step in as fractional operators and transformation leaders until the asset is steady.
+                        </p>
+                        <a href="business.html?persona=investors#services" class="solution-cta"
+                            style="background-color: var(--secondary); color: white;">
+                            Join Investment List
+                        </a>
                     </div>
                 </div>
             </div>
@@ -146,11 +163,12 @@
         </div>
     </section> -->
 
+    <!-- Global Talent Solutions -->
     <section>
-        <div class="container">
-            <h2 class="fade-in">Global Talent Solutions</h2>
+        <div data-aos="fade-up" class="container">
+            <h2>Global Talent Solutions</h2>
             <div class="global-talent-container">
-                <div class="solution-card fade-in delay-1 global-talent-description">
+                <div data-aos="fade-up" data-aos-delay="100" class="solution-card fade-in delay-1 global-talent-description">
                     <h3>Employer of Record / BPO</h3>
                     <p>
                         Hire, pay, and manage frontier teams without the HR maze. Our Employer of Record service
@@ -158,42 +176,55 @@
                         talent and zero hidden margins.
                     </p>
                 </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="features-grid fade-in delay-2">
+                    <div data-aos="fade-up" data-aos-delay="200" class="feature-card">
+                        <h4>Full Cost Transparency</h4>
+                        <p>See exactly where every dollar goes with no hidden fees or unexpected charges.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200"
+                    class="feature-card">
+                        <h4>Local Compliance</h4>
+                        <p>We handle all local labor laws and regulations so you don't have to worry about compliance.
+                        </p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200"
+                    class="feature-card">
+                        <h4>Rapid Scaling</h4>
+                        <p>Quickly build teams in new markets without the overhead of setting up local entities.</p>
+                    </div>
+                </div>
 
-                <!-- Right box (30% width) - Bullet points -->
-                <div class="solution-card fade-in delay-1 global-talent-features">
-                    <h3>Key Features</h3>
-                    <ul class="bullet-list">
-                        <li>Hire, pay, and manage frontier teams without the HR maze</li>
-                        <li>Full cost transparency with zero hidden margins</li>
-                        <li>Shields you from local liabilities</li>
-                        <li>Scale with proven talent quickly and efficiently</li>
-                        <li>Compliance with local labor laws handled for you</li>
-                    </ul>
+                <div style="text-align: center; margin-top: 30px;">
                     <a href="#contact?intent=assessment" class="solution-cta"
                         style="background-color: var(--primary); color: white;">Request Value Assessment</a>
                 </div>
             </div>
+
+            <!-- Add three new feature boxes -->
         </div>
     </section>
 
     <!-- Stats Section -->
     <section class="stats-section">
-        <div class="container">
-            <h2 class="fade-in">By The Numbers</h2>
+        <div data-aos="fade-up" class="container">
+            <h2 data-aos="fade-up"class="fade-in">By The Numbers</h2>
             <div class="stats-grid">
-                <div class="stat-card fade-in">
+                <div data-aos="fade-up" data-aos-delay="100" class="stat-card fade-in">
                     <div class="stat-number" id="venturesStat">0</div>
                     <p>Ventures Supported</p>
                 </div>
-                <div class="stat-card fade-in delay-1">
+                <div data-aos="fade-up" data-aos-delay="100"
+                class="stat-card fade-in delay-1">
                     <div class="stat-number" id="investorsStat">0</div>
                     <p>Investors Connected</p>
                 </div>
-                <div class="stat-card fade-in delay-2">
+                <div data-aos="fade-up" data-aos-delay="100"
+                class="stat-card fade-in delay-2">
                     <div class="stat-number" id="countriesStat">0</div>
                     <p>Countries Operate In</p>
                 </div>
-                <div class="stat-card fade-in delay-3">
+                <div data-aos="fade-up" data-aos-delay="100"
+                class="stat-card fade-in delay-3">
                     <div class="stat-number" id="teamStat">0</div>
                     <p>Team Members</p>
                 </div>
@@ -204,7 +235,7 @@
     <!-- Credibility Strip -->
     <!-- <section class="credibility-strip">
         <div class="container">
-            <h2 class="fade-in">Our Portfolio</h2>
+            <h2 data-aos="fade-up"class="fade-in">Our Portfolio</h2>
             <div class="credibility-content">
                 <div class="logos-scroll">
                     <img src="1.png" alt="Client Logo">
@@ -223,13 +254,13 @@
 
     <!-- Portfolio Matrix -->
     <section style="background-color: var(--dark);">
-        <div class="container">
+        <div data-aos="fade-up" data-aos-delay="100" class="container">
             <h2 class="fade-in">Our Portfolio</h2>
             <p class="fade-in" style="text-align: center; margin-bottom: 30px; color: var(--gray);">
                 Some of the companies we've worked with
             </p>
 
-            <div class="portfolio-matrix fade-in">
+            <div data-aos="fade-up" data-aos-delay="200" class="portfolio-matrix fade-in">
                 <div class="company-item">
                     <img src="1.png" alt="Company Name">
                     <span class="company-name">Yabi</span>
@@ -303,7 +334,7 @@
     </section> -->
 
     <section style="background-color: var(--darker);">
-        <div class="container">
+        <div data-aos="fade-up" data-aos-delay="100" class="container">
             <!-- <h2 class="fade-in">Latest Insights</h2>
 
             Articles Grid
@@ -355,8 +386,8 @@
 
     <!-- Contact Band -->
     <section id="contact" class="contact-band" style="background-color: var(--primary);">
-        <div class="container">
-            <h2 class="fade-in">Ready to Grow or Invest?</h2>
+        <div data-aos="fade-up" data-aos-delay="100" class="container">
+            <h2 data-aos="fade-up"class="fade-in">Ready to Grow or Invest?</h2>
             <p class="fade-in delay-1"
                 style="margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Get in touch to
                 discuss how we can support your venture or investment goals.</p>
@@ -573,48 +604,58 @@
         );
     </script>
 
-    <script>const phrases = [
-            { text: "ventures", class: "ventures" },
-            { text: "investors", class: "investors" }
-        ];
+<script>
+  const phrases = [
+    { text: "Investor Advisory", class: "investors" },
+    { text: "Venture Development", class: "ventures" },
+    { text: "Global Talent", class: "talent" }
+  ];
 
-        const dynamicEl = document.getElementById("dynamic-text");
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let typing = true;
+  const dynamicEl = document.getElementById("dynamic-text");
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let typing = true;
 
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIndex];
+  function typeLoop() {
+    const currentPhrase = phrases[phraseIndex];
 
-            if (typing) {
-                if (charIndex < currentPhrase.text.length) {
-                    // Set the class before adding text
-                    dynamicEl.className = currentPhrase.class;
-                    dynamicEl.textContent += currentPhrase.text.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeLoop, 100);
-                } else {
-                    typing = false;
-                    setTimeout(typeLoop, 1200);
-                }
-            } else {
-                if (charIndex > 0) {
-                    dynamicEl.textContent = currentPhrase.text.substring(0, charIndex - 1);
-                    charIndex--;
-                    setTimeout(typeLoop, 50);
-                } else {
-                    typing = true;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    setTimeout(typeLoop, 500);
-                }
-            }
-        }
+    if (typing) {
+      if (charIndex < currentPhrase.text.length) {
+        dynamicEl.className = `animated-keyword ${currentPhrase.class}`;
+        dynamicEl.textContent += currentPhrase.text.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLoop, 100);
+      } else {
+        typing = false;
+        setTimeout(typeLoop, 1400);
+      }
+    } else {
+      if (charIndex > 0) {
+        dynamicEl.textContent = currentPhrase.text.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(typeLoop, 50);
+      } else {
+        typing = true;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeLoop, 500);
+      }
+    }
+  }
 
-        // Start typing on load
-        document.addEventListener("DOMContentLoaded", typeLoop);
-    </script>
+  document.addEventListener("DOMContentLoaded", typeLoop);
+</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: 'ease-out-quart'
+  });
+</script>
 </body>
 
 </html>
