@@ -116,7 +116,7 @@ section {
 
 h2 {
     font-size: 36px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
     color: var(--light);
 }
@@ -341,7 +341,7 @@ nav {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(146, 9, 9, 0.5), transparent 70%);
+    background: radial-gradient(circle at 30% 50%, rgba(190, 9, 9, 0.5), transparent 100%);
     z-index: 0;
 }
 
@@ -368,11 +368,32 @@ nav {
     margin-bottom: 40px;
 }
 
+.animated-keyword {
+  font-weight: 600;
+}
+
+.animated-keyword.investors {
+  color: var(--secondary);
+}
+
+.animated-keyword.ventures {
+  color: var(--primary);
+}
+
+.animated-keyword.talent {
+  color: var(--gray); /* You can replace with a third theme color */
+}
+
+
 /* Typing animation */
 .typing-terminal {
     font-size: 20px;
     color: var(--gray);
     margin-top: 10px;
+}
+
+#dynamic-text {
+  display: inline-block;
 }
 
 #dynamic-text.ventures {
@@ -464,6 +485,10 @@ nav {
     gap: 30px;
     margin-top: 40px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.solution-card {
+  transition: all 0.3s ease;
 }
 
 .solution-card,
@@ -608,50 +633,49 @@ nav {
 }
 
 /* Global Talent Layout */
-.global-talent-container {
-    display: flex;
-    gap: 10px;
+/* Global Talent Features Grid */
+.features-grid {
+    display: grid;
+    gap: 30px;
     margin-top: 40px;
-    align-items: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius);
+    padding: 30px;
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card h4 {
+    font-size: 18px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.global-talent-container {
+    display: block;
 }
 
 .global-talent-description {
-    flex: 7;
-    min-height: 508px;
-    display: flex;
-    flex-direction: column;
+    min-height: auto;
+    margin-bottom: 40px;
 }
 
-.global-talent-features {
-    flex: 3;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-}
 
-/* Bullet list */
-.bullet-list {
-    list-style: none;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    flex-grow: 1;
-}
-
-.bullet-list li {
-    position: relative;
-    margin-bottom: 12px;
-    padding-left: 25px;
-    color: var(--gray);
-}
-
-.bullet-list li::before {
-    content: "•";
-    color: var(--primary);
-    font-size: 24px;
-    position: absolute;
-    left: 0;
-    top: -2px;
-}
 
 /* Carousel */
 .carousel {
