@@ -57,7 +57,7 @@
     /* Layout */
     --container-width: 1200px;
     --radius: 12px;
-    --transition: 0.3s ease;
+    --transition: 0.35s ease;
 }
 
 body {
@@ -171,7 +171,7 @@ h2 {
     border-radius: 6px;
     font: 14px/1.4 'Roboto', sans-serif;
     text-decoration: none;
-    transition: transform .3s ease, box-shadow .3s ease;
+    transition: transform .35s ease, box-shadow .3s ease;
 }
 
 .portfolio-cta {
@@ -489,6 +489,7 @@ nav {
 
 .solution-card {
   transition: all 0.3s ease;
+  gap: 10px;
 }
 
 .solution-card,
@@ -524,16 +525,19 @@ nav {
     flex-grow: 1;
 }
 
+.solution-card h5{
+    margin-bottom: 5px;
+}
+
 /* ---------- Solution card hover‑reveal ---------- */
 @media (min-width: 768px) {
     .merged-solutions-grid .solution-card {
-        min-height: 330px;
+        min-height: 385px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         overflow: hidden;
-        /* keeps content clipped */
         transition: background .3s;
 
     }
@@ -543,25 +547,29 @@ nav {
         max-height: 0;
         opacity: 0;
         overflow: hidden;
-        transform: translateY(10px);
+        /* transform: translateY(10px); */
         transition: max-height .75s ease, opacity .75s ease, transform 1s ease;
     }
 
     .merged-solutions-grid .solution-card h4,
     .merged-solutions-grid .solution-card .solution-cta {
-        transition: transform 1s ease;
+        transition: transform 0.35s ease;
     }
 
-    /* magic happens here */
+    .solution-cta{
+        margin-top: 0px;
+    }
+
+    /* magic happens here
     .merged-solutions-grid .solution-card:hover h4,
     .merged-solutions-grid .solution-card:focus-within h4 {
         transform: translateY(-20px);
-    }
+    } */
 
-    .merged-solutions-grid .solution-card:hover .solution-cta,
+    /* .merged-solutions-grid .solution-card:hover .solution-cta,
     .merged-solutions-grid .solution-card:focus-within .solution-cta {
         transform: translateY(20px);
-    }
+    } */
 
     .merged-solutions-grid .solution-card:hover p,
     .merged-solutions-grid .solution-card:focus-within p {
