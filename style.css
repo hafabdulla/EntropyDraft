@@ -53,6 +53,7 @@
     /* Muted gray */
     --dark-bg: #000000;
     /* True black */
+--gray-light: rgba(153, 153, 153, 0.2);
 
     /* Layout */
     --container-width: 1200px;
