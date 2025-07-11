@@ -645,6 +645,10 @@
         </div>
     </section>
 
+
+
+
+
     <!-- Engagement Models -->
     <section class="section engagement-section" id="engagements">
         <div class="container">
@@ -655,42 +659,37 @@
             <div class="engagement-grid">
                 <div class="engagement-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="engagement-header">
-                        <h3>Fixed-Scope Projects</h3>
+                        <h3>Fixed Scope Engagements</h3>
                         <div class="engagement-icon">
                             <i class="fas fa-project-diagram"></i>
                         </div>
                     </div>
+                    <p style="font-size: 12px;"><i>Precision solutions for defined challenges</i></p>
+                    <hr class="horizontal-dotted-line">
                     <div class="engagement-content">
                         <ul>
-                            <li>Clear deliverables and timeline</li>
-                            <li>Ideal for specific challenges</li>
-                            <li>3-6 month duration typical</li>
+                            <li>Tailored deliverables with clear timelines and outcomes.</li>
+                            <li>Ideal for targeted initiatives like GTM strategy or financial audits.</li>
                         </ul>
-                        <div class="engagement-example">
-                            <p><strong>Example:</strong> Market entry strategy with implementation plan</p>
-                        </div>
                     </div>
-                    <div class="engagement-cta">
-                        <a href="#contact" class="cta-button cta-outline">Learn More</a>
-                    </div>
+
                 </div>
 
                 <div class="engagement-card featured" data-aos="fade-up" data-aos-delay="300">
                     <div class="engagement-header">
-                        <h3>Retained Advisory + Execution</h3>
+                        <h3>Retained Advisory & Execution</h3>
                         <div class="engagement-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
                     </div>
+                    <p style="font-size: 12px;"><i>Strategic partnership for sustained growth</i></p>
+                    <hr class="horizontal-dotted-line">
                     <div class="engagement-content">
                         <ul>
-                            <li>Ongoing strategic partnership</li>
-                            <li>Dedicated operator support</li>
-                            <li>Quarterly priorities and KPIs</li>
+                            <li>Ongoing guidance combined with hands-on execution.</li>
+                            <li>Adapts to evolving business needs and market dynamics.</li>
                         </ul>
-                        <div class="engagement-example">
-                            <p><strong>Example:</strong> Growth acceleration with monthly deliverables</p>
-                        </div>
+
                     </div>
                     <div class="engagement-cta">
                         <a href="#contact" class="cta-button cta-primary">Get Started</a>
@@ -699,27 +698,21 @@
 
                 <div class="engagement-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="engagement-header">
-                        <h3>Embedded Venture Partner</h3>
+                        <h3>Embedded Operating Partner</h3>
                         <div class="engagement-icon">
                             <i class="fas fa-user-tie"></i>
                         </div>
                     </div>
+                    <p style="font-size: 12px;"><i>Deep integration for transformational leadership.</i></p>
+                    <hr class="horizontal-dotted-line">
                     <div class="engagement-content">
                         <ul>
-                            <li>Full-time strategic operator</li>
-                            <li>Deep integration with your team</li>
-                            <li>6-12+ month engagements</li>
+                            <li>Seamless collaboration with your executive team.</li>
+                            <li>Direct accountability for critical business outcomes</li>
                         </ul>
-                        <div class="engagement-example">
-                            <p><strong>Example:</strong> Interim COO during funding round</p>
-                        </div>
-                    </div>
-                    <div class="engagement-cta">
-                        <a href="#contact" class="cta-button cta-outline">Learn More</a>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Final CTA -->
@@ -1204,7 +1197,7 @@
             list-style: none;
         }
 
-        .service-content h3{
+        .service-content h3 {
             font-size: smalle;
         }
 
@@ -1379,6 +1372,7 @@
             align-items: center;
             gap: 15px;
             border: 1px solid transparent;
+            width: 236.06px;
         }
 
         .persona-option:hover {
@@ -1684,7 +1678,7 @@
             margin-left: 30px;
         }
 
-        .case-content ul{
+        .case-content ul {
             margin-left: 30px;
         }
 
@@ -1888,9 +1882,10 @@
 
         .engagement-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 25px;
+            flex-direction: row;
+            gap: 20px;
+            align-items: flex-start;
         }
 
         .engagement-icon {
@@ -1908,12 +1903,30 @@
         .engagement-content ul {
             margin-top: 20px;
             padding-left: 20px;
+            padding-right: 20px;
+            list-style: none;
         }
 
         .engagement-content li {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             position: relative;
+            padding-left: 28px;
         }
+
+        .engagement-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23CF2D2D' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M5 13l4 4L19 7'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.2));
+        }
+
+        
 
         .engagement-example {
             margin-top: 25px;
@@ -1949,6 +1962,12 @@
         .engagement-cta .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .horizontal-dotted-line {
+            border: none;
+            border-top: 1px dotted var(--gray-light);
+            margin: 20px 0;
         }
 
         /* Final CTA */
@@ -2196,7 +2215,7 @@
                 align-items: flex-start;
                 max-width: fit-content;
             }
-            
+
         }
     </style>
 </body>
