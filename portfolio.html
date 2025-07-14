@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Entropy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <style>
+    :root {
+      --primary: #CF2D2D;
+      --secondary: #2796B8;
+      --bg: #eef3f8;
+      --text: #1a1a1a;
+      --muted: #666;
+      --radius: 12px;
+      --cta-radius: 6px;
+      --transition: 0.3s ease;
+      --shadow: rgba(0, 0, 0, 0.08);
+
+      --dark-bg: #000000;
+      --gray: #999;
+      --container-width: 80vw;
+      --light: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+
+    .container {
+      width: 90%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: var(--dark-bg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    header.transparent {
+      background-color: transparent !important;
+      border-bottom: 1px solid transparent !important;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid var(--secondary);
+      backdrop-filter: blur(10px);
+      transform: scale(0.98);
+    }
+
+    .logo img {
+      height: 30px;
+      transition: transform var(--transition);
+    }
+
+    .logo:hover img {
+      transform: scale(1.05);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 70px;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 5px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--light);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.4s ease, left 0.4s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--dark-bg);
+      min-width: 200px;
+      border-radius: 6px;
+      padding: 10px 0;
+      z-index: 1;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(10px);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 20px;
+      font-size: 14px;
+      color: var(--light);
+      text-decoration: none;
+      transition: background var(--transition), padding-left var(--transition);
+    }
+
+    .dropdown-content a:hover {
+      background: rgba(255, 255, 255, 0.05);
+      padding-left: 28px;
+      color: var(--primary);
+    }
+
+    .header-cta {
+      background: var(--primary);
+      color: var(--light);
+      margin-left: 25px;
+
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      text-decoration: none;
+      transition: var(--transition);
+      width: fit-content;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      padding: 20px 0;
+      z-index: 999;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 34px;
+      height: 34px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .burger span {
+      width: 100%;
+      height: 2px;
+      background: var(--light);
+      transition: var(--transition);
+    }
+
+    header.open .burger span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    header.open .burger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    header.open .burger span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    .header-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .20);
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      padding: 160px 0 100px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .filters {
+      margin: 60px auto 30px;
+      text-align: center;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      border-radius: var(--cta-radius);
+      margin: 0 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 24px var(--shadow);
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+      width: 230px;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+    }
+
+
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      background: #f5f5f5;
+      padding: 16px;
+    }
+
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 160px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+      z-index: 1;
+
+      /* Animation starts here */
+      transform: scaleY(0);
+      transform-origin: bottom;
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .card:hover .card-overlay {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #eef3f8;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 4px 0;
+  position: relative;
+  transition: background 0.3s ease;
+}
+.tag::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--secondary);
+  border-radius: 50%;
+  display: inline-block;
+}
+    .card-content {
+      padding: 16px;
+    }
+
+    .card-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .card-content .type {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    .card-content .desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    footer {
+      background: var(--dark-bg);
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      gap: 40px;
+      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .footer-column h4 {
+      position: relative;
+      font-size: 16px;
+      margin-bottom: 20px;
+      display: inline-block;
+      color: #fff;
+    }
+
+    .footer-column h4::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column a {
+      position: relative;
+      font-size: 14px;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-column a:hover {
+      color: var(--primary);
+    }
+
+    .footer-column a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--primary);
+      transition: width var(--transition);
+    }
+
+    .footer-column a:hover::after {
+      width: 100%;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--gray);
+      font-size: 12px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Section breaks and more animations */
+    .section-break {
+      background: #f9f9f9;
+      padding: 100px 0;
+      border-top: 1px solid #eee;
+    }
+
+    .section-dark {
+      background: #f0f4f7;
+      padding: 100px 0;
+      border-top: 1px solid #ddd;
+    }
+
+    .section-dark a {
+      display: inline-block;
+      margin-top: 30px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--cta-radius);
+      text-decoration: none;
+    }
+
+    .section-colored {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 120px 0;
+    }
+
+    [data-aos] {
+      opacity: 0;
+      transition-property: opacity, transform;
+    }
+
+    [data-aos].aos-animate {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+
+    /* Header */
+    header {
+        flex-direction: column;
+        padding: 12px 20px;
+        z-index: 1100;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    /* Mobile Nav */
+    nav {
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        width: 100%;
+        background: var(--dark-bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        transform: translateY(-100%);
+        transition: transform 0.35s ease;
+        z-index: 1050;
+    }
+
+    header.open nav {
+        transform: translateY(0);
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 18px;
+    }
+
+    .header-cta {
+        display: block;
+        width: 220px;
+        margin: 10px 0;
+    }
+}
+
+
+  </style>
+</head>
+
+
+<body>
+  <!-- Navbar -->
+  <header class="transparent">
+    <a href="index.html" class="logo">
+      <img src="entropy-full.png" alt="Entropy Logo">
+    </a>
+
+    <button id="burger" class="burger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <div class="nav-links">
+        <div class="dropdown">
+          <a href="services.html" style="cursor: pointer;">Services <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="services.html?persona=businesses#services" data-persona="businesses">
+              Venture Development
+            </a>
+            <a href="services.html?persona=investors#services" data-persona="investors">
+              Investor Advisory
+            </a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a>Investors <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="#">Investment Advisory</a>
+            <a href="#">Deal Flow</a>
+          </div>
+        </div>
+        <a href="portfolio.html">About</a>
+        <a href="#">Insights</a>
+      </div>
+      <a href="#contact" class="header-cta">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="height: 95vh;">
+    <div class="container" data-aos="fade-up" data-aos-duration="1000">
+      <h1>Our Portfolio</h1>
+      <p>We build and back bold ventures across emerging markets. Here’s a glimpse of our journey, our values, and the
+        ventures we've empowered.</p>
+    </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding: 60px 0; text-align: center;" data-aos="fade-up">
+    <h2 class="stroked-title">What We Do</h2>
+    <p style="max-width: 700px; margin: 0 auto; color: var(--muted);">
+      Entropy partners with visionary founders to launch, scale, and sustain disruptive ventures across Africa, South
+      Asia, and beyond.
+    </p>
+    <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+      <div style="max-width: 280px;" data-aos="zoom-in">
+        <i class="fas fa-globe fa-2x floating-icon" style="color: var(--secondary); margin-bottom: 10px;"></i><br />
+        <strong>Market Access</strong><br />
+        We unlock access to frontier and emerging markets.
+      </div>
+      <div style="max-width: 280px;" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fas fa-briefcase fa-2x floating-icon" style="color: var(--secondary); margin-bottom: 10px;"></i><br />
+        <strong>Strategic Support</strong><br />
+        From go-to-market to talent sourcing, we help founders scale smart.
+      </div>
+      <div style="max-width: 280px;" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fas fa-chart-line fa-2x floating-icon"
+          style="color: var(--secondary); margin-bottom: 10px;"></i><br />
+        <strong>Capital Efficiency</strong><br />
+        We back ideas that create value without burning runway.
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section-break" data-aos="fade-up">
+    <div class="container" style="text-align: center;">
+      <h2 class="stroked-title">Companies We've Backed</h2>
+      <p style="max-width: 700px; margin: 0 auto; color: var(--muted);">
+        Our portfolio spans innovative startups in fintech, agritech, and healthtech across emerging markets.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Filter Buttons -->
+
+  <section class="filters container" data-aos="fade-up 900">
+    <h2 style="text-align: center; margin-bottom: 20px;">Companies We've Backed</h2>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="fintech">Fintech</button>
+    <button class="filter-btn" data-filter="healthtech">HealthTech</button>
+    <button class="filter-btn" data-filter="agritech">AgriTech</button>
+  </section>
+
+  <!-- Portfolio Cards -->
+  <section class="portfolio container" data-aos="fade-up 1500">
+    <div class="card" data-category="fintech">
+      <img src="1.png" alt="Yabi" />
+      <div class="card-overlay">
+        <span class="tag">Founded: 2021</span>
+        <span class="tag">Founders: Jane Doe</span>
+        <span class="tag">Status: PRECEED STATUS A</span>
+      </div>
+      <div class="card-content">
+        <h3>Yabi</h3>
+        <p class="type">Fintech — Lagos, Nigeria</p>
+        <p class="desc">Financial tools for underserved markets</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="healthtech">
+      <img src="2.png" alt="MediSwift" />
+      <div class="card-overlay">
+        <span class="tag">Founded: 2020</span>
+        <span class="tag">Founders: John Smith</span>
+        <span class="tag">Status: PRECEED STATUS A</span>
+      </div>
+      <div class="card-content">
+        <h3>MediSwift</h3>
+        <p class="type">HealthTech — Nairobi, Kenya</p>
+        <p class="desc">On-demand medical logistics</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="agritech">
+      <img src="3.png" alt="FarmBase" />
+      <div class="card-overlay">
+        <span class="tag">Founded: 2019</span>
+        <span class="tag">Founders: Amina Yusuf</span>
+        <span class="tag">Status: PRECEED STATUS A</span>
+      </div>
+      <div class="card-content">
+        <h3>FarmBase</h3>
+        <p class="type">AgriTech — Kampala, Uganda</p>
+        <p class="desc">Agri-supply chain digitization</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="fintech">
+      <img src="4.png" alt="CashFly" />
+      <div class="card-overlay">
+        <span class="tag">Founded: 2022</span>
+        <span class="tag">Founders: Bilal Khan</span>
+        <span class="tag">Status: PRECEED STATUS A</span>
+      </div>
+      <div class="card-content">
+        <h3>CashFly</h3>
+        <p class="type">Fintech — Accra, Ghana</p>
+        <p class="desc">Mobile-first remittance platform</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="healthtech">
+      <img src="5.png" alt="CareLink" />
+      <div class="card-overlay">
+        <span class="tag">Founded: 2018</span>
+        <span class="tag">Founders: Sarah Lee</span>
+        <span class="tag">Status: PRECEED STATUS A</span>
+      </div>
+      <div class="card-content">
+        <h3>CareLink</h3>
+        <p class="type">HealthTech — Kigali, Rwanda</p>
+        <p class="desc">Digital platform for remote care</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="agritech">
+      <img src="6.png" alt="AgroNova" />
+      <div class="card-overlay">
+        <span class="tag">Founded: 2023</span>
+        <span class="tag">Founders: Omar Bashir</span>
+        <span class="tag">Status: PRECEED STATUS A</span>
+      </div>
+      <div class="card-content">
+        <h3>AgroNova</h3>
+        <p class="type">AgriTech — Lahore, Pakistan</p>
+        <p class="desc">Smart irrigation & soil analytics</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container" style="text-align: center;" data-aos="fade-up">
+      <h2>Let’s Build the Future Together</h2>
+      <p style="max-width: 600px; margin: 0 auto;">
+        We’re always looking for resilient founders, bold ideas, and transformative missions. Let’s explore how we can
+        grow together.
+      </p>
+      <a href="#contact">Get in Touch</a>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <a href="index.html">
+            <img src="entropy-full.png" alt="Entropy Logo" style="height: 30px; margin-bottom: 20px;">
+          </a>
+          <p style="color: var(--gray);">Turning market chaos into scalable ventures across emerging markets.
+          </p>
+        </div>
+        <div class="footer-column">
+          <h4>Businesses</h4>
+          <ul>
+            <li><a href="#">Venture Development</a></li>
+            <li><a href="#">Global Talent</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Investors</h4>
+          <ul>
+            <li><a href="#">Investment Advisory</a></li>
+            <li><a href="#">Deal Flow</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Insights</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li><a href="mailto:info@useentropy.com">info@useentropy.com</a></li>
+            <li style="color: #fff;">Methonis St. 1, 1070 Nicosia, Cyprus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Engrow Entropy Growth Ltd. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="portfolio.js"></script>
+  <script>// Init animations
+    AOS.init({ duration: 800, once: true });
+
+    // Portfolio filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filter-btn.active')?.classList.remove('active');
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.style.display = match ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+  <script>
+    // Navbar scroll effect
+    const header = document.querySelector('header');
+    const heroSection = document.querySelector('.hero');
+
+    function updateHeaderState() {
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+      if (heroBottom <= 0) {
+        // Scrolled past hero section
+        header.classList.remove('transparent');
+        header.classList.add('scrolled');
+      } else {
+        // Still inside hero section
+        header.classList.remove('scrolled');
+        header.classList.add('transparent');
+      }
+    }
+
+    // Call on scroll and load
+    window.addEventListener('scroll', updateHeaderState);
+    window.addEventListener('load', updateHeaderState);
+
+    document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Thank you for subscribing to our insights!');
+      this.reset();
+    });
+
+  </script>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const header_burger = document.querySelector('header');
+    const links = document.querySelectorAll('.nav-links a, .header-cta');
+
+    burger.addEventListener('click', () => {
+      header.classList.toggle('open');
+      document.body.style.overflow = header.classList.contains('open') ? 'hidden' : '';
+    });
+
+    /* close menu after a click */
+    links.forEach(el =>
+      el.addEventListener('click', () => {
+        header.classList.remove('open');
+        document.body.style.overflow = '';
+      })
+    );
+  </script>
+</body>
+
+</html>
