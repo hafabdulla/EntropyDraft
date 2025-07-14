@@ -53,10 +53,13 @@
     /* Muted gray */
     --dark-bg: #000000;
     /* True black */
---gray-light: rgba(153, 153, 153, 0.2);
+    --gray-light: rgba(153, 153, 153, 0.2);
+
+    --primary-business: #CF2D2D;
+    --primary-investor: #2796B8;
 
     /* Layout */
-    --container-width: 1200px;
+    --container-width: 80vw;
     --radius: 12px;
     --transition: 0.35s ease;
 }
@@ -67,7 +70,6 @@ body {
 }
 
 section {
-    background: transparent;
     position: relative;
     z-index: 1;
 }
@@ -79,8 +81,73 @@ section::before {
     background: linear-gradient(135deg, rgba(20, 25, 40, 0.8) 0%, rgba(10, 15, 30, 0.9) 100%);
     z-index: -1;
     border-radius: 0;
-    /* Remove if not needed */
 }
+
+
+.persona-option[data-persona="investors"] {
+    border-color: var(--primary-investor);
+    color: var(--primary-investor);
+}
+
+.persona-option[data-persona="investors"] .persona-icon {
+    background: rgba(39, 150, 184, 0.1);
+    color: var(--primary-investor);
+}
+
+/* Active style */
+.persona-option.active[data-persona="investors"] {
+    background: var(--primary-investor);
+    color: white;
+    border-color: var(--primary-investor);
+}
+
+.persona-option.active[data-persona="investors"] .persona-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Investor services override color */
+.persona-content[data-persona="investors"] .service-icon {
+    background: rgba(39, 150, 184, 0.1);
+    color: var(--primary-investor);
+}
+
+.persona-content[data-persona="investors"] .service-content li::before,
+.persona-content[data-persona="investors"] .service-details li::before {
+    color: var(--primary-investor);
+}
+
+.persona-option[data-persona="businesses"] {
+    border-color: var(--primary-business);
+    color: var(--primary-business);
+}
+
+.persona-option[data-persona="businesses"] .persona-icon {
+    background: rgba(207, 45, 45, 0.1);
+    color: var(--primary-business);
+}
+
+.persona-option.active[data-persona="businesses"] {
+    background: var(--primary-business);
+    color: white;
+    border-color: var(--primary-business);
+}
+
+.persona-option.active[data-persona="businesses"] .persona-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/* Red line for Businesses */
+.persona-content[data-persona="businesses"] .service-card::before {
+    background: var(--primary-business);
+}
+
+/* Blue line for Investors */
+.persona-content[data-persona="investors"] .service-card::before {
+    background: var(--primary-investor);
+}
+
 
 /* ---------- 2. Global Reset & Base ----------- */
 html,
@@ -108,6 +175,7 @@ body {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
+
 }
 
 section {
@@ -188,6 +256,7 @@ h2 {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, .20);
 }
+
 
 /* ---------- 4. Header / Nav ----------- */
 header {
@@ -370,19 +439,20 @@ nav {
 }
 
 .animated-keyword {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 .animated-keyword.investors {
-  color: var(--secondary);
+    color: var(--secondary);
 }
 
 .animated-keyword.ventures {
-  color: var(--primary);
+    color: var(--primary);
 }
 
 .animated-keyword.talent {
-  color: var(--gray); /* You can replace with a third theme color */
+    color: var(--gray);
+    /* You can replace with a third theme color */
 }
 
 
@@ -394,7 +464,7 @@ nav {
 }
 
 #dynamic-text {
-  display: inline-block;
+    display: inline-block;
 }
 
 #dynamic-text.ventures {
@@ -489,8 +559,8 @@ nav {
 }
 
 .solution-card {
-  transition: all 0.3s ease;
-  gap: 10px;
+    transition: all 0.3s ease;
+    gap: 10px;
 }
 
 .solution-card,
@@ -526,7 +596,7 @@ nav {
     flex-grow: 1;
 }
 
-.solution-card h5{
+.solution-card h5 {
     margin-bottom: 5px;
 }
 
@@ -557,7 +627,7 @@ nav {
         transition: transform 0.35s ease;
     }
 
-    .solution-cta{
+    .solution-cta {
         margin-top: 0px;
     }
 
