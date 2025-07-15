@@ -12,6 +12,7 @@
 
 <body>
 
+    <!-- Sticky Header -->
     <header class="transparent">
         <a href="index.html" class="logo">
             <img src="entropy-full.png" alt="Entropy Logo">
@@ -23,7 +24,7 @@
         <nav>
             <div class="nav-links">
                 <div class="dropdown">
-                    <a>Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="services.html" style="cursor: pointer;">Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
                         <a href="services.html?persona=businesses#services" data-persona="businesses">
                             Venture Development
@@ -911,6 +912,38 @@
                 }
             });
         });
+
+
+    </script>
+    <script>
+        // Navbar scroll effect
+        const header = document.querySelector('header');
+        const heroSection = document.querySelector('.hero');
+
+        function updateHeaderState() {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+            if (heroBottom <= 0) {
+                // Scrolled past hero section
+                header.classList.remove('transparent');
+                header.classList.add('scrolled');
+            } else {
+                // Still inside hero section
+                header.classList.remove('scrolled');
+                header.classList.add('transparent');
+            }
+        }
+
+        // Call on scroll and load
+        window.addEventListener('scroll', updateHeaderState);
+        window.addEventListener('load', updateHeaderState);
+
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our insights!');
+            this.reset();
+        });
+
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <style>
@@ -1496,30 +1529,30 @@
         }
 
         /* ----- Animated Top Border on Hover ----- */
-.service-card {
-  position: relative;
-  overflow: hidden;
-}
+        .service-card {
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Default invisible top border */
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: transparent;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-  z-index: 2;
-}
+        /* Default invisible top border */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: transparent;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
 
-/* When hovered: animate the line */
-.service-card:hover::before {
-  transform: scaleX(1);
-}
+        /* When hovered: animate the line */
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
 
 
         /* Responsive adjustments */
