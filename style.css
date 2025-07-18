@@ -283,9 +283,14 @@ header.transparent {
 
 header.scrolled {
     background-color: rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--secondary);
     backdrop-filter: blur(10px);
     transform: scale(0.98);
+}
+
+header.transparent .header-cta{
+    background: transparent;
+    border: 1px solid var(--light);
 }
 
 .logo img {
@@ -579,15 +584,14 @@ nav {
 }
 
 .solution-card h3 {
-    font-size: 24px;
+    font-size: 30px;
     color: var(--light);
     margin: 10px 0 20px;
 }
 
 .solution-card h4 {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--light);
-    margin-top: 30px;
 }
 
 .solution-card p {
@@ -596,20 +600,18 @@ nav {
     flex-grow: 1;
 }
 
-.solution-card h5 {
-    margin-bottom: 5px;
-}
+
 
 /* ---------- Solution card hover‑reveal ---------- */
 @media (min-width: 768px) {
     .merged-solutions-grid .solution-card {
-        min-height: 250px;
+        min-height: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         overflow: hidden;
-        transition: background .3s;
+        transition: var(--transition);
 
     }
 
@@ -630,12 +632,6 @@ nav {
     .solution-cta {
         margin-top: 0px;
     }
-
-    magic happens here
-    .merged-solutions-grid .solution-card:hover h4,
-    .merged-solutions-grid .solution-card:focus-within h4 {
-        transform: translateY(-20px);
-        }
 
     .merged-solutions-grid .solution-card:hover p,
     .merged-solutions-grid .solution-card:focus-within p {
@@ -682,7 +678,7 @@ nav {
 .column-title1,
 .column-title2 {
     position: relative;
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 20px;
     color: var(--light);
     padding-bottom: 10px;
