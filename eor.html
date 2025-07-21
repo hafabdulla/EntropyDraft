@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Global Talent Solutions | Entropy EOR</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+   <style>
+      /* Loader */
+      .loader {
+         border: 4px solid rgba(255, 255, 255, 0.3);
+         border-radius: 50%;
+         border-top: 4px solid var(--primary);
+         width: 40px;
+         height: 40px;
+         animation: spin 1s linear infinite;
+         margin: 0 auto;
+      }
+
+      @keyframes spin {
+         0% {
+            transform: rotate(0deg);
+         }
+
+         100% {
+            transform: rotate(360deg);
+         }
+      }
+
+      .page-loader {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: var(--dark-bg);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         z-index: 9999;
+         transition: opacity 0.5s, visibility 0.5s;
+      }
+
+      .page-loader.hidden {
+         opacity: 0;
+         visibility: hidden;
+      }
+
+      :root {
+         --primary: #CF2D2D;
+         --secondary: #2796B8;
+         --bg: #eef3f8;
+         --text: #1a1a1a;
+         --muted: #666;
+         --radius: 12px;
+         --cta-radius: 6px;
+         --transition: 0.3s ease;
+         --shadow: rgba(0, 0, 0, 0.08);
+         --dark-bg: #000000;
+         --gray: #999;
+         --container-width: 80vw;
+         --light: #FFFFFF;
+         --dark: #2A3439;
+      }
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         font-family: 'Roboto', sans-serif;
+         background: var(--bg);
+         color: var(--text);
+         line-height: 1.6;
+      }
+
+      .container {
+         width: 90%;
+         max-width: var(--container-width);
+         margin: 0 auto;
+         padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 15px 5%;
+         background: var(--dark-bg);
+         z-index: 1000;
+         transition: var(--transition);
+      }
+
+      header.transparent {
+         background-color: transparent !important;
+         border-bottom: 1px solid transparent !important;
+         backdrop-filter: blur(10px);
+         transition: all 0.3s ease;
+      }
+
+      header.scrolled {
+         background-color: rgba(0, 0, 0, 0.2);
+         border-bottom: 1px solid var(--secondary);
+         backdrop-filter: blur(10px);
+         transform: scale(0.98);
+      }
+
+      header.transparent .header-cta {
+         background: transparent;
+         border: 1px solid var(--light);
+      }
+
+      .logo img {
+         height: 30px;
+         transition: transform var(--transition);
+      }
+
+      .logo:hover img {
+         transform: scale(1.05);
+      }
+
+      nav {
+         display: flex;
+         align-items: center;
+      }
+
+      .nav-links {
+         display: flex;
+         gap: 70px;
+      }
+
+      .nav-links a {
+         position: relative;
+         padding: 5px 0;
+         font-size: 14px;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         color: var(--light);
+         text-decoration: none;
+         transition: color var(--transition);
+      }
+
+      .nav-links a:hover {
+         color: var(--primary);
+      }
+
+      .nav-links a::after {
+         content: "";
+         position: absolute;
+         bottom: 0;
+         left: 50%;
+         width: 0;
+         height: 2px;
+         background: var(--primary);
+         transition: width 0.4s ease, left 0.4s ease;
+      }
+
+      .nav-links a:hover::after {
+         width: 100%;
+         left: 0;
+      }
+
+      .dropdown {
+         position: relative;
+      }
+
+      .dropdown-content {
+         display: none;
+         position: absolute;
+         background-color: var(--dark-bg);
+         min-width: 200px;
+         border-radius: 6px;
+         padding: 10px 0;
+         z-index: 1;
+         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+         opacity: 0;
+         transition: opacity 0.3s ease, transform 0.3s ease;
+         transform: translateY(10px);
+      }
+
+      .dropdown:hover .dropdown-content {
+         display: block;
+         opacity: 1;
+         transform: translateY(0);
+      }
+
+      .dropdown-content a {
+         display: block;
+         padding: 12px 20px;
+         font-size: 14px;
+         color: var(--light);
+         text-decoration: none;
+         transition: background var(--transition), padding-left var(--transition);
+      }
+
+      .dropdown-content a:hover {
+         background: rgba(255, 255, 255, 0.05);
+         padding-left: 28px;
+         color: var(--primary);
+      }
+
+      .header-cta {
+         background: var(--primary);
+         color: var(--light);
+         margin-left: 25px;
+         display: inline-block;
+         padding: 12px 24px;
+         border-radius: 6px;
+         font-size: 14px;
+         text-decoration: none;
+         transition: var(--transition);
+         width: fit-content;
+         max-width: 200px;
+         text-align: center;
+      }
+
+      .header-cta:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 8px 20px rgba(0, 0, 0, .20);
+      }
+
+      .burger {
+         display: none;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         gap: 6px;
+         width: 34px;
+         height: 34px;
+         background: transparent;
+         border: none;
+         cursor: pointer;
+         z-index: 1100;
+      }
+
+      .burger span {
+         width: 100%;
+         height: 2px;
+         background: var(--light);
+         transition: var(--transition);
+      }
+
+      header.open .burger span:nth-child(1) {
+         transform: translateY(8px) rotate(45deg);
+      }
+
+      header.open .burger span:nth-child(2) {
+         opacity: 0;
+      }
+
+      header.open .burger span:nth-child(3) {
+         transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* Hero Section */
+      .hero {
+         display: flex;
+         align-items: center;
+         padding: 180px 0 100px;
+         background: linear-gradient(45deg, var(--primary), var(--secondary));
+         color: white;
+         text-align: center;
+         position: relative;
+         overflow: hidden;
+      }
+
+      .hero::before {
+         content: "";
+         position: absolute;
+         inset: 0;
+         background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1), transparent 70%);
+      }
+
+      .hero-content {
+         position: relative;
+         z-index: 1;
+      }
+
+      .hero h1 {
+         font-size: 3rem;
+         margin-bottom: 20px;
+      }
+
+      .hero p {
+         font-size: 1.2rem;
+         max-width: 600px;
+         margin: 0 auto 30px;
+      }
+
+      .hero-cta {
+         display: inline-block;
+         background: var(--light);
+         color: var(--primary);
+         padding: 15px 30px;
+         border-radius: var(--cta-radius);
+         text-decoration: none;
+         font-weight: 500;
+         transition: var(--transition);
+      }
+
+      .hero-cta:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Section Styles */
+      .section {
+         padding: 80px 0;
+      }
+
+      .section-title {
+         text-align: center;
+         margin-bottom: 50px;
+      }
+
+      .section-title h2 {
+         font-size: 2.2rem;
+         margin-bottom: 15px;
+      }
+
+      .section-title p {
+         max-width: 700px;
+         margin: 0 auto;
+         color: var(--muted);
+      }
+
+      /* Cards Section */
+      .cards-container {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+         gap: 30px;
+         margin-top: 40px;
+      }
+
+      .card {
+         background: white;
+         border-radius: var(--radius);
+         padding: 30px;
+         box-shadow: 0 4px 12px var(--shadow);
+         transition: var(--transition);
+         position: relative;
+         overflow: hidden;
+      }
+
+      .card::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 0;
+         height: 4px;
+         background: var(--primary);
+         transition: width 0.4s ease;
+      }
+
+      .card:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .card:hover::before {
+         width: 100%;
+      }
+
+      .card-icon {
+         font-size: 2.5rem;
+         margin-bottom: 20px;
+         color: var(--primary);
+      }
+
+      .card h3 {
+         margin-bottom: 15px;
+         font-size: 1.3rem;
+      }
+
+      .card p {
+         color: var(--muted);
+         margin-bottom: 20px;
+      }
+
+      /* Features Section */
+      .features-container {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+         gap: 30px;
+         margin-top: 40px;
+      }
+
+      .feature-card {
+         background: white;
+         border-radius: var(--radius);
+         padding: 30px;
+         box-shadow: 0 4px 12px var(--shadow);
+         transition: var(--transition);
+         position: relative;
+         overflow: hidden;
+         border-top: 4px solid var(--primary);
+      }
+
+      .feature-card:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+
+
+      .feature-card h3 {
+         margin-bottom: 15px;
+         font-size: 1.2rem;
+      }
+
+      .feature-card .ideal-for {
+         margin-top: 20px;
+         padding-top: 20px;
+         border-top: 1px dashed #eee;
+         font-size: 0.9rem;
+      }
+
+      .feature-card .ideal-for span {
+         display: inline-block;
+         margin-right: 8px;
+         margin-bottom: 8px;
+         background: var(--bg);
+         padding: 5px 10px;
+         border-radius: 4px;
+         font-size: 0.85rem;
+      }
+
+      .feature-icon {
+         width: 24px;
+         height: 24px;
+         margin-right: 8px;
+         vertical-align: middle;
+      }
+
+      /* Comparison Table */
+      .comparison-table {
+         width: 100%;
+         border-collapse: collapse;
+         margin: 40px 0;
+         background: white;
+         border-radius: var(--radius);
+         overflow: hidden;
+         box-shadow: 0 4px 12px var(--shadow);
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+         padding: 15px;
+         text-align: left;
+         border-bottom: 1px solid #eee;
+      }
+
+      .comparison-table th {
+         background: var(--bg);
+         font-weight: 500;
+      }
+
+      .comparison-table tr:last-child td {
+         border-bottom: none;
+      }
+
+      .comparison-table .feature-name {
+         font-weight: 500;
+      }
+
+      .comparison-table .check {
+         color: var(--primary);
+         font-weight: bold;
+      }
+
+      .comparison-table .warning {
+         color: orange;
+      }
+
+      .comparison-table .cross {
+         color: #ccc;
+      }
+
+      /* CTA Section */
+      .cta-section {
+         background: linear-gradient(135deg, var(--primary), var(--secondary));
+         color: white;
+         text-align: center;
+         padding: 80px 0;
+         position: relative;
+         overflow: hidden;
+      }
+
+      .cta-section::before {
+         content: "";
+         position: absolute;
+         inset: 0;
+         background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1), transparent 70%);
+      }
+
+      .cta-content {
+         position: relative;
+         z-index: 1;
+         max-width: 600px;
+         margin: 0 auto;
+      }
+
+      .cta-section h2 {
+         font-size: 2rem;
+         margin-bottom: 15px;
+      }
+
+      .cta-section p {
+         margin-bottom: 30px;
+         font-size: 1.1rem;
+      }
+
+      .cta-button {
+         display: inline-block;
+         background: var(--light);
+         color: var(--primary);
+         padding: 15px 30px;
+         border-radius: var(--cta-radius);
+         text-decoration: none;
+         font-weight: 500;
+         transition: var(--transition);
+      }
+
+      .cta-button:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Footer */
+      footer {
+         background: var(--dark-bg);
+         padding: 60px 0 30px;
+         color: white;
+      }
+
+      .footer-content {
+         display: grid;
+         gap: 40px;
+         margin-bottom: 40px;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .footer-column h4 {
+         position: relative;
+         font-size: 16px;
+         margin-bottom: 20px;
+         display: inline-block;
+         color: #fff;
+      }
+
+      .footer-column h4::after {
+         content: "";
+         position: absolute;
+         bottom: -5px;
+         left: 0;
+         width: 40px;
+         height: 2px;
+         background: var(--primary);
+      }
+
+      .footer-column ul {
+         list-style: none;
+      }
+
+      .footer-column li {
+         margin-bottom: 10px;
+      }
+
+      .footer-column a {
+         position: relative;
+         font-size: 14px;
+         color: var(--gray);
+         text-decoration: none;
+         transition: color var(--transition);
+      }
+
+      .footer-column a:hover {
+         color: var(--primary);
+      }
+
+      .footer-column a::after {
+         content: "";
+         position: absolute;
+         bottom: -2px;
+         left: 0;
+         width: 0;
+         height: 1px;
+         background: var(--primary);
+         transition: width var(--transition);
+      }
+
+      .footer-column a:hover::after {
+         width: 100%;
+      }
+
+      .footer-bottom {
+         text-align: center;
+         color: var(--gray);
+         font-size: 12px;
+         padding-top: 30px;
+         border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+         .hero h1 {
+            font-size: 2.2rem;
+         }
+
+         .hero p {
+            font-size: 1rem;
+         }
+
+         .section-title h2 {
+            font-size: 1.8rem;
+         }
+
+         .comparison-table {
+            display: block;
+            overflow-x: auto;
+         }
+      }
+
+      @media (max-width: 480px) {
+         .hero {
+            padding: 150px 0 80px;
+         }
+
+         .hero h1 {
+            font-size: 1.8rem;
+         }
+
+         .section {
+            padding: 60px 0;
+         }
+      }
+
+      /* Features */
+      .feature-tabs {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 16px;
+         margin-bottom: 32px;
+      }
+
+      .feature-tab {
+         background: white;
+         border: 2px solid var(--primary);
+         color: var(--primary);
+         padding: 12px 24px;
+         border-radius: 999px;
+         font-weight: 500;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         font-size: 0.95rem;
+         display: flex;
+         align-items: center;
+         gap: 10px;
+      }
+
+      .feature-tab:hover,
+      .feature-tab.active {
+         background: var(--primary);
+         color: white;
+      }
+
+      .feature-content-box {
+         background: white;
+         padding: 40px;
+         border-radius: var(--radius);
+         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+         animation: fadeIn 0.4s ease;
+      }
+
+      .feature-content-box h3 {
+         font-size: 1.8rem;
+         margin-bottom: 10px;
+         color: var(--primary);
+      }
+
+      .feature-content-box p {
+         font-size: 1rem;
+         color: var(--muted);
+         margin-bottom: 25px;
+      }
+
+      .ideal-tags {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 12px;
+      }
+
+      .ideal-tags span {
+         background: var(--bg);
+         padding: 8px 14px;
+         border-radius: 6px;
+         font-size: 0.85rem;
+         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+
+      @keyframes fadeIn {
+         from {
+            opacity: 0;
+            transform: translateY(10px);
+         }
+
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <!-- Loader -->
+   <div class="page-loader">
+      <div class="loader"></div>
+   </div>
+
+
+   <!-- Navbar -->
+   <header class="transparent">
+      <a href="index.html" class="logo">
+         <img src="entropy-full.png" alt="Entropy Logo">
+      </a>
+
+      <button id="burger" class="burger" aria-label="Toggle navigation">
+         <span></span><span></span><span></span>
+      </button>
+      <nav>
+         <div class="nav-links">
+            <div class="dropdown">
+               <a href="services.html" style="cursor: pointer;">Solutions <i class="fas fa-chevron-down"></i></a>
+               <div class="dropdown-content">
+                  <a href="services.html?persona=businesses#services" data-persona="businesses">
+                     Venture Development
+                  </a>
+                  <a href="services.html?persona=investors#services" data-persona="investors">
+                     Operating Partner
+                  </a>
+                  <a href="eor.html">Global Talent & Employer of Record (EOR)</a>
+                  <a href="#">Invest</a>
+               </div>
+            </div>
+            <a href="portfolio.html">Portfolio</a>
+            <div class="dropdown">
+               <a>Insights <i class="fas fa-chevron-down"></i></a>
+               <div class="dropdown-content">
+                  <a href="#">Case Studies</a>
+                  <a href="#">Market Insights</a>
+               </div>
+            </div>
+            <a href="#">About</a>
+         </div>
+         <a href="#contact" class="header-cta">Book Now</a>
+      </nav>
+   </header>
+
+   <!-- Hero Section -->
+   <section class="hero">
+      <div class="container hero-content" data-aos="fade-up">
+         <h1>A Smarter Way to Hire, Pay, and Grow</h1>
+         <p>Unlock global hiring potential with compliant, currency-stable employment, without the admin load.</p>
+         <a href="#contact" class="hero-cta floating-btn">Get Started with Entropy EOR</a>
+      </div>
+   </section>
+
+   <!-- What is EOR Section -->
+   <section class="section">
+      <div class="container">
+         <div class="section-title" data-aos="fade-up">
+            <h2>What is Entropy EOR?</h2>
+            <p>Entropy EOR is a global hiring solution that lets you legally employ and pay full-time talent anywhere,
+               without opening a local entity.</p>
+         </div>
+         <div class="cards-container">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+               <div class="card-icon">
+                  <i class="fas fa-globe"></i>
+               </div>
+               <h3>Global Reach</h3>
+               <p>Hire talent in any country without establishing a local entity. We handle the legal complexities so
+                  you don't have to.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+               <div class="card-icon">
+                  <i class="fas fa-file-contract"></i>
+               </div>
+               <h3>Compliant Contracts</h3>
+               <p>Local employment contracts that meet all regulatory requirements, drafted by our in-country legal
+                  experts.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+               <div class="card-icon">
+                  <i class="fas fa-hand-holding-usd"></i>
+               </div>
+               <h3>Stable Payments</h3>
+               <p>Pay your team in USD, EUR, or other stable currencies, regardless of local currency fluctuations.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Why You Need EOR Section -->
+   <section class="section" style="background-color: #f5f9fc;">
+      <div class="container">
+         <div class="section-title" data-aos="fade-up">
+            <h2>Why You Need Entropy EOR</h2>
+            <p>Are you scaling talent, but stuck in red tape?</p>
+         </div>
+         <div class="cards-container">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+               <div class="card-icon">
+                  <i class="fas fa-clock"></i>
+               </div>
+               <h3>You're stuck in admin mode</h3>
+               <p>15+ hours a week spent on contracts, payroll, and compliance means less time for growth.</p>
+               <p style="color: var(--secondary); font-weight: 500;">Entropy automates it all in the background.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+               <div class="card-icon">
+                  <i class="fas fa-money-bill-wave"></i>
+               </div>
+               <h3>You can't offer global pay</h3>
+               <p>Without access to foreign currencies, you're losing ground to global offers.</p>
+               <p style="color: var(--secondary); font-weight: 500;">With Entropy, your team receives stable USD/EUR
+                  salaries compliantly.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+               <div class="card-icon">
+                  <i class="fas fa-brain"></i>
+               </div>
+               <h3>Top talent is getting poached</h3>
+               <p>Global players are hiring from your backyard and they're moving fast.</p>
+               <p style="color: var(--secondary); font-weight: 500;">Entropy gives you a competitive edge to retain your
+                  team with legitimacy and benefits.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Features Section -->
+   <section class="section" id="features-section">
+      <div class="container">
+         <div class="section-title" data-aos="fade-up">
+            <h2>Features That Fit Your Business</h2>
+            <p>Pick a feature to see how Entropy helps you scale and streamline operations</p>
+         </div>
+
+         <div class="tabbed-features" data-aos="fade-up">
+            <div class="feature-tabs">
+               <button class="feature-tab active" data-feature="compliance"><i class="fas fa-file-signature"></i>
+                  Compliance</button>
+               <button class="feature-tab" data-feature="stable"><i class="fas fa-dollar-sign"></i> Stable Pay</button>
+               <button class="feature-tab" data-feature="access"><i class="fas fa-university"></i> Financial
+                  Access</button>
+               <button class="feature-tab" data-feature="admin"><i class="fas fa-cogs"></i> Admin Automation</button>
+            </div>
+
+            <div class="feature-content-box" id="feature-content">
+               <!-- JavaScript will render content here -->
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Comparison Table Section -->
+   <section class="section" style="background-color: #f5f9fc;">
+      <div class="container">
+         <div class="section-title" data-aos="fade-up">
+            <h2>Why Entropy EOR Wins</h2>
+            <p>Compare the options for global hiring and payments</p>
+         </div>
+         <table class="comparison-table" data-aos="fade-up">
+            <thead>
+               <tr>
+                  <th>Feature</th>
+                  <th>Local Payroll</th>
+                  <th>Freelance Platforms</th>
+                  <th>Global EORs</th>
+                  <th>Entropy EOR</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="feature-name">USD Salaries</td>
+                  <td class="cross">❌</td>
+                  <td class="cross">❌</td>
+                  <td class="check">✅</td>
+                  <td class="check">✅</td>
+               </tr>
+               <tr>
+                  <td class="feature-name">Legal Contracts</td>
+                  <td class="check">✅</td>
+                  <td class="cross">❌</td>
+                  <td class="check">✅</td>
+                  <td class="check">✅</td>
+               </tr>
+               <tr>
+                  <td class="feature-name">Local Insight</td>
+                  <td class="check">✅</td>
+                  <td class="cross">❌</td>
+                  <td class="cross">❌</td>
+                  <td class="check">✅</td>
+               </tr>
+               <tr>
+                  <td class="feature-name">Tax & Compliance</td>
+                  <td class="warning">⚠️</td>
+                  <td class="cross">❌</td>
+                  <td class="check">✅</td>
+                  <td class="check">✅</td>
+               </tr>
+               <tr>
+                  <td class="feature-name">KYC & Payslips</td>
+                  <td class="warning">⚠️</td>
+                  <td class="cross">❌</td>
+                  <td class="check">✅</td>
+                  <td class="check">✅</td>
+               </tr>
+               <tr>
+                  <td class="feature-name">Onboarding Speed</td>
+                  <td>Slow</td>
+                  <td>Medium</td>
+                  <td>Slow</td>
+                  <td class="check">✅ 48h</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </section>
+
+   <!-- CTA Section -->
+   <section id="contact" class="cta-section">
+      <div class="container cta-content" data-aos="fade-up">
+         <h2>Ready to Simplify Global Hiring?</h2>
+         <p>Get tailored pricing and a compliance roadmap for your team, in one conversation.</p>
+         <a href="#" class="cta-button">Book a Strategy Call</a>
+      </div>
+   </section>
+
+   <!-- Footer -->
+   <footer>
+      <div class="container">
+         <div class="footer-content">
+            <div class="footer-column">
+               <a href="index.html">
+                  <img src="entropy-full.png" alt="Entropy Logo" style="height: 30px; margin-bottom: 20px;">
+               </a>
+               <p style="color: var(--gray);">Turning market chaos into scalable ventures across emerging markets.
+               </p>
+            </div>
+            <div class="footer-column">
+               <h4>Businesses</h4>
+               <ul>
+                  <li><a href="#">Venture Development</a></li>
+                  <li><a href="eor.html">Global Talent</a></li>
+               </ul>
+            </div>
+            <div class="footer-column">
+               <h4>Investors</h4>
+               <ul>
+                  <li><a href="#">Investment Advisory</a></li>
+                  <li><a href="#">Deal Flow</a></li>
+               </ul>
+            </div>
+            <div class="footer-column">
+               <h4>Company</h4>
+               <ul>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Insights</a></li>
+                  <li><a href="#">Contact</a></li>
+               </ul>
+            </div>
+            <div class="footer-column">
+               <h4>Get in Touch</h4>
+               <ul>
+                  <li><a href="mailto:info@useentropy.com">info@useentropy.com</a></li>
+                  <li style="color: #fff;">Methonis St. 1, 1070 Nicosia, Cyprus</li>
+               </ul>
+            </div>
+         </div>
+         <div class="footer-bottom">
+            &copy; 2025 Engrow Entropy Growth Ltd. All rights reserved.
+         </div>
+      </div>
+   </footer>
+
+   <!-- Scripts -->
+   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   <script>
+      // Init animations
+      AOS.init({ duration: 800, once: true });
+
+      // Navbar scroll effect
+      const header = document.querySelector('header');
+      const heroSection = document.querySelector('.hero');
+
+      function updateHeaderState() {
+         const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+         if (heroBottom <= 0) {
+            // Scrolled past hero section
+            header.classList.remove('transparent');
+            header.classList.add('scrolled');
+         } else {
+            // Still inside hero section
+            header.classList.remove('scrolled');
+            header.classList.add('transparent');
+         }
+      }
+
+      // Call on scroll and load
+      window.addEventListener('scroll', updateHeaderState);
+      window.addEventListener('load', updateHeaderState);
+
+      // Mobile menu toggle
+      const burger = document.getElementById('burger');
+      const header_burger = document.querySelector('header');
+      const links = document.querySelectorAll('.nav-links a, .header-cta');
+
+      burger.addEventListener('click', () => {
+         header.classList.toggle('open');
+         document.body.style.overflow = header.classList.contains('open') ? 'hidden' : '';
+      });
+
+      links.forEach(el =>
+         el.addEventListener('click', () => {
+            header.classList.remove('open');
+            document.body.style.overflow = '';
+         })
+      );
+   </script>
+   <script>
+      window.addEventListener('load', function () {
+         document.querySelector('.page-loader').classList.add('hidden');
+      });
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+         card.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-10px)';
+         });
+         card.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0)';
+         });
+      });
+   </script>
+   <script>
+      const features = {
+         compliance: {
+            title: "Full Legal Compliance",
+            description: "Local employment contracts that meet all regulatory requirements in each country we operate.",
+            ideal: [
+               "Tech Startups scaling dev teams",
+               "Remote-first businesses cleaning up legal structure"
+            ]
+         },
+         stable: {
+            title: "Pay in Stable Currencies",
+            description: "Offer USD, EUR or other stable currencies regardless of local currency fluctuations.",
+            ideal: [
+               "Founders paying in foreign currencies",
+               "Agencies hiring global talent"
+            ]
+         },
+         access: {
+            title: "Global Financial Access",
+            description: "Banking and payment infrastructure that works across borders without friction.",
+            ideal: [
+               "Companies sponsoring employee visas",
+               "Startups offering 'work-from-anywhere' perks"
+            ]
+         },
+         admin: {
+            title: "Lower Administrative Load",
+            description: "Automated payroll, tax filings, and compliance reporting in one dashboard.",
+            ideal: [
+               "Bootstrapped founders managing HR alone",
+               "Scale-ups expanding to new countries"
+            ]
+         }
+      };
+
+      const tabButtons = document.querySelectorAll(".feature-tab");
+      const contentBox = document.getElementById("feature-content");
+
+      function renderFeature(key) {
+         const f = features[key];
+         contentBox.innerHTML = `
+      <h3>${f.title}</h3>
+      <p>${f.description}</p>
+      <div><strong>Ideal for:</strong></div>
+      <div class="ideal-tags">
+        ${f.ideal.map(i => `<span>${i}</span>`).join('')}
+      </div>
+    `;
+      }
+
+      // Init first tab
+      renderFeature("compliance");
+
+      tabButtons.forEach(btn => {
+         btn.addEventListener("click", () => {
+            document.querySelector(".feature-tab.active")?.classList.remove("active");
+            btn.classList.add("active");
+            renderFeature(btn.dataset.feature);
+         });
+      });
+   </script>
+
+</body>
+
+</html>
