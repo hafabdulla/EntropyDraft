@@ -79,10 +79,10 @@
       transform: scale(0.98);
     }
 
-    header.transparent .header-cta{
-    background: transparent;
-    border: 1px solid var(--light);
-}
+    header.transparent .header-cta {
+      background: transparent;
+      border: 1px solid var(--light);
+    }
 
     .logo img {
       height: 30px;
@@ -784,42 +784,42 @@
 
 <body>
   <!-- Navbar -->
-    <header class="transparent">
-        <a href="index.html" class="logo">
-            <img src="entropy-full.png" alt="Entropy Logo">
-        </a>
+  <header class="transparent">
+    <a href="index.html" class="logo">
+      <img src="entropy-full.png" alt="Entropy Logo">
+    </a>
 
-        <button id="burger" class="burger" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <nav>
-            <div class="nav-links">
-                <div class="dropdown">
-                    <a href="services.html" style="cursor: pointer;">Solutions <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="services.html?persona=businesses#services" data-persona="businesses">
-                            Venture Development
-                        </a>
-                        <a href="services.html?persona=investors#services" data-persona="investors">
-                            Operating Partner
-                        </a>
-                        <a href="#">Global Talent & Employer of Record (EOR)</a>
-                        <a href="#">Invest</a>
-                    </div>
-                </div>
-                <a href="portfolio.html">Portfolio</a>
-                <div class="dropdown">
-                    <a>Insights <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#">Case Studies</a>
-                        <a href="#">Market Insights</a>
-                    </div>
-                </div>
-                <a href="#">About</a>
-            </div>
-            <a href="#contact" class="header-cta">Book Now</a>
-        </nav>
-    </header>
+    <button id="burger" class="burger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <div class="nav-links">
+        <div class="dropdown">
+          <a href="services.html" style="cursor: pointer;">Solutions <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="services.html?persona=businesses#services" data-persona="businesses">
+              Venture Development
+            </a>
+            <a href="services.html?persona=investors#services" data-persona="investors">
+              Operating Partner
+            </a>
+            <a href="#">Global Talent & Employer of Record (EOR)</a>
+            <a href="#">Invest</a>
+          </div>
+        </div>
+        <a href="portfolio.html">Portfolio</a>
+        <div class="dropdown">
+          <a>Insights <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="#">Case Studies</a>
+            <a href="#">Market Insights</a>
+          </div>
+        </div>
+        <a href="#">About</a>
+      </div>
+      <a href="#contact" class="header-cta">Book Now</a>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
   <section class="hero" style="height: 95vh;">
@@ -1122,21 +1122,42 @@
   <script>// Init animations
     AOS.init({ duration: 800, once: true });
 
-    // Portfolio filtering
+    // Portfolio filtering 
     const filterBtns = document.querySelectorAll('.filter-btn');
     const to_be_filtered_cards = document.querySelectorAll('.card');
+
+    let selectedCompanyName = null;
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelector('.filter-btn.active')?.classList.remove('active');
         btn.classList.add('active');
         const filter = btn.dataset.filter;
+
+        // Filter cards
         to_be_filtered_cards.forEach(card => {
           const match = filter === 'all' || card.dataset.category === filter;
-          card.style.display = match ? 'block' : 'none';
+          card.style.display = match ? 'flex' : 'none';
         });
+
+        // Check if selected card is still visible
+        if (selectedCompanyName) {
+          const selectedCard = [...to_be_filtered_cards].find(card =>
+            card.getAttribute('data-name') === selectedCompanyName
+          );
+          const isVisible = selectedCard && selectedCard.style.display !== 'none';
+
+          if (!isVisible) {
+            document.getElementById('company-details').style.display = 'none';
+            selectedCompanyName = null;
+
+            // ✨ Fix visual state
+            to_be_filtered_cards.forEach(card => card.classList.remove('active'));
+          }
+        }
       });
     });
+
   </script>
   <script>
     // Navbar scroll effect
@@ -1350,9 +1371,11 @@
 
           // Show and scroll
           detailBox.style.display = 'block';
+          selectedCompanyName = data.name;
           detailBox.scrollIntoView({ behavior: 'smooth' });
         }
       });
+        
     });
   </script>
 
