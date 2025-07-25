@@ -16,6 +16,10 @@
         --primary: #CF2D2D;
         /* Brand red */
         --secondary: #2796B8;
+        --primary-light: #FBE9E9;
+        /* Light version of #CF2D2D */
+        --secondary-light: #E4F4FA;
+        /* Light version of #2796B8 */
         /* Teal accent */
         --dark: #2A3439;
         /* Dark gray */
@@ -23,11 +27,15 @@
         /* Near‑black */
         --light: #FFFFFF;
         /* Pure white */
-        --gray: #999999;
+        --gray: #8c8c8c;
         /* Muted gray */
         --dark-bg: #000000;
+        --bg: #eef3f8;
+        --shadow: rgba(0, 0, 0, 0.03);
+
         /* True black */
         --gray-light: rgba(153, 153, 153, 0.2);
+        --headings: #1a1a1a;
 
         --primary-business: #CF2D2D;
         --primary-investor: #2796B8;
@@ -37,6 +45,8 @@
         --radius: 12px;
         --transition: 0.35s ease;
     }
+
+
 
     html,
     body {
@@ -54,8 +64,8 @@
     }
 
     body {
-        background: var(--dark);
-        color: var(--light);
+        background: var(--bg);
+        /* color: var(--light); */
         line-height: 1.6;
     }
 
@@ -68,7 +78,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(20, 25, 40, 0.8) 0%, rgba(10, 15, 30, 0.9) 100%);
+        /* background: var(--bg); */
         z-index: -1;
         border-radius: 0;
     }
@@ -89,8 +99,9 @@
         font-size: 36px;
         margin-bottom: 20px;
         text-align: center;
-        color: var(--light);
+        color: var(--headings);
     }
+
 
 
     .persona-option[data-persona="investors"] {
@@ -358,20 +369,59 @@
     /* Hero */
     .hero {
         position: relative;
-        min-height: 80vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
-        background: #000813 url('bgs/bg11.svg') no-repeat;
+        /* background: #1c202f url('bg11.svg') no-repeat; */
         background-size: cover;
         overflow: hidden;
+        padding-top: 100px;
+        padding-bottom: 150px;
+
+        border-bottom-left-radius: 10%;
+        border-bottom-right-radius: 10%;
     }
 
     .hero::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at 30% 50%, rgba(190, 9, 9, 0.5), transparent 100%);
+        /* background: radial-gradient(circle at 30% 50%, rgba(190, 9, 9, 0.5), transparent 60%); */
+        background: linear-gradient(to right, #e7a6d703, rgba(232, 232, 232, 0.2));
+        /* background: #c6c6c6; */
+        background-color: #1c202f;
+
         z-index: 0;
+
+    }
+
+    .hero-right-bg {
+        position: absolute;
+        right: 0;
+        top: -70px;
+        height: auto;
+        max-width: 40vw;
+        z-index: 0;
+        pointer-events: none;
+        user-select: none;
+        opacity: 1;
+    }
+
+    .hero-right-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            radial-gradient(circle at 20% 30%, white 2px, transparent 3px),
+            radial-gradient(circle at 40% 70%, white 2px, transparent 3px),
+            radial-gradient(circle at 60% 20%, white 2px, transparent 3px),
+            radial-gradient(circle at 80% 50%, white 2px, transparent 3px);
+        background-size: 100% 100%;
+        opacity: 1;
+        pointer-events: none;
     }
 
     .hero-content {
@@ -402,7 +452,7 @@
     }
 
     .animated-keyword.investors {
-        color: var(--secondary);
+        color: var(--secondary)
     }
 
     .animated-keyword.ventures {
@@ -459,30 +509,36 @@
         /* gap: 100px; */
     }
 
+
     .solution-card,
     .stat-card {
-        background: rgba(255, 255, 255, 0.03);
+        /* background: linear-gradient(to bottom right, #ffffff, #f9f9f9); */
+        background-color: #f9f9f9;
+        border: 1px solid rgba(0, 0, 0, 0.02);
         border-radius: var(--radius);
         padding: 30px;
-        transition: var(--transition);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+
 
     .solution-card:hover,
     .stat-card:hover {
-        background: rgba(255, 255, 255, 0.05);
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        /* background: linear-gradient(to bottom right, #ffffff, #f1f1f1); */
     }
 
     .solution-card h3 {
         font-size: 30px;
-        color: var(--light);
+        color: var(--headings);
         margin: 10px 0 20px;
     }
 
     .solution-card h4 {
         font-size: 24px;
-        color: var(--light);
+        color: var(--headings);
     }
 
     /* .question.investors {
@@ -491,16 +547,17 @@
     .question.ventures {
         color: var(--primary);
     } */
-    .question{
+    .question {
         margin-top: 10px;
         margin-bottom: 0px;
         font-size: 16px;
         font-weight: lighter;
+        color: var(--headings);
     }
 
     .solution-card p {
         color: var(--gray);
-        margin: 10px 0px;
+        margin: 7px 0px;
         flex-grow: 1;
     }
 
@@ -521,7 +578,7 @@
         position: relative;
         font-size: 30px;
         margin-bottom: 20px;
-        color: var(--light);
+        color: var(--headings);
         padding-bottom: 10px;
     }
 
@@ -580,6 +637,19 @@
             transform: translateY(0);
         }
     }
+/* 
+    .solution-card::before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 80px;
+        height: 80px;
+        background: rgba(207, 45, 45, 0.1);
+        border-radius: 50%;
+        z-index: 1;
+    } */
+
 
     /* Global Talent Features Grid */
     .features-grid {
@@ -589,17 +659,21 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
+
     .feature-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+        border: 1px solid rgba(0, 0, 0, 0.02);
         border-radius: var(--radius);
         padding: 30px;
-        transition: var(--transition);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .feature-card:hover {
-        background: rgba(255, 255, 255, 0.05);
+
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
     }
 
     .feature-card h4 {
@@ -630,15 +704,17 @@
         margin-top: 40px;
         grid-template-columns: repeat(4, 1fr);
     }
+
     .stat-number {
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 10px;
-}
-.stats-section{
-    text-align: center;
-}
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 10px;
+    }
+
+    .stats-section {
+        text-align: center;
+    }
 
     /* Portfolio Matrix*/
     .portfolio-matrix {
@@ -654,7 +730,7 @@
     }
 
     .company-item {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(215, 215, 215, 0.3);
         border-radius: var(--radius);
         padding: 15px 20px;
         height: 100px;
@@ -664,7 +740,7 @@
         justify-content: center;
         font-size: 16px;
         font-weight: 500;
-        color: var(--light);
+        color: var(--text);
         transition: var(--transition);
     }
 
@@ -701,6 +777,11 @@
         text-align: center;
         position: relative;
         overflow: hidden;
+        color: var(--light);
+    }
+
+    .contact-band h2 {
+        color: var(--light);
     }
 
     .contact-band::before {
@@ -713,12 +794,16 @@
     .contact-form {
         max-width: 600px;
         margin: 0 auto;
-        background: var(--dark);
+        background: rgba(255, 255, 255);
         padding: 40px;
         border-radius: var(--radius);
         position: relative;
         z-index: 1;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .contact-form:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     .form-group {
@@ -739,8 +824,8 @@
         padding: 12px;
         border-radius: 6px;
         border: none;
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--light);
+        background: rgba(0, 0, 0, 0.1);
+        color: var(--dark);
         transition: var(--transition);
     }
 
@@ -753,6 +838,36 @@
     }
 
     .form-submit {
+        background: #282828;
+        color: var(--light);
+        padding: 15px 30px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        transition: var(--transition);
+        border: none;
+    }
+
+    .form-submit:hover {
+        background: var(--bg);
+        color: var(--dark);
+    }
+
+    /* Contact Form 2nd one; input styles; Only for the 2nd Contact form !!!!!!!!!!!*/
+    #contactForm .form-group input,
+    #contactForm .form-group select,
+    #contactForm .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--light);
+        transition: var(--transition);
+    }
+
+    #contactForm .form-submit {
         background: var(--dark);
         color: var(--light);
         border: 2px solid var(--light);
@@ -764,9 +879,11 @@
         transition: var(--transition);
     }
 
-    .form-submit:hover {
+    #contactForm .form-submit:hover {
         background: var(--light);
         color: var(--dark);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .20);
     }
 
     /* Footer */
@@ -805,6 +922,7 @@
 
     .footer-column li {
         margin-bottom: 10px;
+        color: var(--light);
     }
 
     .footer-column a {
@@ -840,6 +958,10 @@
         font-size: 12px;
         padding-top: 30px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer h4 {
+        color: var(--light);
     }
 
     @keyframes fadeIn {
@@ -920,11 +1042,6 @@
             margin: 10px 0;
         }
 
-        /* Hero */
-        .hero {
-            background-image: none !important;
-        }
-
         .hero h1 {
             font-size: 36px;
         }
@@ -980,7 +1097,7 @@
         section.hero .container {
             margin-left: 130px;
             height: 80vh;
-            padding: 200px 0;
+            padding: 100px 0;
         }
     }
 
@@ -988,6 +1105,321 @@
         .stats-grid {
             grid-template-columns: 1fr;
         }
+    }
+
+    /* Creativity */
+    .hero-bg-animation {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        z-index: 0;
+        animation: waveMove 10s linear infinite alternate;
+        pointer-events: none;
+    }
+
+    @keyframes waveMove {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50px);
+        }
+    }
+
+    .hero .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    #backToTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 999;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    #backToTop.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    #backToTop:hover {
+        background: var(--secondary);
+        transform: translateY(-4px);
+    }
+
+    /* HERO Draft 1 */
+    /* Carousel Background */
+    .hero-bg-carousel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .carousel-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        animation: fadeCarousel 24s infinite;
+    }
+
+    .carousel-image:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .carousel-image:nth-child(2) {
+        animation-delay: 8s;
+    }
+
+    .carousel-image:nth-child(3) {
+        animation-delay: 16s;
+    }
+
+    @keyframes fadeCarousel {
+
+        0%,
+        100% {
+            opacity: 0;
+        }
+
+        10%,
+        30% {
+            opacity: 1;
+        }
+
+        40%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* Adjust layout */
+    .layout-adjusted {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 700px;
+    }
+
+    .compressed-paragraph {
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--gray);
+    }
+
+    /* Logo Strip in hero */
+    :root {
+        --marquee-width: 100%;
+        --marquee-elements-displayed: 10;
+        --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+        --marquee-animation-duration: calc(var(--marquee-elements) * 2s);
+    }
+
+    .marquee {
+        width: var(--marquee-width);
+        height: var(--marquee-height);
+        position: relative;
+        overflow: hidden;
+        background: transparent;
+        margin: 2rem auto 1rem auto;
+        display: block;
+        /* margin-left:40px; */
+    }
+
+    .marquee::before,
+    .marquee::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 5rem;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .marquee::before {
+        left: 0;
+        background: transparent;
+    }
+
+
+    .marquee::after {
+        right: 0;
+        background: transparent
+    }
+
+    .marquee-content {
+        display: flex;
+        list-style: none;
+        height: 100%;
+        animation: scrolling var(--marquee-animation-duration) linear infinite;
+        gap: 2rem;
+    }
+
+    .marquee-content li {
+        flex-shrink: 0;
+        width: var(--marquee-element-width);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .marquee-content li img {
+        max-height: 80%;
+        max-width: 100%;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+
+    .marquee-content li img:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+
+    @keyframes scrolling {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+        }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        :root {
+            --marquee-elements-displayed: 3;
+            --marquee-height: 60px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        :root {
+            --marquee-elements-displayed: 2;
+            --marquee-height: 50px;
+        }
+    }
+
+    .hero .marquee {
+        position: relative;
+        z-index: 2;
+        margin-top: 20px;
+    }
+
+
+    /* Metrics Styling */
+    .hero-metrics {
+        display: flex;
+        gap: 24px;
+        margin-top: 0px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+
+    .metric-box {
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        font-size: 20px;
+        font-weight: 500;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        min-width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .metric-box .stat-number {
+        font-size: 40px;
+        display: flex;
+        font-weight: bold;
+        color: var(--primary);
+    }
+
+    .metric-box span {
+        display: flex;
+    }
+
+
+    @media (max-width: 589px) {
+        .hero-metrics {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .metric-box {
+            width: 80%;
+            font-size: 0.75rem;
+            padding: 0.75rem;
+        }
+
+        .stat-number {
+            font-size: 1rem;
+        }
+    }
+
+    @media (min-width: 590px) and (max-width: 1024px) {
+        .metric-box {
+            min-width: 150px !important;
+        }
+
+        .metric-box .stat-number {
+            font-size: smaller;
+        }
+
+        .metric-box span {
+            font-size: smaller;
+        }
+    }
+
+    section:nth-of-type(2) {
+        background: linear-gradient(180deg, var(--primary-light) 0%, #ffffff 100%);
+    }
+
+    section:nth-of-type(3) {
+        background: linear-gradient(180deg, var(--secondary-light) 0%, #ffffff 100%);
+    }
+    section:nth-of-type(4) {
+        background: linear-gradient(180deg, #FCDCDC 0%, #ffffff 100%);
+    }
+    section:nth-of-type(5) {
+        background: linear-gradient(180deg, #D0EAF5 0%, #ffffff 100%);
+    }
+    section:nth-of-type(6) {
+        background: linear-gradient(180deg, #F5f5f5 0%, #ffffff 100%);
     }
 </style>
 </head>
@@ -1033,34 +1465,62 @@
 
 
     <!-- Hero Section -->
-    <section class="hero fade-in" style="background-image: url('bgs/bg11.svg');  background-repeat: no-repeat;">
+    <section class="hero fade-in metrics-hero">
+        <img src="bg11.svg" alt="Background Illustration" style="margin-top: 60px;" class="hero-right-bg">
         <div class="container">
-            <div class="hero-content fade-in">
-                <h1 class="typing-terminal">
+            <div class="hero-content layout-adjusted">
+                <h1 class="typing-terminal" style="margin-top: 0px;">
                     <span id="dynamic-text" class="animated-keyword investors"></span>
-                    <span class="cursor">|</span>
-                    <div>
-                        <span class="static-text"> solutions for emerging markets</span>
-                    </div>
+                    <!-- <span class="cursor">|</span> -->
+                    <div><span class="static-text"> solutions for emerging markets</span></div>
                 </h1>
-
-                <p class="typing-terminal">
+                <p class="typing-terminal compressed-paragraph">
                     We develop ventures, mobilize capital and help investors structure deals that harness
                     emerging-market potential
                 </p>
-                <!-- <a href="#contact" class="hero-cta fade-in delay-2">Contact Us</a> -->
+                <div class="hero-metrics">
+                    <div class="metric-box" data-aos="zoom-in" data-aos-delay="100"><span class="stat-number">14</span><span>Ventures Accelerated</span></div>
+                    <div class="metric-box" data-aos="zoom-in" data-aos-delay="300"><span class="stat-number">100K+</span><span>Capital Mobilized</span></div>
+                    <div class="metric-box" data-aos="zoom-in" data-aos-delay="500"><span class="stat-number">9</span><span>Markets</span></div>
+                    <!-- <div class="metric-box" data-aos="zoom-in" data-aos-delay="100"><span class="stat-number">72</span><span>Global Talents Hired</span></div> -->
+                </div>
+
+                <div class="marquee" style="margin-left: 40%;margin-top:40px;">
+                    <ul class="marquee-content">
+                        <li><img src="a.png" alt="Logo 1" /></li>
+                        <li><img src="1.png" alt="Logo 1" /></li>
+                        <li><img src="b.png" alt="Logo 2" /></li>
+                        <li><img src="2.png" alt="Logo 2" /></li>
+                        <li><img src="c.png" alt="Logo 3" /></li>
+                        <li><img src="3.png" alt="Logo 3" /></li>
+                        <li><img src="d.png" alt="Logo 4" /></li>
+                        <li><img src="4.png" alt="Logo 4" /></li>
+                        <li><img src="e.png" alt="Logo 5" /></li>
+                        <li><img src="5.png" alt="Logo 5" /></li>
+
+                    </ul>
+                </div>
             </div>
         </div>
+
     </section>
 
-    <section style="background-color: var(--darker);">
+    <!-- <section>
+        <svg class="hero-bg-animation" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="var(--primary)" fill-opacity="0.6"
+                    d="M0,64L48,85.3C96,107,192,149,288,154.7C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg>
+    </section> -->
+    <section>
         <div class="container">
             <h2 data-aos="fade-up" class="fade-in">Our Solutions</h2>
             <div class="merged-solutions-grid">
                 <!-- Business Solutions Column -->
                 <div class="solutions-column fade-in">
-                    <h3 class="column-title1">For Businesses</h3>
-                    <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 data-aos="fade-up" class="column-title1">For Businesses</h3>
+                    <div class="solution-card venture-development" data-aos="fade-right" data-aos-delay="100"
+                        style="background-color: #FBE9E9;">
                         <h4>Venture Development</h4>
                         <div class="question-toggle">
                             <h5 class="question ventures">Build. Scale. Raise-with a partner in the trenches.</h5>
@@ -1077,11 +1537,13 @@
 
                 <!-- Investor Solutions Column -->
                 <div class="solutions-column fade-in delay-1">
-                    <h3 class="column-title2">For Investors</h3>
-                    <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3 data-aos="fade-up" class="column-title2">For Investors</h3>
+                    <div class="solution-card investor-advisory" data-aos="fade-left" data-aos-delay="100"
+                        style="background-color: #E4F4FA;">
                         <h4>Investor Advisory</h4>
                         <div class="question-toggle">
-                            <h5 class="question investors">Execution-first support to protect and grow your portfolio.</h5>
+                            <h5 class="question investors">Execution-first support to protect and grow your portfolio.
+                            </h5>
                             <p class="answer">We work with funds, family offices, and corporates to unlock value across
                                 complex or underperforming assets.</p>
                         </div>
@@ -1098,11 +1560,11 @@
     <!-- Global Talent Solutions -->
     <section>
         <div data-aos="fade-up" class="container">
-            <h2>Global Talent Solutions</h2>
+            <h2 data-aos="fade-up">Global Talent Solutions</h2>
             <div class="global-talent-container">
                 <div data-aos="fade-up" data-aos-delay="100"
                     class="solution-card fade-in delay-1 global-talent-description">
-                    <h3>Hire, pay, and manage frontier teams-without the HR headache.</h3>
+                    <h3 data-aos="fade-up">Hire, pay, and manage frontier teams-without the HR headache.</h3>
                     <p>Entropy helps companies hire top talent across emerging markets-without setting up local entities
                         or taking on employer risk. As your Employer of Record, we handle payroll, compliance, and
                         contracts while you retain full operational control. We ensure simplicity, fast onboarding and
@@ -1179,9 +1641,9 @@
         </div>
     </section>
     <!-- Portfolio Matrix -->
-    <section style="background-color: var(--dark);">
+    <section style="background-color: var(--bg);">
         <div data-aos="fade-up" data-aos-delay="100" class="container">
-            <h2 class="fade-in">Our Portfolio</h2>
+            <h2 data-aos="fade-up">Our Portfolio</h2>
 
             <div data-aos="fade-up" data-aos-delay="200" class="portfolio-matrix fade-in">
                 <div class="company-item">
@@ -1256,7 +1718,7 @@
         </div>
     </section> -->
 
-    <section style="background-color: var(--darker);">
+    <section>
         <div data-aos="fade-up" data-aos-delay="100" class="container">
             <!-- <h2 class="fade-in">Latest Insights</h2>
 
@@ -1283,8 +1745,8 @@
             </div> -->
 
             <!-- Newsletter Signup Bar -->
-            <div class="contact-form fade-in delay-3" style="max-width: 800px; background: rgba(255,255,255,0.03);">
-                <h3 style="margin-bottom: 20px; text-align: center;">Stay Updated</h3>
+            <div class="contact-form fade-in delay-3" style="max-width: 800px;">
+                <h3 data-aos="fade-up" style="margin-bottom: 20px; text-align: center;">Stay Updated</h3>
                 <form id="newsletterForm" style="display: flex; gap: 15px; flex-wrap: wrap;">
                     <div class="form-group" style="flex-grow: 1; min-width: 200px; margin-bottom: 0;">
                         <input type="email" placeholder="Your email address" required style="width: 100%;">
@@ -1315,7 +1777,8 @@
                 style="margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Get in touch to
                 discuss how we can support your venture or investment goals.</p>
 
-            <div class="contact-form fade-in delay-2">
+            <div class="contact-form fade-in delay-2"
+                style="max-width: 600px;margin: 0 auto;background: var(--dark);padding: 40px;border-radius: var(--radius);position: relative;z-index: 1;box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -1395,6 +1858,9 @@
             </div>
         </div>
     </footer>
+    <button id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script>
         // Handle form intent from URL parameters
@@ -1592,6 +2058,35 @@
             easing: 'ease-out-quart'
         });
     </script>
+    <script>
+        const backToTopBtn = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+    <!-- Logo Strip in Hero -->
+    <script>
+        const root = document.documentElement;
+        const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+        const marqueeContent = document.querySelector(".marquee-content");
+
+        root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+        for (let i = 0; i < marqueeElementsDisplayed; i++) {
+            marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+        }
+    </script>
+
 </body>
 
 </html>
