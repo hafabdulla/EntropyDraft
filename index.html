@@ -211,17 +211,32 @@
     }
 
     header.transparent {
-        background-color: transparent !important;
+        /* background-color: transparent !important; */
         border-bottom: 1px solid transparent !important;
-        backdrop-filter: blur(10px);
+        /* backdrop-filter: blur(30px); */
         transition: all 0.3s ease;
+        background-color: black;
     }
 
     header.scrolled {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgb(0, 0, 0);
         border-bottom: 1px solid var(--secondary);
-        backdrop-filter: blur(10px);
-        transform: scale(0.98);
+        backdrop-filter: blur(20px);
+        /* transform: scale(0.98); */
+    }
+
+    header.scrolled .nav-links a {
+        color: #5a5a5a;
+    }
+
+
+    header.scrolled .nav-links a:hover{
+        color: #FFF;
+    }
+
+    header.scrolled .dropdown-content a {
+        background: #000000;
+        color: #fff;
     }
 
     header.transparent .header-cta {
@@ -537,8 +552,8 @@
     }
 
     .solution-card h4 {
-        font-size: 24px;
-        color: var(--headings);
+        font-size: 20px;
+        color: var(--primary);
     }
 
     /* .question.investors {
@@ -550,8 +565,8 @@
     .question {
         margin-top: 10px;
         margin-bottom: 0px;
-        font-size: 16px;
-        font-weight: lighter;
+        font-size: 24px;
+        font-weight: bolder;
         color: var(--headings);
     }
 
@@ -1353,7 +1368,7 @@
         }
     }
 
-    section:nth-of-type(2) {
+    /* section:nth-of-type(2) {
         background: linear-gradient(180deg, var(--primary-light) 0%, #ffffff 100%);
     }
 
@@ -1371,7 +1386,7 @@
 
     section:nth-of-type(6) {
         background: linear-gradient(180deg, #F5f5f5 0%, #ffffff 100%);
-    }
+    } */
 </style>
 </head>
 
@@ -1417,7 +1432,7 @@
 
     <!-- Hero Section -->
     <section class="hero fade-in metrics-hero">
-        <img src="bgs/bg11.svg" alt="Background Illustration" style="margin-top: 60px;" class="hero-right-bg">
+        <img src="bg11.svg" alt="Background Illustration" style="margin-top: 60px;" class="hero-right-bg">
         <div class="container">
             <div class="hero-content layout-adjusted">
                 <h1 class="typing-terminal" style="margin-top: 0px;">
@@ -1441,6 +1456,11 @@
                 <!-- <div class="metric-box" data-aos="zoom-in" data-aos-delay="100"><span class="stat-number">72</span><span>Global Talents Hired</span></div> -->
             </div>
         </div>
+        <!-- <svg class="hero-bg-animation" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="var(--primary)" fill-opacity="0.6"
+                    d="M0,64L48,85.3C96,107,192,149,288,154.7C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg> -->
 
     </section>
 
@@ -1465,11 +1485,6 @@
 
 
     <!-- <section>
-        <svg class="hero-bg-animation" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path fill="var(--primary)" fill-opacity="0.6"
-                    d="M0,64L48,85.3C96,107,192,149,288,154.7C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                </path>
-            </svg>
     </section> -->
     <section>
         <div class="container">
@@ -1521,8 +1536,7 @@
         <div data-aos="fade-up" class="container">
             <h2 data-aos="fade-up">Global Talent Solutions</h2>
             <div class="global-talent-container">
-                <div data-aos="fade-up"
-                    class="solution-card global-talent-description">
+                <div data-aos="fade-up" class="solution-card global-talent-description">
                     <h3 data-aos="fade-up">Hire, pay, and manage frontier teams-without the HR headache.</h3>
                     <p>Entropy helps companies hire top talent across emerging markets-without setting up local entities
                         or taking on employer risk. As your Employer of Record, we handle payroll, compliance, and
@@ -1531,7 +1545,7 @@
                     </p>
                 </div>
 
-                
+
                 <div data-aos="fade-up" data-aos-delay="200" class="features-grid fade-in delay-2">
                     <div data-aos="fade-up" data-aos-delay="200" class="feature-card">
                         <h4>Simplify Operations
