@@ -205,7 +205,8 @@
         display: inline-block;
         padding: 12px 24px;
         border-radius: 6px;
-        font: 14px/1.4 'Roboto', sans-serif;
+        font: 14px/1.4, sans-serif;
+        font-family: var(--active-font);
         text-decoration: none;
         transition: transform .35s ease, box-shadow .3s ease;
     }
@@ -1384,6 +1385,18 @@
         margin-bottom: 8px;
     }
 
+    .hnumber {
+        transition: transform 0.3s ease, color 0.3s ease;
+        cursor: default;
+    }
+
+    .hnumber:hover {
+        transform: scale(1.15);
+        color: var(--primary);
+        text-shadow: 0 0 8px rgba(207, 45, 45, 0.3);
+        /* red glow */
+    }
+
     .hdesc {
         font-size: 14px;
         color: var(--gray);
@@ -1487,7 +1500,8 @@
         display: inline-block;
         padding: 12px 24px;
         border-radius: 6px;
-        font: 14px/1.4 'Roboto', sans-serif;
+        font: 12px, sans-serif;
+        font-family: var(--active-font);
         text-decoration: none;
         transition: transform .35s ease, box-shadow .3s ease;
         background-color: #Cf2D2D;
@@ -1764,7 +1778,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 200px;
+        width: 230px;
     }
 
     .solution-cta:hover {
@@ -2045,7 +2059,7 @@
 
     <!-- Hero Section -->
     <section class="hero fade-in metrics-hero">
-        <img src="bg11.svg" alt="Background Illustration" style="margin-top: 60px;" class="hero-right-bg">
+        <img src="bgs/bg11.svg" alt="Background Illustration" style="margin-top: 60px;" class="hero-right-bg">
         <div class="container"
             style="margin-left: 180px;margin-right: 410px; margin-right: 410px; padding-left: 0px; padding-right: 0px; padding-top: 100px;padding-bottom: 100px;">
             <div class="hero-content layout-adjusted">
@@ -2055,34 +2069,35 @@
                     <div><span class="static-text"> solutions for emerging markets</span></div>
                 </h1>
                 <p class="typing-terminal compressed-paragraph">
-                    An execution-first Operating Partner for investors, funds, & high-growth ventures in complex & emerging markets
+                    An execution-first Operating Partner for investors, funds, & high-growth ventures in complex &
+                    emerging markets
                 </p>
 
             </div>
             <div class="hero-metrics-line">
                 <div class="hmetric">
-                    <div class="hnumber">14</div>
+                    <div class="hnumber" id="hero-ventures">0</div>
                     <div class="hdesc">Ventures Accelerated</div>
                 </div>
                 <div class="hdivider"
                     style="width: 2px;height: 100px;background: linear-gradient(to bottom, rgba(255, 255,255, 0.8), rgba(255, 255, 255, 0.05));border-radius: 1px;">
                 </div>
                 <div class="hmetric">
-                    <div class="hnumber">100K+</div>
+                    <div class="hnumber" id="hero-capital">0</div>
                     <div class="hdesc">Capital Mobilized</div>
                 </div>
                 <div class="hdivider"
                     style="width: 2px;height: 100px;background: linear-gradient(to bottom, rgba(255, 255,255, 0.8), rgba(255, 255, 255, 0.05));border-radius: 1px;">
                 </div>
                 <div class="hmetric">
-                    <div class="hnumber">72</div>
+                    <div class="hnumber" id="hero-talents">0</div>
                     <div class="hdesc">Global Talents Hired</div>
                 </div>
                 <div class="hdivider"
                     style="width: 2px;height: 100px;background: linear-gradient(to bottom, rgba(255, 255,255, 0.8), rgba(255, 255, 255, 0.05));border-radius: 1px;">
                 </div>
                 <div class="hmetric">
-                    <div class="hnumber">9</div>
+                    <div class="hnumber" id="hero-markets">0</div>
                     <div class="hdesc">Markets Served</div>
                 </div>
             </div>
@@ -2133,7 +2148,7 @@
             <div class="solutions-scrollable" style="height: 1000px;">
 
                 <div class="solution-card venture-development"
-                    style="height: auto; padding-top: 140px; padding-bottom: 90px;">
+                    style="height: auto; padding-top: 130px; padding-bottom: 50px;">
                     <h4>Venture Development</h4>
                     <div class="question-toggle">
                         <h5 class="question ventures" style="font-size: 50px; line-height: normal;">Build Scale
@@ -2149,7 +2164,7 @@
                 </div>
 
                 <div class="solution-card investor-advisory"
-                    style="height: auto; padding-top: 140px; padding-bottom: 90px;">
+                    style="height: auto; padding-top: 130px; padding-bottom: 50px;">
                     <h4>Investment Operations</h4>
                     <div class="question-toggle">
                         <h5 class="question investors" style="font-size: 50px; line-height: normal;">Execution-first
@@ -2191,7 +2206,9 @@
                         <section class="feature-box">
                             <div class="feature-content">
                                 <h3 style="color: var(--primary); font-size: 20px;">SIMPLIFY OPERATIONS</h3>
-                                <p style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin: 20px 0px;">Take back your time-we'll
+                                <p
+                                    style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin-top: 0px;margin-bottom: 20px;">
+                                    Take back your time-we'll
                                     handle the paperwork.</p>
                                 <p>Let your team focus on what they do best. We handle payroll, contracts, and HR
                                     compliance across markets-so you spend less time on admin and more on execution.</p>
@@ -2206,7 +2223,9 @@
                         <section class="feature-box">
                             <div class="feature-content">
                                 <h3 style="color: var(--primary); font-size: 20px;">REDUCE LIABILITY</h3>
-                                <p style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin: 20px 0px;">We hire on paper, you lead
+                                <p
+                                    style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin-top: 0px;margin-bottom: 20px;">
+                                    We hire on paper, you lead
                                     in practice.</p>
                                 <p>We act as the legal employer, absorbing compliance and labor law exposure in each
                                     market. You maintain full operational control of the team without taking on local
@@ -2222,8 +2241,10 @@
 
                         <section class="feature-box">
                             <div class="feature-content">
-                                <h3 style="color: var(--primary); font-size: 20px;">Hire Smarter, Scale Faster</h3>
-                                <p style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin: 20px 0px;">Hire top talents- without
+                                <h3 style="color: var(--primary); font-size: 20px;">HIRE SMARTER, SCALE FASTER</h3>
+                                <p
+                                    style="font-size: 50px; font-weight: bold; color: black; line-height: normal;margin-top: 0px;margin-bottom: 20px;">
+                                    Hire top talents- without
                                     the borders.</p>
                                 <p>We help you hire competitively across emerging markets using USD salaries. With deep
                                     local networks and compliant infrastructure, you gain the speed, insight, and reach
@@ -2785,21 +2806,37 @@
         });
     </script>
 
-    <!-- To hide the Our Solutions Heading -->
-    <!-- <script>
-        const stickyHeading = document.getElementById('stickyHeading');
-        const ourSolutionsSection = document.getElementById('our-solutions');
+    <script>
+        function animateValue(id, start, end, duration, useKFormat = false) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
 
-        window.addEventListener('scroll', () => {
-            const rect = ourSolutionsSection.getBoundingClientRect();
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
 
-            if (rect.bottom <= 0) {
-                stickyHeading.classList.add('sticky-hidden');
-            } else {
-                stickyHeading.classList.remove('sticky-hidden');
-            }
+                if (useKFormat) {
+                    obj.innerHTML = `${Math.floor(value / 1000)}K+`;
+                } else {
+                    obj.innerHTML = value.toLocaleString();
+                }
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+
+            window.requestAnimationFrame(step);
+        }
+
+        window.addEventListener("load", () => {
+            animateValue('hero-ventures', 0, 14, 2000);
+            animateValue('hero-capital', 0, 100000, 2000, true);
+            animateValue('hero-talents', 0, 72, 2000);
+            animateValue('hero-markets', 0, 9, 2000);
         });
-    </script> -->
+    </script>
 
 
 </body>
