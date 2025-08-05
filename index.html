@@ -55,7 +55,7 @@
         /* Layout */
         --container-width: 80vw;
         --radius: 12px;
-        --transition: 0.35s ease;
+        --transition: all 0.35s ease;
     }
 
     :root {
@@ -1041,6 +1041,10 @@
         width: 100%;
     }
 
+    .footer-column a.no-outline:hover::after {
+        width: 0;
+    }
+
     .footer-bottom {
         text-align: center;
         color: var(--gray);
@@ -1546,7 +1550,7 @@
     .section-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 4rem;
+        gap: 100px;
     }
 
     @media(min-width: 1024px) {
@@ -1556,18 +1560,18 @@
     }
 
     .left-content {
-        width: 100%;
-        padding-top: 30px;
+        width: 300px;
+        /* padding-top: 30px; */
         display: flex;
         flex-direction: column;
     }
 
     @media(min-width: 1024px) {
         .left-content {
-            width: 40%;
+            /* width: 40%; */
             position: sticky;
             top: 13rem;
-            bottom: 10rem;
+            /* bottom: 10rem; */
             align-self: flex-start;
             height: fit-content;
         }
@@ -1617,7 +1621,7 @@
     }
 
     .right-content {
-        width: 100%;
+        width: 800px;
         position: relative;
     }
 
@@ -1641,6 +1645,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        width: max-content;
     }
 
     .feature-content {
@@ -1830,6 +1835,21 @@
         justify-content: flex-start;
     }
 
+
+    /* #global-talent-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to left, black 35%, transparent 100%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    #global-talent-section {
+        position: relative;
+        z-index: 1;
+    } */
+
     .sticky-container {
         position: sticky;
         top: 0;
@@ -1902,6 +1922,8 @@
         padding: 100px;
         margin-top: 100px;
     }
+
+
 
     .card {
         width: 700px;
@@ -2051,7 +2073,6 @@
         display: inline-block;
         padding: 12px 24px;
         border-radius: 6px;
-        font: 14px / 1.4 'Roboto', sans-serif;
         text-decoration: none;
         transition: transform .35s ease, box-shadow .3s ease;
         background-color: var(--primary);
@@ -2063,6 +2084,42 @@
         transition: transform 0.35s ease;
     }
 
+    /* 
+    .solution-card .solution-cta:hover {
+        color: white !important;
+        background-color: var(--primary) !important;
+        transition: var(--transition);
+    } */
+
+    .solution-card .solution-cta {
+        position: relative;
+        overflow: hidden;
+        color: black;
+        z-index: 1;
+        background: transparent;
+        border: 1px solid var(--primary);
+        transition: color 0.3s ease;
+    }
+
+    .solution-card .solution-cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background-color: var(--primary);
+        z-index: -1;
+        transition: width 0.3s ease-in-out;
+    }
+
+    .solution-card .solution-cta:hover::before {
+        width: 100%;
+    }
+
+    .solution-card .solution-cta:hover {
+        color: white !important;
+    }
 
     .solution-card h3 {
         font-size: 22px;
@@ -2117,6 +2174,37 @@
 
     .sticky-hidden {
         display: none !important;
+    }
+
+    /* Insights Button Styling */
+    .solution-cta.insights {
+        position: relative;
+        overflow: hidden;
+        color: black;
+        z-index: 1;
+        background: transparent;
+        border: 1px solid var(--primary);
+        transition: color 0.3s ease;
+    }
+
+    .solution-cta.insights::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background-color: var(--primary);
+        z-index: -1;
+        transition: width 0.4s ease-in-out;
+    }
+
+    .solution-cta.insights:hover::before {
+        width: 100%;
+    }
+
+    .solution-cta.insights:hover {
+        color: white !important;
     }
 </style>
 </head>
@@ -2231,9 +2319,8 @@
                     <li><img src="5.png" alt="Logo 5" /></li>
                 </ul>
             </div>
-            <p class="marquee-tagline">
-                Whether you're scaling a single venture or activating the full stack, Entropy drives smart growth —
-                trusted by teams that have already walked through our doors.</p>
+            <p class="marquee-tagline">Whether you're scaling a single venture or activating the full stack, Entropy
+                drives smart growth — trusted by teams that have already walked through our doors.</p>
 
         </div>
     </section>
@@ -2245,7 +2332,7 @@
             <!-- Sticky Heading -->
             <div class="sticky-heading" id="stickyHeading"
                 style="display: flex; flex-direction: column;align-items: center;justify-content: left;">
-                <h2 style="font-size: 100px; text-align: left; padding-top: 150px;">Our Solutions.</h2>
+                <h2 style="font-size: 100px; text-align: left; padding-top: 150px;">Our Solutions</h2>
             </div>
 
             <!-- Scrollable Solution Cards -->
@@ -2253,10 +2340,10 @@
 
                 <div class="solution-card venture-development"
                     style="height: auto; padding-top: 130px; padding-bottom: 50px;">
-                    <h4>Venture Development</h4>
+                    <h4>VENTURE DEVELOPMENT</h4>
                     <div class="question-toggle">
-                        <h5 class="question ventures" style="font-size: 50px; line-height: normal;">Build Scale
-                            Raise-with a partner in the trenches</h5>
+                        <h5 class="question ventures" style="font-size: 50px; line-height: normal;">Build, Scale, Raise,
+                            with a partner in the trenches</h5>
                         <p>Whether refining your model, securing early traction, or gearing up to scale, we embed where
                             momentum matters most, guiding ventures through their most critical inflection points.
                         </p>
@@ -2269,7 +2356,7 @@
 
                 <div class="solution-card investor-advisory"
                     style="height: auto; padding-top: 130px; padding-bottom: 50px;">
-                    <h4>Investment Operations</h4>
+                    <h4>INVESTMENT OPERATIONS</h4>
                     <div class="question-toggle">
                         <h5 class="question investors" style="font-size: 50px; line-height: normal;">Execution-first
                             support to protect & grow your portfolio
@@ -2279,7 +2366,7 @@
                         </p>
                     </div>
                     <a href="services.html?persona=investors#services" class="solution-cta investor-advisory"
-                        style="background:transparent; color: #000; border: 1px solid var(--secondary);">
+                        style="background:transparent; color: #000; border: 1px solid var(--primary);">
                         Explore Solutions
                     </a>
                 </div>
@@ -2289,35 +2376,39 @@
     </section>
 
     <!-- Global Talent Solutions -->
-    <main id="global-talent-section" style="background-image: url('EOR-bg.jpg');
+    <!-- <main id="global-talent-section" style="background-image: url('EOR-bg.jpg');
         background-repeat: no-repeat;  background-attachment: fixed; 
-  background-size: 100% 100%;">
-        <div class="container">
-            <div class="section-wrapper" data-sticky-sections style="--stick-items: 300vh;">
-                <div class="left-content" style="margin-top: 240px;margin-bottom: 150px;">
-                    <div class="section-label" style="color: var(--primary);/**color: #db6d6d**/">GLOBAL WORKFORCE
+  background-size: 100% 100%;"> -->
+        <main id="global-talent-section" style="background: linear-gradient(to right, black 43%, transparent 35.1%); /**border-top: 1px solid #6e6e6e;**/">
+        <div class="container" style="max-width: 1440px; margin-left: 0px; margin-right: 0px;">
+            <div class="section-wrapper" data-sticky-sections style="--stick-items: 300vh; width: 1200px;">
+                <div class="left-content" style="margin-left:00px;margin-bottom: 200px; padding: 0px; width: 500px;">
+                    <div class="section-label" style="color: var(--primary);">GLOBAL WORKFORCE
                         INFRASTRUCTURE</div>
-                    <h3 style="color: var(--light);">Hire, pay, & manage frontier teams, without the HR headache</h3>
+                    <h3 style="color: var(--light); font-size: 40px;">Hire, pay, & manage frontier teams, without the HR
+                        headache</h3>
                     <!-- <p>Entropy helps companies hire top talent across emerging markets-without setting up local entities
                         or taking on employer risk. As your Employer of Record, we handle payroll, compliance, and
                         contracts while you retain full operational control. We ensure simplicity, fast onboarding and
                         regional hiring support you won't find elsewhere.</p> -->
+                    <div class="cta-buttons">
+                        <a href="#contact?intent=assessment" class="solution-cta">Book Consultation</a>
+                    </div>
                 </div>
 
-                <div class="right-content">
+                <div class="right-content" style="width: 900px; margin-left: 140px;">
                     <div class="sticky-boxes">
 
                         <section class="feature-box">
                             <div class="feature-content">
                                 <h3 style="color: var(--primary); font-size: 20px;">SIMPLIFY OPERATIONS</h3>
                                 <p
-                                    style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin-top: 0px;margin-bottom: 20px;">
+                                    style="font-size: 40px; font-weight: bold; color: black; line-height: normal; margin-top: 0px;margin-bottom: 20px;">
                                     Take back your time-we'll
                                     handle the paperwork.</p>
                                 <p>Let your team focus on what they do best. We handle payroll, contracts, and HR
                                     compliance across markets-so you spend less time on admin and more on execution.</p>
                                 <div class="cta-buttons">
-                                    <a href="#contact?intent=assessment" class="solution-cta">Book Consultation</a>
                                     <a href="#contact?intent=assessment" class="solution-cta">Explore Talent
                                         Solutions</a>
                                 </div>
@@ -2328,7 +2419,7 @@
                             <div class="feature-content">
                                 <h3 style="color: var(--primary); font-size: 20px;">REDUCE LIABILITY</h3>
                                 <p
-                                    style="font-size: 50px; font-weight: bold; color: black; line-height: normal; margin-top: 0px;margin-bottom: 20px;">
+                                    style="font-size: 40px; font-weight: bold; color: black; line-height: normal; margin-top: 0px;margin-bottom: 20px;">
                                     We hire on paper, you lead
                                     in practice.</p>
                                 <p>We act as the legal employer, absorbing compliance and labor law exposure in each
@@ -2336,7 +2427,6 @@
                                     liabilities and
                                     risks.</p>
                                 <div class="cta-buttons">
-                                    <a href="#contact?intent=assessment" class="solution-cta">Book Consultation</a>
                                     <a href="#contact?intent=assessment" class="solution-cta">Explore Talent
                                         Solutions</a>
                                 </div>
@@ -2347,14 +2437,13 @@
                             <div class="feature-content">
                                 <h3 style="color: var(--primary); font-size: 20px;">HIRE SMARTER, SCALE FASTER</h3>
                                 <p
-                                    style="font-size: 50px; font-weight: bold; color: black; line-height: normal;margin-top: 0px;margin-bottom: 20px;">
+                                    style="font-size: 40px; font-weight: bold; color: black; line-height: normal;margin-top: 0px;margin-bottom: 20px;">
                                     Hire top talents- without
                                     the borders.</p>
                                 <p>We help you hire competitively across emerging markets using USD salaries. With deep
                                     local networks and compliant infrastructure, you gain the speed, insight, and reach
                                     to grow efficiently.</p>
                                 <div class="cta-buttons">
-                                    <a href="#contact?intent=assessment" class="solution-cta">Book Consultation</a>
                                     <a href="#contact?intent=assessment" class="solution-cta">Explore Talent
                                         Solutions</a>
                                 </div>
@@ -2503,7 +2592,7 @@
             </div>
 
             <div style="display: flex; justify-content: center;text-align: center; margin-top: 30px;">
-                <a href="#" class="solution-cta"
+                <a href="#" class="solution-cta insights"
                     style="background-color: transparent; border: 1px solid var(--primary); color: var(--primary);">
                     View All Insights
                 </a>
@@ -2577,7 +2666,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <a href="index.html">
+                    <a href="index.html" class="no-outline">
                         <img src="entropy-full.png" alt="Entropy Logo" style="height: 30px; margin-bottom: 20px;">
                     </a>
                     <p style="color: var(--gray);">Turning market chaos into scalable ventures across emerging markets.
@@ -2608,7 +2697,7 @@
                 <div class="footer-column">
                     <h4>Get in Touch</h4>
                     <ul>
-                        <li><a href="mailto:info@useentropy.com">info@useentropy.com</a></li>
+                        <li><a href="mailto:info@useentropy.com" class="no-outline">info@useentropy.com</a></li>
                         <li>Methonis St. 1, 1070 Nicosia, Cyprus</li>
                     </ul>
                 </div>
