@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Entropy – Strategic Execution Partner for Emerging Markets</title>
-    <link rel="stylesheet" href="style.css" />
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -98,6 +98,43 @@
             text-align: center;
             color: var(--headings);
         }
+
+
+        .hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: #000813 url('bg11.svg') no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(190, 9, 9, 0.5), transparent 100%);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    background: linear-gradient(90deg, var(--light), #aaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: left;
+}
+
 
         /* ---------- 4. Header / Nav ----------- */
         header {
@@ -1047,6 +1084,79 @@
                 display: none;
             }
         }
+
+        footer {
+    background: var(--dark-bg);
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    gap: 40px;
+    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.footer-column h4 {
+    position: relative;
+    font-size: 16px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.footer-column h4::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    position: relative;
+    font-size: 14px;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.footer-column a:hover {
+    color: var(--primary);
+}
+
+.footer-column a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width var(--transition);
+}
+
+.footer-column a:hover::after {
+    width: 100%;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: var(--gray);
+    font-size: 12px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
     </style>
 </head>
 
