@@ -6,8 +6,1048 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Entropy – Strategic Execution Partner for Emerging Markets</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /*  */
+        :root {
+            /* Brand Palette */
+            --primary: #CF2D2D;
+            /* Brand red */
+            --secondary: #2796B8;
+            --primary-light: #FBE9E9;
+            /* Light version of #CF2D2D */
+            --secondary-light: #E4F4FA;
+            /* Light version of #2796B8 */
+            /* Teal accent */
+            --dark: #2A3439;
+            /* Dark gray */
+            --darker: #1A1E21;
+            /* Near‑black */
+            --light: #FFFFFF;
+            /* Pure white */
+            --gray: #8c8c8c;
+            /* Muted gray */
+            --dark-bg: #000000;
+            --bg: #eef3f8;
+            --shadow: rgba(0, 0, 0, 0.03);
+
+            /* True black */
+            --gray-light: rgba(153, 153, 153, 0.2);
+            --headings: #1a1a1a;
+
+            --primary-business: #CF2D2D;
+            --primary-investor: #2796B8;
+
+            /* Layout */
+            --container-width: 80vw;
+            --radius: 12px;
+            --transition: 0.35s ease;
+        }
+
+
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            /* color: var(--light); */
+            line-height: 1.6;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 0px;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            /* background: var(--bg); */
+            z-index: -1;
+            border-radius: 0;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--headings);
+        }
+
+        /* ---------- 4. Header / Nav ----------- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: var(--dark-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.transparent {
+            background-color: transparent !important;
+            border-bottom: 1px solid transparent !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--secondary);
+            backdrop-filter: blur(10px);
+            transform: scale(0.98);
+        }
+
+        header.transparent .header-cta {
+            background: transparent;
+            border: 1px solid var(--light);
+        }
+
+        .logo img {
+            height: 30px;
+            transition: transform var(--transition);
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 5px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--light);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-bg);
+            min-width: 200px;
+            border-radius: 6px;
+            padding: 10px 0;
+            z-index: 1;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: var(--light);
+            text-decoration: none;
+            transition: background var(--transition), padding-left var(--transition);
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 28px;
+            color: var(--primary);
+        }
+
+
+        .header-cta {
+            background: var(--primary);
+            color: var(--light);
+            margin-left: 25px;
+
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+            width: fit-content;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        /* ---------- 8. Burger Menu (Mobile) ----------- */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 34px;
+            height: 34px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .burger span {
+            width: 100%;
+            height: 2px;
+            background: var(--light);
+            transition: var(--transition);
+        }
+
+        header.open .burger span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        header.open .burger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        header.open .burger span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Who We Work With Section; Client grid styles */
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+
+        .client-card {
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .client-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .client-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .client-icon {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .client-example {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Services Section */
+        .services-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+        }
+
+        .persona-services-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+            align-items: flex-start;
+        }
+
+        .persona-services-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .persona-selection {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            /* Match service-card horizontal gap */
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .persona-option {
+            padding: 20px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid transparent;
+            width: 270px;
+        }
+
+
+        .persona-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .persona-option.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .persona-option.active .persona-icon {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .persona-icon {
+            font-size: 20px;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(207, 45, 45, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .persona-services-container {
+                flex-direction: column;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .persona-selection {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+
+            .persona-option {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            .services-grid.horizontal {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            .service-card {
+                flex: none;
+                width: 90%;
+                max-width: 330px;
+            }
+
+            .services-scroll-container {
+                display: flex;
+                justify-content: center;
+                overflow: visible;
+            }
+        }
+
+
+        @media (max-width: 992px) {
+            .persona-services-container {
+                flex-direction: column;
+            }
+
+            .services-grid.horizontal {
+                flex-wrap: wrap;
+                padding-right: 0;
+            }
+
+            .services-grid.horizontal .service-card {
+                flex: 1 1 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid.horizontal .service-card {
+                flex: 1 1 100%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .service-card {
+                width: 100px;
+                min-height: 320px;
+            }
+        }
+
+        @media (min-width: 320px) and (max-width: 570px) {
+            .persona-selection {
+                display: flex;
+            }
+
+            .persona-option {
+                max-width: 300px;
+                margin-top: 20px;
+            }
+
+            .services-grid {
+                max-width: fit-content;
+            }
+        }
+
+        @media (min-width: 320px) and (max-width: 570px) {
+            .persona-selection {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                max-width: fit-content;
+            }
+
+        }
+
+        .persona-option[data-persona="investors"] {
+            border-color: var(--primary-investor);
+            color: var(--primary-investor);
+        }
+
+        .persona-option[data-persona="investors"] .persona-icon {
+            background: rgba(39, 150, 184, 0.1);
+            color: var(--primary-investor);
+        }
+
+        /* Active style */
+        .persona-option.active[data-persona="investors"] {
+            background: var(--primary-investor);
+            color: white;
+            border-color: var(--primary-investor);
+        }
+
+        .persona-option.active[data-persona="investors"] .persona-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Investor services override color */
+        .persona-content[data-persona="investors"] .service-icon {
+            background: rgba(39, 150, 184, 0.1);
+            color: var(--primary-investor);
+        }
+
+        .persona-content[data-persona="investors"] .service-content li::before,
+        .persona-content[data-persona="investors"] .service-details li::before {
+            color: var(--primary-investor);
+        }
+
+        .persona-option[data-persona="businesses"] {
+            border-color: var(--primary-business);
+            color: var(--primary-business);
+        }
+
+        .persona-option[data-persona="businesses"] .persona-icon {
+            background: rgba(207, 45, 45, 0.1);
+            color: var(--primary-business);
+        }
+
+        .persona-option.active[data-persona="businesses"] {
+            background: var(--primary-business);
+            color: white;
+            border-color: var(--primary-business);
+        }
+
+        .persona-option.active[data-persona="businesses"] .persona-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Red line for Businesses */
+        .persona-content[data-persona="businesses"] .service-card::before {
+            background: var(--primary-business);
+        }
+
+        /* Blue line for Investors */
+        .persona-content[data-persona="investors"] .service-card::before {
+            background: var(--primary-investor);
+        }
+
+        .persona-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .persona-content.active {
+            display: block;
+        }
+
+        .persona-content {
+            width: 100%;
+        }
+
+        .services-scroll-container {
+            overflow: visible;
+            padding-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .services-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .services-scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .services-scroll-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .services-scroll-container {
+            width: 100%;
+            overflow-x: auto;
+            padding: 20px;
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) rgba(255, 255, 255, 0.1);
+        }
+
+        .services-scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .services-scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .services-scroll-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .services-grid.horizontal {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: stretch;
+            width: 100%;
+            max-width: 100vw;
+            margin: 15px auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .service-card.active {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+
+
+        .service-card.active .service-details {
+            max-height: 500px;
+            padding-bottom: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius);
+            padding: 20px 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Default invisible top border */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: transparent;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        /* When hovered: animate the line */
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card {
+            flex: 0 0 330px;
+            min-height: 350px;
+            scroll-snap-align: start;
+            min-width: 250px;
+            max-width: 300px;
+            flex: 1;
+        }
+
+        .service-header {
+            padding-top: 30px;
+            padding-left: 0px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .service-icon {
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(207, 45, 45, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .service-icon {
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(207, 45, 45, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .service-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content ul {
+            flex-grow: 1;
+            /* margin-top: 10px; */
+            /* margin-bottom: 10px; */
+            list-style: none;
+        }
+
+        .service-content h3 {
+            font-size: smaller;
+        }
+
+        .service-content li {
+            position: relative;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .service-content li:hover {
+            transform: translateX(5px);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .service-content li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .service-content p {
+            margin-bottom: 10px;
+            margin-top: 10px;
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        section:nth-of-type(2) {
+            background: linear-gradient(180deg, #ffeded 0%, #ffffff 100%);
+        }
+
+
+        section:nth-of-type(3) {
+            background: linear-gradient(180deg, #F5f5f5 0%, #ffffff 100%);
+        }
+
+        section:nth-of-type(4) {
+            background: linear-gradient(180deg, #ffeded 0%, #e9e9e9 100%);
+        }
+
+        section:nth-of-type(5) {
+            background: linear-gradient(180deg, #daeff9 0%, #eaeaea 100%);
+        }
+
+        section:nth-of-type(6) {
+            background: linear-gradient(180deg, #F5f5f5 0%, #c5c5c5 100%);
+        }
+
+        /* SVGs */
+        .svg-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .svg-flow {
+            position: absolute;
+            width: 600px;
+            height: auto;
+        }
+
+        .blue-flow {
+            top: -100px;
+            left: -100px;
+            transform: rotate(-5deg);
+        }
+
+        .red-flow {
+            bottom: -100px;
+            right: -100px;
+            transform: rotate(5deg);
+        }
+
+        @media (max-width: 768px) {
+            .svg-flow {
+                width: 300px;
+                opacity: 0.1;
+            }
+        }
+
+
+
+
+        /* Our Approach */
+        .approach-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .right-column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Card Base */
+        .approach-card {
+            position: relative;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border-left: 4px solid var(--primary);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .approach-card.red {
+            background: linear-gradient(135deg, #FBE9E9, #ffffff);
+            border-left-color: var(--primary);
+        }
+
+        .approach-card.blue {
+            background: linear-gradient(135deg, #E4F4FA, #ffffff);
+            border-left-color: var(--secondary);
+        }
+
+        .approach-card.tall {
+            height: calc(100% + 40px);
+        }
+
+        /* Hover Effects */
+        .approach-card:hover {
+            transform: scale(1.015);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(24px);
+        }
+
+        /* Step Number */
+        .step-number {
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 16px;
+            animation: bounceIn 0.8s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .approach-card:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 6px rgba(207, 45, 45, 0.2);
+        }
+
+        /* Headings & Text */
+        .approach-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--headings);
+        }
+
+        .approach-card p {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Arrows */
+        .arrow {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            opacity: 0.6;
+            transition: transform 0.4s ease;
+        }
+
+        .arrow.down {
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .arrow.right {
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+        }
+
+        .approach-card:hover .arrow.down {
+            transform: translateX(-50%) translateY(5px);
+        }
+
+        .approach-card:hover .arrow.right {
+            transform: translateY(-50%) translateX(5px);
+        }
+
+        .arrow img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Animations */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(4px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .approach-layout {
+                flex-direction: column;
+            }
+
+            .right-column,
+            .left-column {
+                width: 100%;
+            }
+
+            .approach-card.tall {
+                height: auto;
+            }
+
+            .arrow {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -70,13 +1110,6 @@
                     </a>
                 </div>
             </div>
-            <!-- <div class="hero-media" data-aos="fade-left" data-aos-duration="800">
-      <div class="hero-video">
-        <video autoplay loop muted playsinline>
-          <source src="emerging-market-team.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div> -->
         </div>
         <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="500">
             <span>Explore</span>
@@ -92,7 +1125,7 @@
                 critical growth stages</p>
 
             <div class="client-grid">
-                <div class="client-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="client-card" data-aos="fade-up" data-aos-delay="200" style="background: #D0EAF5;">
                     <div class="client-icon">
                         <i class="fas fa-seedling"></i>
                     </div>
@@ -103,7 +1136,7 @@
                     </div>
                 </div>
 
-                <div class="client-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="client-card" data-aos="fade-up" data-aos-delay="300" style="background: #FCDCDC;">
                     <div class="client-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -114,7 +1147,7 @@
                     </div>
                 </div>
 
-                <div class="client-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="client-card" data-aos="fade-up" data-aos-delay="400" style="background-color: #D0EAF5;">
                     <div class="client-icon">
                         <i class="fas fa-exchange-alt"></i>
                     </div>
@@ -127,6 +1160,30 @@
             </div>
         </div>
     </section>
+
+    <!-- Decorative Background SVGs -->
+    <div class="svg-background">
+        <!-- Blue Top Left Flow -->
+        <svg class="svg-flow blue-flow" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2796B8" stroke-width="1" fill="none">
+                <path d="M100,300 C200,100 400,500 500,300" opacity="0.12" />
+                <path d="M110,290 C210,90 390,490 490,290" opacity="0.16" />
+                <path d="M120,280 C220,80 380,480 480,280" opacity="0.2" />
+                <path d="M130,270 C230,70 370,470 470,270" opacity="0.25" />
+            </g>
+        </svg>
+
+        <!-- Red Bottom Right Flow -->
+        <svg class="svg-flow red-flow" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#CF2D2D" stroke-width="1" fill="none">
+                <path d="M500,300 C400,500 200,100 100,300" opacity="0.12" />
+                <path d="M490,310 C390,510 210,110 110,310" opacity="0.16" />
+                <path d="M480,320 C380,520 220,120 120,320" opacity="0.2" />
+                <path d="M470,330 C370,530 230,130 130,330" opacity="0.25" />
+            </g>
+        </svg>
+    </div>
+
 
     <!-- Service Modules 
          What We Do Section -->
@@ -156,7 +1213,7 @@
                     <div class="persona-content active" data-persona="businesses">
                         <div class="services-scroll-container">
                             <div class="services-grid horizontal">
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: rgba(252, 220, 220, 0.6);">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-chess"></i>
@@ -174,7 +1231,7 @@
                                     </div>
                                 </div>
 
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: rgba(252, 220, 220, 0.6);">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-sitemap"></i>
@@ -183,6 +1240,7 @@
                                     </div>
                                     <div class="service-content">
                                         <p>We build operational infrastructure that scales for growing businesses.</p>
+                                        <br>
                                         <ul>
                                             <li>Legal and tax entity setup</li>
                                             <li>Process standardization</li>
@@ -191,7 +1249,7 @@
                                     </div>
                                 </div>
 
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: rgba(252, 220, 220, 0.6);">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-rocket"></i>
@@ -208,7 +1266,7 @@
                                     </div>
                                 </div>
 
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: rgba(252, 220, 220, 0.6);">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-globe"></i>
@@ -232,7 +1290,7 @@
                     <div class="persona-content" data-persona="investors">
                         <div class="services-scroll-container">
                             <div class="services-grid horizontal">
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: #D0EAF5;">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-search-dollar"></i>
@@ -249,7 +1307,7 @@
                                     </div>
                                 </div>
 
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: #D0EAF5;">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-network-wired"></i>
@@ -266,7 +1324,7 @@
                                     </div>
                                 </div>
 
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: #D0EAF5;">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-handshake"></i>
@@ -283,7 +1341,7 @@
                                     </div>
                                 </div>
 
-                                <div class="service-card">
+                                <div class="service-card" style="background-color: #D0EAF5;">
                                     <div class="service-header">
                                         <div class="service-icon">
                                             <i class="fas fa-chart-pie"></i>
@@ -310,7 +1368,7 @@
 
 
     <!-- Our Approach -->
-    <section class="section approach-section" id="approach">
+    <!-- <section class="section approach-section" id="approach">
         <div class="container">
             <h2 data-aos="fade-up">Our Approach</h2>
             <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">How we create impact differently</p>
@@ -342,7 +1400,49 @@
                 </div>
             </div>
         </div>
+    </section> -->
+    <section class="section approach-section stylish-approach" id="approach">
+        <div class="container">
+            <h2 data-aos="fade-up">Our Approach</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                We don’t just consult — we embed, build, and deliver.
+            </p>
+
+            <div class="approach-layout">
+                <div class="left-column">
+                    <div class="approach-card red" data-aos="fade-up">
+                        <div class="step-number">1</div>
+                        <h3>Diagnose</h3>
+                        <p>Assess gaps, constraints, and potential through immersion and insight mapping.</p>
+                        <div class="arrow down">
+                            <img src="https://cdn-icons-png.flaticon.com/512/130/130906.png" alt="↓">
+                        </div>
+                    </div>
+
+                    <div class="approach-card red" data-aos="fade-up" data-aos-delay="150">
+                        <div class="step-number">2</div>
+                        <h3>Design</h3>
+                        <p>Craft tactical roadmaps with clear priorities, sequencing, and metrics.</p>
+                        <div class="arrow right">
+                            <img src="https://cdn-icons-png.flaticon.com/512/130/130884.png" alt="→">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="approach-card blue tall" data-aos="zoom-in-left" data-aos-delay="300">
+                        <div class="step-number">3</div>
+                        <h3>Deploy</h3>
+                        <p>Execute hands-on, embed into ops, and deliver results with shared accountability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
+
+
+
 
     <section class="section quote-section">
         <div class="container">
@@ -354,145 +1454,6 @@
             </div>
         </div>
     </section>
-    <!-- Case Studies -->
-    <!-- <section class="section case-section dark" id="case-studies">
-        <div class="container">
-            <h2 data-aos="fade-up" style="margin: 0px;">Results in Practice</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">How we've helped companies like yours
-            </p>
-
-            <div class="case-carousel">
-                <div class="case-slides">
-                    <div class="case-slide" data-aos="fade-right" data-aos-delay="200">
-                        <div class="case-header">
-                            <div class="case-logo">
-                                <img src="1.png" alt="Fintech Company">
-                            </div>
-                            <div class="case-market">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Nigeria | Kenya</span>
-                            </div>
-                        </div>
-                        <div class="case-content">
-                            <h3>Fintech Payment Platform</h3>
-                            <div class="case-challenge">
-                                <h4>Challenge</h4>
-                                <p>Stalled expansion despite product-market fit in home country</p>
-                            </div>
-                            <div class="case-approach">
-                                <h4>Approach</h4>
-                                <ul>
-                                    <li>Market prioritization framework</li>
-                                    <li>Local partnership strategy</li>
-                                    <li>Regulatory navigation</li>
-                                </ul>
-                            </div>
-                            <div class="case-outcome">
-                                <h4>Outcome</h4>
-                                <ul>
-                                    <li>3 new markets entered in 9 months</li>
-                                    <li>150% YoY growth</li>
-                                    <li>$5M Series A closed</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="case-quote">
-                            <blockquote>
-                                "Entropy's hands-on approach got us operational in Kenya faster than we thought
-                                possible."
-                            </blockquote>
-                        </div>
-                    </div>
-
-                    <div class="case-slide" data-aos="fade-up" data-aos-delay="300">
-                        <div class="case-header">
-                            <div class="case-logo">
-                                <img src="3.png" alt="Logistics Company">
-                            </div>
-                            <div class="case-market">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>South Africa</span>
-                            </div>
-                        </div>
-                        <div class="case-content">
-                            <h3>Logistics Optimization SaaS</h3>
-                            <div class="case-challenge">
-                                <h4>Challenge</h4>
-                                <p>Enterprise sales cycle too long with low conversion</p>
-                            </div>
-                            <div class="case-approach">
-                                <h4>Approach</h4>
-                                <ul>
-                                    <li>Redesigned sales playbook</li>
-                                    <li>Built proof-of-concept framework</li>
-                                    <li>Pricing strategy overhaul</li>
-                                </ul>
-                            </div>
-                            <div class="case-outcome">
-                                <h4>Outcome</h4>
-                                <ul>
-                                    <li>Sales cycle reduced by 40%</li>
-                                    <li>Pilot-to-paid conversion increased 3x</li>
-                                    <li>5 new enterprise contracts signed</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="case-quote">
-                            <blockquote>
-                                "They transformed how we sell to large enterprises."
-                            </blockquote>
-                        </div>
-                    </div>
-
-                    <div class="case-slide" data-aos="fade-left" data-aos-delay="400">
-                        <div class="case-header">
-                            <div class="case-logo">
-                                <img src="5.png" alt="Healthtech Company">
-                            </div>
-                            <div class="case-market">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Egypt | Saudi Arabia</span>
-                            </div>
-                        </div>
-                        <div class="case-content">
-                            <h3>Healthtech Platform</h3>
-                            <div class="case-challenge">
-                                <h4>Challenge</h4>
-                                <p>Needed to restructure for regional expansion and funding</p>
-                            </div>
-                            <div class="case-approach">
-                                <h4>Approach</h4>
-                                <ul>
-                                    <li>Cross-border entity structure</li>
-                                    <li>Investor narrative development</li>
-                                    <li>Key hire placements</li>
-                                </ul>
-                            </div>
-                            <div class="case-outcome">
-                                <h4>Outcome</h4>
-                                <ul>
-                                    <li>Expanded to 2 new markets</li>
-                                    <li>$8M Series B secured</li>
-                                    <li>Core team built in 4 months</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="case-quote">
-                            <blockquote>
-                                "Their operational expertise was crucial for our regional scale."
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="case-controls">
-                    <button class="case-prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="case-dots"></div>
-                    <button class="case-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section> -->
     <!-- Case Studies -->
     <section class="section case-section dark" id="case-studies">
         <div class="container">
@@ -1110,188 +2071,6 @@
         }
 
 
-        /* Client grid styles */
-        .client-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .client-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .client-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .client-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .client-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .client-icon {
-            font-size: 36px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .client-example {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-        }
-
-        /* Service cards
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        } */
-
-        .services-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-size: 18px;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            padding-left: 50px;
-            padding-right: 50px;
-        }
-
-        .service-card.active {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .service-header {
-            padding-top: 30px;
-            padding-left: 0px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .service-icon {
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(207, 45, 45, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-
-        .service-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .service-content ul {
-            flex-grow: 1;
-            margin-top: 10px;
-            /* margin-bottom: 10px; */
-            list-style: none;
-        }
-
-        .service-content h3 {
-            font-size: smalle;
-        }
-
-        .service-content li {
-            position: relative;
-            margin-bottom: 10px;
-            padding-left: 20px;
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .service-content li:hover {
-            color: var(--light);
-            transform: translateX(5px);
-        }
-
-        .service-content li::before {
-            content: "•";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-        }
-
-        .service-content p {
-            margin-bottom: 10px;
-            margin-top: 10px;
-            color: var(--gray);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .service-toggle {
-            position: relative;
-            margin-top: 20px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .service-toggle .minus {
-            display: none;
-        }
-
-        .service-card.active .service-toggle .plus {
-            display: none;
-        }
-
-        .service-card.active .service-toggle .minus {
-            display: block;
-        }
-
         .service-details {
             max-height: 0;
             overflow: hidden;
@@ -1299,10 +2078,7 @@
             padding: 0 30px;
         }
 
-        .service-card.active .service-details {
-            max-height: 500px;
-            padding-bottom: 30px;
-        }
+
 
         .case-list {
             margin-top: 15px;
@@ -1362,280 +2138,6 @@
         .horizontal-scroll-container::-webkit-scrollbar-thumb {
             background-color: var(--primary);
             border-radius: 3px;
-        }
-
-        /* .services-grid.horizontal {
-            display: flex;
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .services-grid.horizontal .service-card {
-            flex: 0 0 300px;
-            min-height: 350px;
-            margin-bottom: 0;
-        } */
-
-        /* Persona Services Section */
-        .persona-services-container {
-            display: flex;
-            flex-direction: column;
-            margin-top: 30px;
-            align-items: flex-start;
-        }
-
-        /* before Gap alignment
-        .persona-selection {
-            display: flex;
-            flex-direction: row;
-            gap: 15px;
-            top: 120px;
-            align-items: center;
-            min-width: 1200px;
-            justify-content: center;
-        } */
-        /* after gap alignment */
-        .persona-selection {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            /* Match service-card horizontal gap */
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .persona-option {
-            padding: 20px;
-            border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.03);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid transparent;
-            width: 270px;
-        }
-
-
-        .persona-option:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .persona-option.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .persona-option.active .persona-icon {
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .persona-icon {
-            font-size: 20px;
-            color: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(207, 45, 45, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        /* 
-        .services-content {
-            flex: 1;
-            min-width: 0;
-        } */
-
-        /* Scroll */
-        /* .services-scroll-container {
-            overflow-x: auto;
-            padding-bottom: 20px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) rgba(255, 255, 255, 0.1);
-            gap: 15px;
-        } */
-
-        /* Static */
-        .services-scroll-container {
-            overflow: visible;
-            padding-bottom: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .services-scroll-container::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .services-scroll-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-        }
-
-        .services-scroll-container::-webkit-scrollbar-thumb {
-            background-color: var(--primary);
-            border-radius: 3px;
-        }
-
-        .persona-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .persona-content.active {
-            display: block;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius);
-            padding: 20px 30px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .service-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .service-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .service-icon {
-            font-size: 24px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(207, 45, 45, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-
-        /* ----- Animated Top Border on Hover ----- */
-        .service-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Default invisible top border */
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 4px;
-            width: 100%;
-            background: transparent;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-            z-index: 2;
-        }
-
-        /* When hovered: animate the line */
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .persona-services-container {
-                flex-direction: column;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .persona-selection {
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 30px;
-            }
-
-            .persona-option {
-                width: 100%;
-                max-width: 280px;
-                text-align: center;
-            }
-
-            .services-grid.horizontal {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                margin: 0 auto;
-                padding: 0;
-            }
-
-            .service-card {
-                flex: none;
-                width: 90%;
-                max-width: 330px;
-            }
-
-            .services-scroll-container {
-                display: flex;
-                justify-content: center;
-                overflow: visible;
-            }
-        }
-
-
-        @media (max-width: 992px) {
-            .persona-services-container {
-                flex-direction: column;
-            }
-
-            .services-grid.horizontal {
-                flex-wrap: wrap;
-                padding-right: 0;
-            }
-
-            .services-grid.horizontal .service-card {
-                flex: 1 1 300px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .services-grid.horizontal .service-card {
-                flex: 1 1 100%;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
 
@@ -1742,23 +2244,23 @@
 
         .case-slide {
             min-width: 100%;
-            padding: 0 15px;
+            padding: 30px 15px;
             box-sizing: border-box;
         }
 
         .case-content-wrapper {
             display: flex;
             gap: 40px;
-            background: rgba(255, 255, 255, 0.03);
             border-radius: var(--radius);
             padding: 30px;
             transition: all 0.3s ease;
+            background: #D0EAF5;
         }
 
         .case-slide:hover .case-content-wrapper {
-            background: rgba(255, 255, 255, 0.05);
+            background: #FCDCDC;
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.09);
         }
 
         .case-slide:hover .founder-image {
@@ -1793,7 +2295,7 @@
 
         .founder-location {
             font-size: 14px;
-            color: var(--light);
+            color: var(--dark-bg);
             display: flex;
             align-items: center;
             gap: 6px;
@@ -1883,8 +2385,6 @@
 
         .case-prev,
         .case-next {
-
-            background: none;
             border: none;
             color: var(--light);
             font-size: 20px;
@@ -1896,27 +2396,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--primary-light);
         }
 
         .case-prev:hover,
         .case-next:hover {
             background: var(--primary);
-            color: var(--dark);
+            color: var(--primary-light);
         }
 
         .case-dots {
             display: flex;
             gap: 10px;
+
         }
 
         .case-dots .dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 1);
             cursor: pointer;
             transition: all 0.3s ease;
+            background: var(--secondary-light);
         }
 
         .case-dots .dot.active {
@@ -1964,7 +2466,7 @@
         }
 
         .engagement-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: #D0EAF5;
             border-radius: var(--radius);
             padding: 40px 30px;
             transition: all 0.3s ease;
@@ -1973,7 +2475,7 @@
         }
 
         .engagement-card.featured {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--primary-light);
             border: 1px solid var(--primary);
         }
 
@@ -2082,7 +2584,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 70% 30%, rgba(207, 45, 45, 0.1), transparent 70%);
+            background: radial-gradient(circle at 10% 50%, #ffbcbc, #9fd0de 70%);
             z-index: -1;
         }
 
@@ -2105,8 +2607,8 @@
 
         .final-cta .cta-secondary {
             background: transparent;
-            color: var(--light);
-            border: 1px solid var(--light);
+            color: var(--primary-light);
+            border: 0.5px solid var(--primary);
         }
 
         .final-cta .cta-button:hover {
@@ -2223,42 +2725,13 @@
         }
 
         /* Services Grid */
-        .persona-services-container {
-            width: 100%;
-            overflow: hidden;
-        }
+
 
         .services-content {
             width: 100%;
         }
 
-        .persona-content {
-            width: 100%;
-        }
 
-        .services-scroll-container {
-            width: 100%;
-            overflow-x: auto;
-            padding-bottom: 20px;
-            -webkit-overflow-scrolling: touch;
-            /* Smooth scrolling on iOS */
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) rgba(255, 255, 255, 0.1);
-        }
-
-        .services-scroll-container::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .services-scroll-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-        }
-
-        .services-scroll-container::-webkit-scrollbar-thumb {
-            background-color: var(--primary);
-            border-radius: 3px;
-        }
 
         /* Scroll */
         /* .services-grid.horizontal {
@@ -2270,65 +2743,15 @@
         } */
 
         /* No Scroll and centered */
-        .services-grid.horizontal {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 15px;
-            justify-content: center;
-            align-items: stretch;
-            width: 100%;
-            max-width: 100vw;
-            margin: 15px auto;
-        }
 
-        .service-card {
-            flex: 0 0 330px;
-            min-height: 350px;
-            scroll-snap-align: start;
-            gap: 10px;
-            min-width: 250px;
-            max-width: 300px;
-            flex: 1;
-        }
+
+
 
         /* Remove any conflicting styles that might be forcing grid layout */
         .services-grid:not(.horizontal) {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .service-card {
-                width: 100px;
-                min-height: 320px;
-            }
-        }
-
-        @media (min-width: 320px) and (max-width: 570px) {
-            .persona-selection {
-                display: flex;
-            }
-
-            .persona-option {
-                max-width: 300px;
-                margin-top: 20px;
-            }
-
-            .services-grid {
-                max-width: fit-content;
-            }
-        }
-
-        @media (min-width: 320px) and (max-width: 570px) {
-            .persona-selection {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                max-width: fit-content;
-            }
-
         }
     </style>
 </body>
