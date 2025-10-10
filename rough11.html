@@ -97,6 +97,9 @@
         .nav-links a:hover {
             color: #CF2D2D;
         }
+.nav-links a.active {
+  color: #CF2D2D;
+}
 
         .nav-links a::after {
             content: "";
@@ -336,7 +339,7 @@
         </nav>
     </header>
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const header = document.querySelector('.entropy-header');
             const burger = document.getElementById('burger');
@@ -386,7 +389,75 @@
             window.addEventListener('scroll', updateHeaderState);
             updateHeaderState();
         });
-    </script>
+    </script> -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const header = document.querySelector('.entropy-header');
+  const burger = document.getElementById('burger');
+
+  // Burger toggle (mobile)
+  burger.addEventListener('click', () => {
+    header.classList.toggle('open');
+    document.body.style.overflow = header.classList.contains('open') ? 'hidden' : '';
+  });
+
+  // Dropdown toggles (chevron buttons)
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const parent = toggle.closest('.dropdown');
+      const isOpen = parent.classList.contains('open');
+
+      // Close all dropdowns first
+      document.querySelectorAll('.dropdown.open').forEach(d => {
+        d.classList.remove('open');
+        d.querySelector('a').classList.remove('active'); // remove highlight
+      });
+
+      // Reopen this one only if it was previously closed
+      if (!isOpen) {
+        parent.classList.add('open');
+        const link = parent.querySelector('a');
+        if (link) link.classList.add('active'); // highlight the link text
+      }
+    });
+  });
+
+  // When clicking dropdown link itself (e.g., "Solutions"), highlight it too
+  const dropdownLinks = document.querySelectorAll('.dropdown > a');
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      // remove active state from others
+      document.querySelectorAll('.dropdown > a.active').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // Close mobile nav when clicking *non-dropdown* links
+  document.querySelectorAll('.nav-links a:not(.dropdown-toggle), .header-cta').forEach(el => {
+    el.addEventListener('click', () => {
+      header.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Scroll effect (transparent vs scrolled header)
+  function updateHeaderState() {
+    if (window.scrollY > 50) {
+      header.classList.remove('transparent');
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+      header.classList.add('transparent');
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderState);
+  updateHeaderState();
+});
+</script>
 
 </body>
 
