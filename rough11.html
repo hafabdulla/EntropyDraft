@@ -116,8 +116,31 @@
 
         /* Dropdown */
         .dropdown {
+            /* display: flex; */
+            align-items: center;
             position: relative;
+            gap: 20px;
+            /* adds space between link and arrow */
         }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: #CF2D2D;
+            transform: rotate(180deg);
+        }
+
+        .dropdown.open .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
 
         .dropdown-content {
             display: none;
@@ -274,95 +297,97 @@
             }
         }
     </style>
-<header class="entropy-header transparent">
-  <a href="/" class="entropy-logo">
-    <img
-      src="https://images.squarespace-cdn.com/content/v1/6780cd1ee702fd5553c210f3/0333def6-5674-45d5-835d-92c5e17517db/entropy-full.png?format=1500w"
-      alt="Entropy Logo"
-      style="padding-top:6px;"
-    />
-  </a>
-  <button id="burger" class="burger" aria-label="Toggle navigation">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="entropy-nav">
-    <div class="nav-links">
-      <div class="dropdown">
-        <a href="https://www.facebook.com/">Solutions <i class="fas fa-chevron-down"></i></a>
-        <div class="dropdown-content">
-          <a href="#">Venture Development</a>
-          <a href="#">Investment Operations</a>
-          <a href="#">Policy Delivery</a>
-        </div>
-      </div>
-      <a href="#">WorkForce Infrastructure</a>
-      <div class="dropdown">
-        <a href="https://www.instagram.com/">Our Work <i class="fas fa-chevron-down"></i></a>
-        <div class="dropdown-content">
-          <a href="#">Portfolio</a>
-          <a href="#">Case Studies</a>
-        </div>
-      </div>
-      <a href="#">About</a>
-    </div>
-    <a href="#" class="header-cta">Get in Touch</a>
-  </nav>
-</header>
+    <header class="entropy-header transparent">
+        <a href="/" class="entropy-logo">
+            <img src="https://images.squarespace-cdn.com/content/v1/6780cd1ee702fd5553c210f3/0333def6-5674-45d5-835d-92c5e17517db/entropy-full.png?format=1500w"
+                alt="Entropy Logo" style="padding-top:6px;" />
+        </a>
+        <button id="burger" class="burger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="entropy-nav">
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="https://www.facebook.com/">Solutions</a>
+                    <button class="dropdown-toggle" aria-label="Toggle dropdown">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Venture Development</a>
+                        <a href="#">Investment Operations</a>
+                        <a href="#">Policy Delivery</a>
+                    </div>
+                </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const header = document.querySelector('.entropy-header');
-  const burger = document.getElementById('burger');
-  const dropdowns = document.querySelectorAll('.dropdown > a');
+                <div class="dropdown">
+                    <a href="https://www.instagram.com/">Our Work</a>
+                    <button class="dropdown-toggle" aria-label="Toggle dropdown">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Portfolio</a>
+                        <a href="#">Case Studies</a>
+                    </div>
+                </div>
 
-  // Burger toggle
-  burger.addEventListener('click', () => {
-    header.classList.toggle('open');
-    document.body.style.overflow = header.classList.contains('open') ? 'hidden' : '';
-  });
+                <a href="#">About</a>
+            </div>
+            <a href="#" class="header-cta">Get in Touch</a>
+        </nav>
+    </header>
 
-  // Mobile dropdown toggles
-  dropdowns.forEach(link => {
-    link.addEventListener('click', e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault(); // stop navigation
-        e.stopPropagation(); // stop bubbling to parent listeners
-        const parent = link.parentElement;
-        const isOpen = parent.classList.contains('open');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.querySelector('.entropy-header');
+            const burger = document.getElementById('burger');
 
-        // close all dropdowns first
-        document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+            // Burger toggle (mobile)
+            burger.addEventListener('click', () => {
+                header.classList.toggle('open');
+                document.body.style.overflow = header.classList.contains('open') ? 'hidden' : '';
+            });
 
-        // reopen this one only if it was previously closed
-        if (!isOpen) parent.classList.add('open');
-      }
-    });
-  });
+            // Dropdown toggles (chevron buttons)
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = toggle.closest('.dropdown');
+                    const isOpen = parent.classList.contains('open');
 
-  // Close mobile nav when clicking *non-dropdown* links
-  document.querySelectorAll('.nav-links a:not(.dropdown > a), .header-cta').forEach(el => {
-    el.addEventListener('click', () => {
-      header.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
+                    // Close all dropdowns first
+                    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
 
-  // Scroll effect
-  function updateHeaderState() {
-    if (window.scrollY > 50) {
-      header.classList.remove('transparent');
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-      header.classList.add('transparent');
-    }
-  }
+                    // Reopen this one only if it was previously closed
+                    if (!isOpen) parent.classList.add('open');
+                });
+            });
 
-  window.addEventListener('scroll', updateHeaderState);
-  updateHeaderState();
-});
-</script>
+            // Close mobile nav when clicking *non-dropdown* links
+            document.querySelectorAll('.nav-links a:not(.dropdown-toggle), .header-cta').forEach(el => {
+                el.addEventListener('click', () => {
+                    header.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Scroll effect (transparent vs scrolled header)
+            function updateHeaderState() {
+                if (window.scrollY > 50) {
+                    header.classList.remove('transparent');
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                    header.classList.add('transparent');
+                }
+            }
+
+            window.addEventListener('scroll', updateHeaderState);
+            updateHeaderState();
+        });
+    </script>
+
 </body>
 
 </html>
-
