@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -496,6 +496,440 @@
             // Call on scroll and load
             window.addEventListener('scroll', updateHeaderState);
             updateHeaderState(); // Initial call
+        });
+    </script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #333;
+            --accent-color: #007bff;
+            --text-color: #fff;
+            --border-color: #444;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .dropdown-arrow {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary-color);
+            min-width: 200px;
+            padding: 10px 0;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .dropdown-item {
+            padding: 8px 20px;
+        }
+
+        .dropdown-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .dropdown-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-color);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            padding: 80px 20px 20px;
+            transition: right 0.4s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+        }
+
+        .mobile-nav-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .mobile-nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .mobile-dropdown-arrow {
+            transition: transform 0.3s;
+        }
+
+        .mobile-dropdown-menu {
+            display: none;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .mobile-dropdown-item {
+            margin-bottom: 10px;
+        }
+
+        .mobile-dropdown-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 8px 0;
+        }
+
+        .back-button {
+            display: none;
+            align-items: center;
+            color: var(--text-color);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .back-button span {
+            margin-right: 5px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu.active {
+                right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Company</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Our Solutions
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <path d="M6 8L2 4h8L6 8z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item">
+                            <a href="#">Venture Development</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="#">Investment Operations</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="#">Policy Delivery</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Workforce Infrastructure</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        Our Work
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <path d="M6 8L2 4h8L6 8z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item">
+                            <a href="#">Portfolio</a>
+                        </div>
+                        <div class="dropdown-item">
+                            <a href="#">Case Studies</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay"></div>
+
+    <div class="mobile-menu">
+        <button class="back-button">
+            <span>&#8592;</span> Back
+        </button>
+        <ul class="mobile-nav-menu">
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">
+                    Our Solutions
+                    <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <path d="M6 8L2 4h8L6 8z"/>
+                    </svg>
+                </a>
+                <div class="mobile-dropdown-menu">
+                    <div class="mobile-dropdown-item">
+                        <a href="#">Venture Development</a>
+                    </div>
+                    <div class="mobile-dropdown-item">
+                        <a href="#">Investment Operations</a>
+                    </div>
+                    <div class="mobile-dropdown-item">
+                        <a href="#">Policy Delivery</a>
+                    </div>
+                </div>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">Workforce Infrastructure</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">
+                    Our Work
+                    <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <path d="M6 8L2 4h8L6 8z"/>
+                    </svg>
+                </a>
+                <div class="mobile-dropdown-menu">
+                    <div class="mobile-dropdown-item">
+                        <a href="#">Portfolio</a>
+                    </div>
+                    <div class="mobile-dropdown-item">
+                        <a href="#">Case Studies</a>
+                    </div>
+                </div>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">About</a>
+            </li>
+        </ul>
+    </div>
+
+    <main style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+        <h1>Main Content Area</h1>
+        <p>This is the main content of the page. The navbar above is fully responsive and will adapt to different screen sizes.</p>
+        <p>On mobile devices, click the hamburger menu to open the navigation panel. Click the dropdown arrows to expand submenus.</p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.overlay');
+            const backButton = document.querySelector('.back-button');
+            const dropdownArrows = document.querySelectorAll('.mobile-dropdown-arrow');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            // Close mobile menu when clicking overlay
+            overlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset all dropdown menus
+                document.querySelectorAll('.mobile-dropdown-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
+                document.querySelectorAll('.mobile-dropdown-arrow').forEach(arrow => {
+                    arrow.style.transform = 'rotate(0deg)';
+                });
+                backButton.style.display = 'none';
+            });
+            
+            // Handle dropdown toggles in mobile view
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const dropdownMenu = this.nextElementSibling;
+                    const dropdownArrow = this.querySelector('.mobile-dropdown-arrow');
+                    
+                    if (dropdownMenu && dropdownMenu.classList.contains('mobile-dropdown-menu')) {
+                        e.preventDefault();
+                        
+                        // Toggle the dropdown
+                        if (dropdownMenu.style.display === 'block') {
+                            dropdownMenu.style.display = 'none';
+                            dropdownArrow.style.transform = 'rotate(0deg)';
+                            backButton.style.display = 'none';
+                        } else {
+                            // Hide all other dropdowns first
+                            document.querySelectorAll('.mobile-dropdown-menu').forEach(menu => {
+                                menu.style.display = 'none';
+                            });
+                            document.querySelectorAll('.mobile-dropdown-arrow').forEach(arrow => {
+                                arrow.style.transform = 'rotate(0deg)';
+                            });
+                            
+                            // Show this dropdown
+                            dropdownMenu.style.display = 'block';
+                            dropdownArrow.style.transform = 'rotate(90deg)';
+                            backButton.style.display = 'flex';
+                        }
+                    }
+                });
+            });
+            
+            // Handle back button
+            backButton.addEventListener('click', function() {
+                document.querySelectorAll('.mobile-dropdown-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
+                document.querySelectorAll('.mobile-dropdown-arrow').forEach(arrow => {
+                    arrow.style.transform = 'rotate(0deg)';
+                });
+                this.style.display = 'none';
+            });
         });
     </script>
 </body>
