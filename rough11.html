@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entropy Navbar with Mobile-Friendly Dropdowns</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Hide Squarespace's default header */
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        #header, #sqs-header {
+            display: none !important;
+        }
+        /* Hide Squarespace native header */
+        .sqs-announcement-bar,
+        .sqs-header,
+        .Header,
+        .Header-inner,
+        .Header-nav {
+            display: none !important;
+        }
+
+        .entropy-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 60px;
+            background: #000000;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.35s ease;
+            height: 50px;
+            box-sizing: border-box;
+        }
+
+        .entropy-header.transparent {
+            border-bottom: 1px solid transparent !important;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        .entropy-header.scrolled {
+            background-color: rgb(0, 0, 0);
+            border-bottom: 1px solid #2796B8;
+            backdrop-filter: blur(20px);
+        }
+
+        .entropy-header.scrolled .nav-links a {
+            color: #fff;
+        }
+
+        .entropy-header.scrolled .nav-links a:hover {
+            color: #FFF;
+        }
+
+        .entropy-header.scrolled .dropdown-content a {
+            background: #000000;
+            color: #fff;
+        }
+
+        .entropy-header.transparent .header-cta {
+            background: transparent;
+            border: 1px solid #FFFFFF;
+        }
+
+        .entropy-logo img {
+            height: 30px;
+            transition: transform all 0.35s ease;
+        }
+
+        .entropy-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .entropy-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 5px 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color all 0.35s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #CF2D2D;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #CF2D2D;
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000000;
+            min-width: 200px;
+            border-radius: 6px;
+            padding: 10px 0;
+            z-index: 1;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+            margin-top: 2px;
+            text-align: left;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: background all 0.35s ease, padding-left all 0.35s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 28px;
+            color: #CF2D2D;
+        }
+
+        .header-cta {
+            background: #CF2D2D;
+            color: #FFFFFF;
+            margin-left: 25px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.35s ease;
+            width: fit-content;
+            max-width: 200px;
+            text-align: center;
+            padding: 8px 16px;
+            margin-left: 16px;
+            border-radius: 6px;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .20);
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 34px;
+            height: 34px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .burger span {
+            width: 100%;
+            height: 2px;
+            background: #FFFFFF;
+            transition: all 0.35s ease;
+        }
+
+        .entropy-header.open .burger span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .entropy-header.open .burger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .entropy-header.open .burger span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 890px) {
+            .nav-links {
+                display: flex;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .entropy-header {
+                flex-direction: row;
+                padding: 12px 20px;
+                z-index: 1100;
+                justify-content: space-between;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            /* Mobile Nav */
+            .entropy-nav {
+                position: fixed;
+                top: 48px;
+                left: 0;
+                height: calc(100vh - 48px);
+                width: 100%;
+                background: #000000;
+                flex-direction: column;
+                align-items: center;
+                text-align: left;
+                justify-content: flex-start;
+                padding-top: 40px;
+                gap: 32px;
+                transform: translateX(-100%);
+                transition: transform 0.35s ease;
+                z-index: 1050;
+                overflow-y: auto;
+            }
+
+            .entropy-header.open .entropy-nav {
+                transform: translateX(0);
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+
+            .header-cta {
+                display: block;
+                width: 220px;
+                margin: 10px 0;
+            }
+
+            /* Mobile dropdown styles */
+            .dropdown {
+                width: 100%;
+            }
+
+            .dropdown > a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+
+            .dropdown > a::after {
+                content: ">";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                margin-left: 10px;
+            }
+
+            .dropdown-content {
+                position: fixed;
+                top: 48px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 48px);
+                background: #000000;
+                display: none;
+                flex-direction: column;
+                padding: 20px;
+                box-sizing: border-box;
+                transform: none;
+                margin-top: 0;
+                opacity: 1;
+                z-index: 1060;
+                overflow-y: auto;
+            }
+
+            .dropdown-content.active {
+                display: flex;
+            }
+
+            .dropdown-back {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                color: #FFFFFF;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .dropdown-back::before {
+                content: "<";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                margin-right: 10px;
+            }
+
+            .dropdown-content a {
+                padding: 15px 20px;
+                font-size: 18px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .dropdown-content a:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="entropy-header transparent">
+        <a href="/" class="entropy-logo">
+            <img src="https://images.squarespace-cdn.com/content/v1/6780cd1ee702fd5553c210f3/0333def6-5674-45d5-835d-92c5e17517db/entropy-full.png?format=1500w" alt="Entropy Logo" style="padding-top: 6px;">
+        </a>
+
+        <button id="burger" class="burger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="entropy-nav">
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a>Solutions <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-back">Back</div>
+                        <a href="/solutions?persona=businesses#solutions" data-persona="businesses">
+                            Venture Development
+                        </a>
+                        <a href="/solutions?persona=investors#solutions" data-persona="investors">
+                            Investment Operations
+                        </a>
+                        <a href="/solutions?persona=policymakers#solutions" data-persona="policymakers">
+                            Policy Delivery
+                        </a>
+                    </div>
+                </div>
+                <a href="/workforce-infrastructure">WorkForce Infrastructure</a>
+                <a href="/home?#Portfolio_Homepage">Portfolio</a>
+                <a href="/solutions?#case-studies">Case Studies</a>
+                <a href="/about">About</a>
+            </div>
+            <a href="/home?#contact_form" class="header-cta">Get in Touch</a>
+        </nav>
+    </header>
+
+    <div style="height: 2000px; padding-top: 100px; color: white; text-align: center;">
+        <p>Scroll down to see the navbar effect</p>
+    </div>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide Squarespace header
+            const sqsHeader = document.querySelector('#header, #sqs-header');
+            if (sqsHeader) {
+                sqsHeader.style.display = 'none';
+            }
+            
+            // Handle burger menu toggle
+            const burger = document.getElementById('burger');
+            const header = document.querySelector('.entropy-header');
+            const links = document.querySelectorAll('.nav-links a, .header-cta');
+
+            if (burger && header) {
+                burger.addEventListener('click', () => {
+                    header.classList.toggle('open');
+                    document.body.style.overflow = header.classList.contains('open') ? 'hidden' : '';
+                    
+                    // Close any open dropdowns when closing the menu
+                    if (!header.classList.contains('open')) {
+                        closeAllDropdowns();
+                    }
+                });
+            }
+
+            /* close menu after a click */
+            if (links.length) {
+                links.forEach(el => {
+                    el.addEventListener('click', () => {
+                        if (header) {
+                            header.classList.remove('open');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            }
+
+            // Navbar scroll effect
+            function updateHeaderState() {
+                if (!header) return;
+                
+                if (window.scrollY > 50) {
+                    // Scrolled down
+                    header.classList.remove('transparent');
+                    header.classList.add('scrolled');
+                } else {
+                    // At top of page
+                    header.classList.remove('scrolled');
+                    header.classList.add('transparent');
+                }
+            }
+
+            // Mobile dropdown functionality
+            const dropdowns = document.querySelectorAll('.dropdown');
+            const dropdownContents = document.querySelectorAll('.dropdown-content');
+            const dropdownBackButtons = document.querySelectorAll('.dropdown-back');
+            
+            // Function to close all dropdowns
+            function closeAllDropdowns() {
+                dropdownContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+            }
+            
+            // Add click event to dropdown triggers on mobile
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('a');
+                const content = dropdown.querySelector('.dropdown-content');
+                
+                trigger.addEventListener('click', function(e) {
+                    // Only activate on mobile (when burger menu is visible)
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close all other dropdowns
+                        closeAllDropdowns();
+                        
+                        // Open this dropdown
+                        content.classList.add('active');
+                    }
+                });
+            });
+            
+            // Add click event to back buttons
+            dropdownBackButtons.forEach(backBtn => {
+                backBtn.addEventListener('click', function() {
+                    closeAllDropdowns();
+                });
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    const isDropdownContent = e.target.closest('.dropdown-content');
+                    const isDropdownTrigger = e.target.closest('.dropdown > a');
+                    
+                    if (!isDropdownContent && !isDropdownTrigger) {
+                        closeAllDropdowns();
+                    }
+                }
+            });
+
+            // Call on scroll and load
+            window.addEventListener('scroll', updateHeaderState);
+            updateHeaderState(); // Initial call
+        });
+    </script>
+</body>
+</html>
