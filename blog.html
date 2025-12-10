@@ -129,6 +129,51 @@
             left: 0;
         }
 
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-bg);
+            min-width: 200px;
+            border-radius: 6px;
+            padding: 10px 0;
+            z-index: 1;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+            margin-top: 2px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: var(--light);
+            text-decoration: none;
+            transition: background var(--transition), padding-left var(--transition);
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 28px;
+            color: var(--primary);
+        }
+
+        .dropdown-content a::after {
+            display: none;
+        }
+
         .header-cta {
             background: var(--primary);
             color: var(--light);
@@ -624,33 +669,35 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="transparent">
+    <header class="transparent" style="padding-right: 170px; padding-left: 170px;">
         <a href="index.html" class="logo">
-            <img src="entropy-full.png" alt="Company Logo">
+            <img src="entropy-full.png" alt="Entropy Logo" style="padding-top: 6px;">
         </a>
 
-        <button class="burger" id="burger" aria-label="Toggle navigation">
+        <button id="burger" class="burger" aria-label="Toggle navigation">
             <span></span><span></span><span></span>
         </button>
-
-        <nav id="mainNav">
+        <nav>
             <div class="nav-links">
                 <div class="dropdown">
                     <a>Solutions <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#">Venture Development</a>
-                        <a href="#">Operating Partner</a>
-                        <a href="#">Global Talent & Employer of Record (EOR)</a>
+                        <a href="services.html?persona=businesses#services" data-persona="businesses">
+                            Venture Development
+                        </a>
+                        <a href="services.html?persona=investors#services" data-persona="investors">
+                            Operating Partner
+                        </a>
+                        <a href="eor.html">Global Talent & Employer of Record (EOR)</a>
                         <a href="#">Invest</a>
                     </div>
                 </div>
-                <a href="#">Portfolio</a>
+                <a href="portfolio.html">Portfolio</a>
                 <div class="dropdown">
                     <a>Insights <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
                         <a href="#">Case Studies</a>
                         <a href="#">Market Insights</a>
-                        <a href="#">Blogs</a>
                     </div>
                 </div>
                 <a href="#">About</a>
