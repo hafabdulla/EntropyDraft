@@ -910,7 +910,30 @@
         // Blog grid functionality
         function renderBlogs() {
             const container = document.getElementById('blogGrid');
-            const filtered = activeFilter === 'All' ? blogs : blogs.filter(b => b.category === activeFilter);
+            
+            // First filter by category
+            let filtered = activeFilter === 'All' ? blogs : blogs.filter(b => b.category === activeFilter);
+            
+            // Then filter by search query (searches title, description, and category)
+            if (searchQuery) {
+                filtered = filtered.filter(blog => {
+                    const titleMatch = blog.title.toLowerCase().includes(searchQuery);
+                    const descMatch = blog.description.toLowerCase().includes(searchQuery);
+                    const categoryMatch = blog.category.toLowerCase().includes(searchQuery);
+                    return titleMatch || descMatch || categoryMatch;
+                });
+            }
+            
+            // Show message if no results
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <h3 style="color: var(--gray); font-size: 1.5rem; margin-bottom: 10px;">No blogs found</h3>
+                        <p style="color: var(--gray);">Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+                return;
+            }
             
             container.innerHTML = filtered.map(blog => `
                 <a href="#" class="blog-card">
@@ -933,6 +956,24 @@
 
         burger.addEventListener('click', () => {
             header.classList.toggle('open');
+        });
+
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        let searchQuery = '';
+
+        searchBox.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            renderBlogs();
+        });
+
+        // Clear search on Escape key
+        searchBox.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                searchBox.value = '';
+                searchQuery = '';
+                renderBlogs();
+            }
         });
 
         // Header scroll effect
