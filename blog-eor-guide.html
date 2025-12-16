@@ -320,16 +320,34 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            align-items: start;
         }
 
         /* Sidebar */
         .blog-sidebar {
             position: sticky;
             top: 100px;
-            align-self: start;
+            height: fit-content;
             display: flex;
             flex-direction: column;
             gap: 30px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gray-light) transparent;
+        }
+
+        .blog-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .blog-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .blog-sidebar::-webkit-scrollbar-thumb {
+            background: var(--gray-light);
+            border-radius: 4px;
         }
 
         .sidebar-card {
