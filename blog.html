@@ -1280,46 +1280,60 @@
         
         const blogs = [
             {
+                id: 7,
+                title: 'What Is an Employer of Record (EOR)? A Practical Guide to Global Hiring',
+                description: 'Learn what an EOR is and how it enables compliant global hiring without establishing local entities. A comprehensive guide for international expansion.',
+                image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop',
+                category: 'EOR Services',
+                link: 'blog-eor-guide.html'
+            },
+            {
                 id: 1,
                 title: 'Policy Delivery in High-Growth Markets: A Strategic Framework',
                 description: 'How to design and implement effective policy frameworks that support venture growth while navigating regulatory complexity in emerging economies.',
                 image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop',
-                category: 'Policy Delivery'
+                category: 'Policy Delivery',
+                link: '#'
             },
             {
                 id: 2,
                 title: 'Venture Development: From Concept to Market Leadership',
                 description: 'A comprehensive roadmap for transforming early-stage ventures into market leaders through strategic positioning and operational excellence.',
                 image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop',
-                category: 'Venture Development'
+                category: 'Venture Development',
+                link: '#'
             },
             {
                 id: 3,
                 title: 'Market Insights: Decoding Emerging Market Dynamics',
                 description: 'Deep-dive analysis of key trends shaping investment and venture opportunities across frontier and emerging markets.',
                 image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&h=400&fit=crop',
-                category: 'Market Insights'
+                category: 'Market Insights',
+                link: '#'
             },
             {
                 id: 4,
                 title: 'Building Resilient Workforce Infrastructure at Scale',
                 description: 'Essential strategies for creating flexible, compliant workforce systems that support international expansion and distributed operations.',
                 image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop',
-                category: 'Workforce Infrastructure'
+                category: 'Workforce Infrastructure',
+                link: '#'
             },
             {
                 id: 5,
                 title: 'Investment Operations: Maximizing Portfolio Performance',
                 description: 'Proven methodologies for optimizing investment operations, from capital allocation to portfolio monitoring and value creation.',
                 image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop',
-                category: 'Investment Operations'
+                category: 'Investment Operations',
+                link: '#'
             },
             {
                 id: 6,
                 title: 'EOR Services: Unlocking Global Talent Without Borders',
                 description: 'How Employer of Record solutions enable companies to hire top talent globally while maintaining full compliance and minimizing risk.',
                 image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=400&fit=crop',
-                category: 'EOR Services'
+                category: 'EOR Services',
+                link: '#'
             }
         ];
 
@@ -1402,7 +1416,7 @@
             }
             
             container.innerHTML = filtered.map(blog => `
-                <a href="#" class="blog-card">
+                <a href="${blog.link || '#'}" class="blog-card">
                     <div class="blog-image-wrapper">
                         <img src="${blog.image}" alt="${blog.title}" class="blog-image">
                         <span class="blog-category">${blog.category}</span>
