@@ -284,7 +284,6 @@
             background: var(--bg);
             padding: 80px 20px;
             position: relative;
-            overflow: hidden;
         }
 
         /* Decorative Background Elements */
@@ -331,23 +330,6 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--gray-light) transparent;
-        }
-
-        .blog-sidebar::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .blog-sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .blog-sidebar::-webkit-scrollbar-thumb {
-            background: var(--gray-light);
-            border-radius: 4px;
         }
 
         .sidebar-card {
