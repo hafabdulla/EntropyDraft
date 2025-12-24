@@ -267,17 +267,7 @@
             gap: 8px;
         }
 
-        /* Reading Progress Bar */
-        .reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            z-index: 10000;
-            transition: width 0.1s ease;
-        }
+
 
         /* Blog Content */
         .blog-content-wrapper {
@@ -1376,8 +1366,6 @@
 </head>
 <body>
 
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress" id="progressBar"></div>
 
     <!-- Header -->
     <header class="transparent" style="padding-right: 170px; padding-left: 170px;">
@@ -1718,13 +1706,6 @@
             } else {
                 header.classList.remove('scrolled');
             }
-
-            // Reading progress bar
-            const progressBar = document.getElementById('progressBar');
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrollTop / docHeight) * 100;
-            progressBar.style.width = progress + '%';
 
             // Active TOC highlighting
             const sections = document.querySelectorAll('h2[id]');
