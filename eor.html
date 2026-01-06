@@ -721,7 +721,7 @@
          }
       }
 
-      /* Process Flow Section with Scroll Animation */
+      /* Process Flow Section with Circular Dial Animation */
       .process-section {
          position: relative;
          background: #eef3f8;
@@ -729,7 +729,7 @@
       }
 
       .process-sticky-wrapper {
-         height: 400vh; /* Height for scroll duration */
+         height: 400vh;
          position: relative;
       }
 
@@ -741,180 +741,207 @@
          align-items: center;
          justify-content: center;
          overflow: hidden;
-         padding-top: 80px; /* Account for fixed navbar */
+         padding-top: 80px;
          box-sizing: border-box;
       }
 
-      .process-header {
-         text-align: center;
-         margin-bottom: 60px;
-      }
-
-      .process-header h2 {
-         font-size: 2.5rem;
-         margin-bottom: 15px;
-         color: var(--text);
-      }
-
-      .process-content {
-         display: flex;
-         align-items: stretch;
-         justify-content: center;
-         gap: 0;
-         max-width: 1100px;
-         width: 100%;
+      .process-inner-container {
+         width: 90%;
+         max-width: 1200px;
          margin: 0 auto;
-         min-height: 350px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 60px;
       }
 
-      .process-card {
+      /* Left Side - Text Content */
+      .process-text-side {
          flex: 1;
-         padding: 40px;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         position: relative;
+         max-width: 500px;
+      }
+
+      .process-text-side h2 {
+         font-size: 2.8rem;
+         font-weight: 700;
+         color: var(--text);
+         margin-bottom: 20px;
+         line-height: 1.2;
+      }
+
+      .process-text-side .process-subtitle {
+         font-size: 1.1rem;
+         color: var(--muted);
+         margin-bottom: 30px;
+         line-height: 1.7;
+      }
+
+      /* Step Info Display */
+      .process-step-info {
+         background: white;
+         padding: 30px;
+         border-radius: var(--radius);
+         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
          min-height: 180px;
       }
 
-      .process-card-left {
-         text-align: right;
-         padding-right: 60px;
-         background: var(--primary);
-         border-radius: var(--radius);
-         box-shadow: 0 4px 20px rgba(207, 45, 45, 0.15);
-      }
-
-      .process-card-right {
-         text-align: left;
-         padding-left: 60px;
-         background: white;
-         border-radius: var(--radius);
-         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      }
-
-      .process-card-left h3 {
-         font-size: 1.8rem;
-         color: white;
-         margin-bottom: 10px;
-         transition: all 0.5s ease;
-      }
-
-      .process-card-left .step-number {
-         font-size: 0.9rem;
-         color: rgba(255, 255, 255, 0.8);
+      .process-step-info .step-label {
+         font-size: 0.85rem;
+         color: var(--primary);
          text-transform: uppercase;
          letter-spacing: 2px;
+         font-weight: 600;
          margin-bottom: 10px;
-         font-weight: 500;
       }
 
-      .process-card-right p {
-         font-size: 1.1rem;
-         line-height: 1.8;
+      .process-step-info h3 {
+         font-size: 1.5rem;
+         color: var(--text);
+         margin-bottom: 15px;
+         font-weight: 700;
+      }
+
+      .process-step-info p {
+         font-size: 1rem;
          color: var(--muted);
-         margin-bottom: 10px;
-         transition: all 0.5s ease;
+         line-height: 1.7;
+         margin-bottom: 8px;
       }
 
-      .process-card-right p:last-child {
+      .process-step-info p:last-child {
          margin-bottom: 0;
       }
 
-      /* Timeline / Dotted Line */
-      .process-timeline {
-         width: 80px;
+      /* Step content visibility */
+      .dial-step-content {
+         display: none;
+      }
+
+      .dial-step-content.active {
+         display: block;
+         animation: fadeInStep 0.5s ease;
+      }
+
+      @keyframes fadeInStep {
+         from {
+            opacity: 0;
+            transform: translateY(10px);
+         }
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+
+      /* Right Side - Circular Dial */
+      .process-dial-side {
+         flex: 1;
          display: flex;
-         flex-direction: column;
          align-items: center;
          justify-content: center;
-         position: relative;
-         flex-shrink: 0;
       }
 
-      .timeline-track {
+      .dial-container {
          position: relative;
-         width: 3px;
-         height: 280px;
-         background: transparent;
+         width: 380px;
+         height: 380px;
       }
 
-      /* Dotted line background */
-      .timeline-dotted {
+      /* Center dot */
+      .dial-center {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 100px;
+         height: 100px;
+         background: var(--primary);
+         border-radius: 50%;
+         z-index: 10;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         box-shadow: 0 8px 30px rgba(207, 45, 45, 0.3);
+      }
+
+      .dial-center-inner {
+         color: white;
+         font-size: 1.2rem;
+         font-weight: 700;
+         text-align: center;
+      }
+
+      /* Surrounding dots container */
+      .dial-dots-wrapper {
          position: absolute;
          top: 0;
          left: 0;
          width: 100%;
          height: 100%;
-         background: repeating-linear-gradient(
-            to bottom,
-            #000000 0px,
-            #000000 8px,
-            transparent 8px,
-            transparent 16px
-         );
-         border-radius: 2px;
+         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* Solid line progress */
-      .timeline-progress {
+      /* Individual surrounding dots */
+      .dial-dot {
          position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 0%;
-         background: #CF2D2D;
-         border-radius: 2px;
-         transition: height 0.1s linear;
+         width: 60px;
+         height: 60px;
+         background: #2A3439;
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+         cursor: pointer;
+         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
       }
 
-      /* Step indicators on timeline */
-      .timeline-dots {
-         position: absolute;
+      .dial-dot-number {
+         color: white;
+         font-size: 1.1rem;
+         font-weight: 600;
+      }
+
+      .dial-dot.active {
+         background: var(--primary);
+         transform: scale(1.15);
+         box-shadow: 0 6px 25px rgba(207, 45, 45, 0.4);
+      }
+
+      /* Position dots in a circle - 5 dots at 72 degree intervals */
+      /* Starting from top position, going clockwise */
+      .dial-dot[data-step="1"] {
          top: 0;
          left: 50%;
          transform: translateX(-50%);
-         height: 100%;
-         display: flex;
-         flex-direction: column;
-         justify-content: space-between;
-         padding: 0;
       }
 
-      .timeline-dot {
-         width: 14px;
-         height: 14px;
-         border-radius: 50%;
-         background: #eef3f8;
-         border: 2px solid #000000;
-         transition: all 0.3s ease;
-         z-index: 2;
+      .dial-dot[data-step="2"] {
+         top: 29%;
+         right: 5%;
+         transform: translate(0, 0);
       }
 
-      .timeline-dot.active {
-         background: #CF2D2D;
-         border-color: #CF2D2D;
-         box-shadow: 0 0 15px rgba(207, 45, 45, 0.5);
-         transform: scale(1.2);
+      .dial-dot[data-step="3"] {
+         bottom: 10%;
+         right: 15%;
+         transform: translate(0, 0);
       }
 
-      .timeline-dot.completed {
-         background: #CF2D2D;
-         border-color: #CF2D2D;
+      .dial-dot[data-step="4"] {
+         bottom: 10%;
+         left: 15%;
+         transform: translate(0, 0);
       }
 
-      /* Step content animation */
-      .step-content {
-         opacity: 0;
-         transform: translateY(20px);
-         transition: all 0.5s ease;
-         position: absolute;
+      .dial-dot[data-step="5"] {
+         top: 29%;
+         left: 5%;
+         transform: translate(0, 0);
       }
 
-      .step-content.active {
-         opacity: 1;
-         transform: translateY(0);
-         position: relative;
+      .dial-dot.active[data-step="1"] {
+         transform: translateX(-50%) scale(1.15);
       }
 
       /* Process CTA */
@@ -924,11 +951,15 @@
          transition: all 0.6s ease;
          text-align: center;
          padding: 40px;
+         position: absolute;
+         bottom: 20px;
+         left: 50%;
+         transform: translateX(-50%) translateY(30px);
       }
 
       .process-cta-container.visible {
          opacity: 1;
-         transform: translateY(0);
+         transform: translateX(-50%) translateY(0);
       }
 
       .process-cta-container h4 {
@@ -959,172 +990,135 @@
       }
 
       /* Mobile responsive */
-      @media (max-width: 768px) {
-         .process-sticky-container {
-            padding-top: 70px;
-            align-items: flex-start;
-         }
-
-         .process-sticky-container > .container {
-            display: flex;
+      @media (max-width: 992px) {
+         .process-inner-container {
             flex-direction: column;
-            height: 100%;
-            padding-top: 20px;
+            gap: 40px;
+            padding: 20px;
          }
 
-         .process-header {
-            margin-bottom: 30px;
-            flex-shrink: 0;
-         }
-
-         .process-header h2 {
-            font-size: 1.5rem;
-            padding: 0 15px;
-         }
-
-         .process-content {
-            flex-direction: column;
-            padding: 0 15px;
-            min-height: auto;
-            flex: 1;
-            align-items: center;
-         }
-
-         /* Timeline stays at fixed position */
-         .process-timeline {
-            order: 0;
-            width: 100%;
-            height: 50px;
-            flex-direction: row;
-            margin-bottom: 25px;
-            flex-shrink: 0;
-         }
-
-         .timeline-track {
-            width: 80%;
-            max-width: 280px;
-            height: 3px;
-         }
-
-         .timeline-dotted {
-            background: repeating-linear-gradient(
-               to right,
-               #000000 0px,
-               #000000 6px,
-               transparent 6px,
-               transparent 12px
-            );
-         }
-
-         .timeline-progress {
-            width: 0%;
-            height: 100%;
-            transition: width 0.1s linear;
-         }
-
-         .timeline-dots {
-            flex-direction: row;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            width: 100%;
-            height: auto;
-         }
-
-         .timeline-dot {
-            width: 12px;
-            height: 12px;
-         }
-
-         /* Cards with fixed height container */
-         .process-card-left,
-         .process-card-right {
+         .process-text-side {
+            max-width: 100%;
             text-align: center;
-            padding: 15px 10px;
-            min-height: auto;
-            width: 100%;
          }
 
-         .process-card-left {
-            padding-right: 10px;
-            order: 1;
-            margin-bottom: 15px;
+         .process-text-side h2 {
+            font-size: 2rem;
          }
 
-         .process-card-right {
-            padding: 20px 15px;
-            order: 2;
-            min-height: auto;
+         .dial-container {
+            width: 300px;
+            height: 300px;
          }
 
-         .process-card-left h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+         .dial-center {
+            width: 80px;
+            height: 80px;
          }
 
-         .process-card-left .step-number {
-            font-size: 0.75rem;
-            margin-bottom: 5px;
+         .dial-dot {
+            width: 50px;
+            height: 50px;
          }
 
-         .process-card-right p {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            margin-bottom: 6px;
-         }
-
-         .process-cta-container {
-            padding: 20px 15px;
-         }
-
-         .process-cta-container h4 {
-            font-size: 1.2rem;
-         }
-
-         .process-cta-container p {
-            font-size: 0.9rem;
+         .dial-dot-number {
+            font-size: 0.95rem;
          }
       }
 
-      /* Extra small devices */
+      @media (max-width: 768px) {
+         .process-sticky-container {
+            padding-top: 70px;
+         }
+
+         .process-text-side h2 {
+            font-size: 1.6rem;
+         }
+
+         .process-text-side .process-subtitle {
+            font-size: 0.95rem;
+         }
+
+         .process-step-info {
+            padding: 20px;
+            min-height: 150px;
+         }
+
+         .process-step-info h3 {
+            font-size: 1.2rem;
+         }
+
+         .process-step-info p {
+            font-size: 0.9rem;
+         }
+
+         .dial-container {
+            width: 260px;
+            height: 260px;
+         }
+
+         .dial-center {
+            width: 70px;
+            height: 70px;
+         }
+
+         .dial-center-inner {
+            font-size: 1rem;
+         }
+
+         .dial-dot {
+            width: 42px;
+            height: 42px;
+         }
+
+         .dial-dot-number {
+            font-size: 0.85rem;
+         }
+      }
+
       @media (max-width: 480px) {
          .process-sticky-container {
             padding-top: 60px;
          }
 
-         .process-header h2 {
-            font-size: 1.2rem;
+         .process-text-side h2 {
+            font-size: 1.4rem;
          }
 
-         .timeline-track {
-            width: 70%;
-            max-width: 240px;
+         .dial-container {
+            width: 220px;
+            height: 220px;
          }
 
-         .timeline-dot {
-            width: 10px;
-            height: 10px;
+         .dial-center {
+            width: 60px;
+            height: 60px;
          }
 
-         .process-card-left {
-            padding: 12px 10px;
+         .dial-dot {
+            width: 36px;
+            height: 36px;
          }
 
-         .process-card-left h3 {
-            font-size: 1rem;
+         .dial-dot-number {
+            font-size: 0.75rem;
          }
 
-         .process-card-left .step-number {
-            font-size: 0.7rem;
+         .process-step-info {
+            padding: 15px;
+            min-height: 130px;
          }
 
-         .process-card-right {
-            padding: 15px 12px;
+         .process-step-info .step-label {
+            font-size: 0.75rem;
          }
 
-         .process-card-right p {
-            font-size: 0.8rem;
-            line-height: 1.45;
+         .process-step-info h3 {
+            font-size: 1.1rem;
+         }
+
+         .process-step-info p {
+            font-size: 0.85rem;
          }
       }
    </style>
@@ -1258,86 +1252,90 @@
       </div>
    </section>
 
-   <!-- Process Flow Section -->
+   <!-- Process Flow Section with Circular Dial -->
    <section class="process-section" id="process-section">
       <div class="process-sticky-wrapper">
          <div class="process-sticky-container">
-            <div class="container">
-               <div class="process-header">
+            <div class="process-inner-container">
+               <!-- Left Side - Text Content -->
+               <div class="process-text-side">
                   <h2>From Intro Call to Fully Hired — Without Chaos</h2>
-               </div>
-               
-               <div class="process-content">
-                  <!-- Left Card - Headings -->
-                  <div class="process-card process-card-left">
-                     <div class="step-content active" data-step="1">
-                        <span class="step-number">Step 01</span>
+                  <p class="process-subtitle">A streamlined 5-step process that takes the complexity out of global hiring.</p>
+                  
+                  <div class="process-step-info">
+                     <!-- Step 1 -->
+                     <div class="dial-step-content active" data-step="1">
+                        <span class="step-label">Step 01</span>
                         <h3>Intro Call & Role Alignment</h3>
-                     </div>
-                     <div class="step-content" data-step="2">
-                        <span class="step-number">Step 02</span>
-                        <h3>Sourcing & Shortlist</h3>
-                     </div>
-                     <div class="step-content" data-step="3">
-                        <span class="step-number">Step 03</span>
-                        <h3>Interviews & Selection</h3>
-                     </div>
-                     <div class="step-content" data-step="4">
-                        <span class="step-number">Step 04</span>
-                        <h3>Offer, Employ & Onboard</h3>
-                     </div>
-                     <div class="step-content" data-step="5">
-                        <span class="step-number">Step 05</span>
-                        <h3>Operate & Support (Ongoing)</h3>
-                     </div>
-                  </div>
-
-                  <!-- Timeline -->
-                  <div class="process-timeline">
-                     <div class="timeline-track">
-                        <div class="timeline-dotted"></div>
-                        <div class="timeline-progress"></div>
-                        <div class="timeline-dots">
-                           <div class="timeline-dot active" data-step="1"></div>
-                           <div class="timeline-dot" data-step="2"></div>
-                           <div class="timeline-dot" data-step="3"></div>
-                           <div class="timeline-dot" data-step="4"></div>
-                           <div class="timeline-dot" data-step="5"></div>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Right Card - Content -->
-                  <div class="process-card process-card-right">
-                     <div class="step-content active" data-step="1">
                         <p>Schedule a call with Entropy.</p>
                         <p>We align on outcomes, must-haves, working style, and budget before sourcing begins.</p>
                      </div>
-                     <div class="step-content" data-step="2">
+                     <!-- Step 2 -->
+                     <div class="dial-step-content" data-step="2">
+                        <span class="step-label">Step 02</span>
+                        <h3>Sourcing & Shortlist</h3>
                         <p>Our global hiring team acts as your internal recruiter.</p>
                         <p>We source and screen through trusted networks — delivering a tight shortlist, not job-board noise.</p>
                      </div>
-                     <div class="step-content" data-step="3">
+                     <!-- Step 3 -->
+                     <div class="dial-step-content" data-step="3">
+                        <span class="step-label">Step 03</span>
+                        <h3>Interviews & Selection</h3>
                         <p>We screen first. You interview last.</p>
                         <p>Only execution-ready candidates reach your calendar.</p>
                      </div>
-                     <div class="step-content" data-step="4">
+                     <!-- Step 4 -->
+                     <div class="dial-step-content" data-step="4">
+                        <span class="step-label">Step 04</span>
+                        <h3>Offer, Employ & Onboard</h3>
                         <p>Once you approve a candidate, Entropy handles everything.</p>
                         <p>Contracts, compliant employment, payroll setup, and onboarding — end-to-end.</p>
                      </div>
-                     <div class="step-content" data-step="5">
+                     <!-- Step 5 -->
+                     <div class="dial-step-content" data-step="5">
+                        <span class="step-label">Step 05</span>
+                        <h3>Operate & Support (Ongoing)</h3>
                         <p>We stay involved after the hire.</p>
                         <p>Payroll, compliance, HR administration, and HRBP support — with one point of contact.</p>
                      </div>
                   </div>
                </div>
 
-               <!-- CTA appears at the end -->
-               <div class="process-cta-container" id="process-cta">
-                  <h4>Book a 20-min Intro Call</h4>
-                  <p>Get clarity on cost, speed, and talent quality.</p>
-                  <a href="#contact" class="process-cta-btn">Book Now</a>
+               <!-- Right Side - Circular Dial -->
+               <div class="process-dial-side">
+                  <div class="dial-container">
+                     <!-- Center dot -->
+                     <div class="dial-center">
+                        <span class="dial-center-inner">HOW IT<br>WORKS</span>
+                     </div>
+                     
+                     <!-- Surrounding dots wrapper for rotation -->
+                     <div class="dial-dots-wrapper" id="dial-dots-wrapper">
+                        <div class="dial-dot" data-step="1">
+                           <span class="dial-dot-number">01</span>
+                        </div>
+                        <div class="dial-dot" data-step="2">
+                           <span class="dial-dot-number">02</span>
+                        </div>
+                        <div class="dial-dot" data-step="3">
+                           <span class="dial-dot-number">03</span>
+                        </div>
+                        <div class="dial-dot" data-step="4">
+                           <span class="dial-dot-number">04</span>
+                        </div>
+                        <div class="dial-dot" data-step="5">
+                           <span class="dial-dot-number">05</span>
+                        </div>
+                     </div>
+                  </div>
                </div>
+            </div>
+
+            <!-- CTA appears at the end -->
+            <div class="process-cta-container" id="process-cta">
+               <h4>Book a 20-min Intro Call</h4>
+               <p>Get clarity on cost, speed, and talent quality.</p>
+               <a href="#contact" class="process-cta-btn">Book Now</a>
             </div>
          </div>
       </div>
@@ -1612,25 +1610,23 @@
       });
    </script>
 
-   <!-- Process Flow Scroll Animation -->
+   <!-- Process Flow Circular Dial Animation -->
    <script>
       (function() {
          const processSection = document.getElementById('process-section');
          const stickyWrapper = document.querySelector('.process-sticky-wrapper');
-         const timelineProgress = document.querySelector('.timeline-progress');
-         const timelineDots = document.querySelectorAll('.timeline-dot');
-         const leftSteps = document.querySelectorAll('.process-card-left .step-content');
-         const rightSteps = document.querySelectorAll('.process-card-right .step-content');
+         const dialDotsWrapper = document.getElementById('dial-dots-wrapper');
+         const dialDots = document.querySelectorAll('.dial-dot');
+         const stepContents = document.querySelectorAll('.dial-step-content');
          const processCta = document.getElementById('process-cta');
          
          const totalSteps = 5;
          let currentStep = 1;
          
-         function isMobile() {
-            return window.innerWidth <= 768;
-         }
+         // Angle for each step rotation (72 degrees for 5 steps)
+         const stepAngle = 360 / totalSteps;
          
-         function updateProcessFlow() {
+         function updateDialAnimation() {
             if (!processSection || !stickyWrapper) return;
             
             const rect = stickyWrapper.getBoundingClientRect();
@@ -1645,21 +1641,8 @@
             // Clamp progress between 0 and 1
             progress = Math.max(0, Math.min(1, progress));
             
-            // Update timeline progress (the solid line growing)
-            const progressPercent = progress * 100;
-            if (timelineProgress) {
-               // On mobile, use width; on desktop, use height
-               if (isMobile()) {
-                  timelineProgress.style.width = progressPercent + '%';
-                  timelineProgress.style.height = '100%';
-               } else {
-                  timelineProgress.style.height = progressPercent + '%';
-                  timelineProgress.style.width = '100%';
-               }
-            }
-            
             // Calculate which step we're on based on progress
-            const stepProgress = progress * 1.15;
+            const stepProgress = progress * 1.1; // Slightly extend so last step completes
             const stepIndex = Math.min(Math.floor(stepProgress * totalSteps), totalSteps - 1);
             const newStep = stepIndex + 1;
             
@@ -1668,24 +1651,28 @@
                updateActiveStep(currentStep);
             }
             
-            // Update dot states based on progress
-            timelineDots.forEach((dot, index) => {
-               const dotProgress = (index + 1) / totalSteps;
-               if (progress >= dotProgress - 0.02) {
-                  dot.classList.add('completed');
-                  dot.classList.remove('active');
-               } else if (index + 1 === currentStep) {
-                  dot.classList.add('active');
-                  dot.classList.remove('completed');
-               } else {
-                  dot.classList.remove('active', 'completed');
-               }
-            });
+            // Rotate the dial based on current step (anti-clockwise)
+            // Each step rotates the dial by stepAngle degrees anti-clockwise
+            if (dialDotsWrapper) {
+               const rotation = (currentStep - 1) * stepAngle;
+               dialDotsWrapper.style.transform = `rotate(${rotation}deg)`;
+               
+               // Counter-rotate the numbers inside dots so they stay upright
+               dialDots.forEach(dot => {
+                  dot.querySelector('.dial-dot-number').style.transform = `rotate(-${rotation}deg)`;
+               });
+            }
             
-            // Keep current step dot active
-            timelineDots.forEach((dot, index) => {
-               if (index + 1 === currentStep) {
+            // Update dot active states
+            dialDots.forEach((dot, index) => {
+               const dotStep = index + 1;
+               // The active position is always the first position (top)
+               // After rotation, which step is at the top?
+               // With anti-clockwise rotation, step N at top means we've rotated (N-1) * angle
+               if (dotStep === currentStep) {
                   dot.classList.add('active');
+               } else {
+                  dot.classList.remove('active');
                }
             });
             
@@ -1700,15 +1687,7 @@
          }
          
          function updateActiveStep(step) {
-            leftSteps.forEach(el => {
-               if (parseInt(el.dataset.step) === step) {
-                  el.classList.add('active');
-               } else {
-                  el.classList.remove('active');
-               }
-            });
-            
-            rightSteps.forEach(el => {
+            stepContents.forEach(el => {
                if (parseInt(el.dataset.step) === step) {
                   el.classList.add('active');
                } else {
@@ -1722,7 +1701,7 @@
          window.addEventListener('scroll', function() {
             if (!ticking) {
                window.requestAnimationFrame(function() {
-                  updateProcessFlow();
+                  updateDialAnimation();
                   ticking = false;
                });
                ticking = true;
@@ -1731,11 +1710,11 @@
          
          // Handle resize
          window.addEventListener('resize', function() {
-            updateProcessFlow();
+            updateDialAnimation();
          });
          
          // Initial call
-         updateProcessFlow();
+         updateDialAnimation();
       })();
    </script>
 
