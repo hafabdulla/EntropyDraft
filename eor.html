@@ -720,6 +720,292 @@
             transform: translateY(0);
          }
       }
+
+      /* Process Flow Section with Scroll Animation */
+      .process-section {
+         position: relative;
+         background: var(--dark-bg);
+         color: var(--light);
+      }
+
+      .process-sticky-wrapper {
+         height: 400vh; /* Height for scroll duration */
+         position: relative;
+      }
+
+      .process-sticky-container {
+         position: sticky;
+         top: 0;
+         height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         overflow: hidden;
+      }
+
+      .process-header {
+         text-align: center;
+         margin-bottom: 60px;
+      }
+
+      .process-header h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
+         color: var(--light);
+      }
+
+      .process-content {
+         display: flex;
+         align-items: stretch;
+         justify-content: center;
+         gap: 0;
+         max-width: 1100px;
+         width: 100%;
+         margin: 0 auto;
+         min-height: 350px;
+      }
+
+      .process-card {
+         flex: 1;
+         padding: 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+      }
+
+      .process-card-left {
+         text-align: right;
+         padding-right: 60px;
+      }
+
+      .process-card-right {
+         text-align: left;
+         padding-left: 60px;
+      }
+
+      .process-card-left h3 {
+         font-size: 1.8rem;
+         color: var(--light);
+         margin-bottom: 10px;
+         transition: all 0.5s ease;
+      }
+
+      .process-card-left .step-number {
+         font-size: 0.9rem;
+         color: var(--primary);
+         text-transform: uppercase;
+         letter-spacing: 2px;
+         margin-bottom: 10px;
+         font-weight: 500;
+      }
+
+      .process-card-right p {
+         font-size: 1.1rem;
+         line-height: 1.8;
+         color: rgba(255, 255, 255, 0.8);
+         margin-bottom: 10px;
+         transition: all 0.5s ease;
+      }
+
+      .process-card-right p:last-child {
+         margin-bottom: 0;
+      }
+
+      /* Timeline / Dotted Line */
+      .process-timeline {
+         width: 80px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         position: relative;
+         flex-shrink: 0;
+      }
+
+      .timeline-track {
+         position: relative;
+         width: 3px;
+         height: 280px;
+         background: transparent;
+      }
+
+      /* Dotted line background */
+      .timeline-dotted {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: repeating-linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.3) 0px,
+            rgba(255, 255, 255, 0.3) 8px,
+            transparent 8px,
+            transparent 16px
+         );
+         border-radius: 2px;
+      }
+
+      /* Solid line progress */
+      .timeline-progress {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 0%;
+         background: linear-gradient(180deg, var(--primary), var(--secondary));
+         border-radius: 2px;
+         transition: height 0.1s linear;
+      }
+
+      /* Step indicators on timeline */
+      .timeline-dots {
+         position: absolute;
+         top: 0;
+         left: 50%;
+         transform: translateX(-50%);
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         padding: 0;
+      }
+
+      .timeline-dot {
+         width: 14px;
+         height: 14px;
+         border-radius: 50%;
+         background: var(--dark-bg);
+         border: 2px solid rgba(255, 255, 255, 0.3);
+         transition: all 0.3s ease;
+         z-index: 2;
+      }
+
+      .timeline-dot.active {
+         background: var(--primary);
+         border-color: var(--primary);
+         box-shadow: 0 0 15px rgba(207, 45, 45, 0.5);
+         transform: scale(1.2);
+      }
+
+      .timeline-dot.completed {
+         background: var(--secondary);
+         border-color: var(--secondary);
+      }
+
+      /* Step content animation */
+      .step-content {
+         opacity: 0;
+         transform: translateY(20px);
+         transition: all 0.5s ease;
+         position: absolute;
+      }
+
+      .step-content.active {
+         opacity: 1;
+         transform: translateY(0);
+         position: relative;
+      }
+
+      /* Process CTA */
+      .process-cta-container {
+         opacity: 0;
+         transform: translateY(30px);
+         transition: all 0.6s ease;
+         text-align: center;
+         padding: 40px;
+      }
+
+      .process-cta-container.visible {
+         opacity: 1;
+         transform: translateY(0);
+      }
+
+      .process-cta-container h4 {
+         font-size: 1.5rem;
+         margin-bottom: 15px;
+         color: var(--light);
+      }
+
+      .process-cta-container p {
+         color: rgba(255, 255, 255, 0.7);
+         margin-bottom: 25px;
+      }
+
+      .process-cta-btn {
+         display: inline-block;
+         background: var(--primary);
+         color: var(--light);
+         padding: 15px 35px;
+         border-radius: var(--cta-radius);
+         text-decoration: none;
+         font-weight: 500;
+         transition: var(--transition);
+      }
+
+      .process-cta-btn:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 8px 25px rgba(207, 45, 45, 0.3);
+      }
+
+      /* Mobile responsive */
+      @media (max-width: 768px) {
+         .process-content {
+            flex-direction: column;
+            padding: 20px;
+         }
+
+         .process-card-left,
+         .process-card-right {
+            text-align: center;
+            padding: 20px;
+         }
+
+         .process-timeline {
+            order: -1;
+            width: 100%;
+            height: 60px;
+            flex-direction: row;
+         }
+
+         .timeline-track {
+            width: 200px;
+            height: 3px;
+         }
+
+         .timeline-dotted {
+            background: repeating-linear-gradient(
+               to right,
+               rgba(255, 255, 255, 0.3) 0px,
+               rgba(255, 255, 255, 0.3) 8px,
+               transparent 8px,
+               transparent 16px
+            );
+         }
+
+         .timeline-progress {
+            width: 0%;
+            height: 100%;
+            transition: width 0.1s linear;
+         }
+
+         .timeline-dots {
+            flex-direction: row;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: auto;
+         }
+
+         .process-header h2 {
+            font-size: 1.8rem;
+         }
+
+         .process-card-left h3 {
+            font-size: 1.4rem;
+         }
+      }
    </style>
 </head>
 
@@ -846,6 +1132,91 @@
                <p>Global players are hiring from your backyard and they're moving fast.</p>
                <p style="color: var(--secondary); font-weight: 500;">Entropy gives you a competitive edge to retain your
                   team with legitimacy and benefits.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Process Flow Section -->
+   <section class="process-section" id="process-section">
+      <div class="process-sticky-wrapper">
+         <div class="process-sticky-container">
+            <div class="container">
+               <div class="process-header">
+                  <h2>From Intro Call to Fully Hired — Without Chaos</h2>
+               </div>
+               
+               <div class="process-content">
+                  <!-- Left Card - Headings -->
+                  <div class="process-card process-card-left">
+                     <div class="step-content active" data-step="1">
+                        <span class="step-number">Step 01</span>
+                        <h3>Intro Call & Role Alignment</h3>
+                     </div>
+                     <div class="step-content" data-step="2">
+                        <span class="step-number">Step 02</span>
+                        <h3>Sourcing & Shortlist</h3>
+                     </div>
+                     <div class="step-content" data-step="3">
+                        <span class="step-number">Step 03</span>
+                        <h3>Interviews & Selection</h3>
+                     </div>
+                     <div class="step-content" data-step="4">
+                        <span class="step-number">Step 04</span>
+                        <h3>Offer, Employ & Onboard</h3>
+                     </div>
+                     <div class="step-content" data-step="5">
+                        <span class="step-number">Step 05</span>
+                        <h3>Operate & Support (Ongoing)</h3>
+                     </div>
+                  </div>
+
+                  <!-- Timeline -->
+                  <div class="process-timeline">
+                     <div class="timeline-track">
+                        <div class="timeline-dotted"></div>
+                        <div class="timeline-progress"></div>
+                        <div class="timeline-dots">
+                           <div class="timeline-dot active" data-step="1"></div>
+                           <div class="timeline-dot" data-step="2"></div>
+                           <div class="timeline-dot" data-step="3"></div>
+                           <div class="timeline-dot" data-step="4"></div>
+                           <div class="timeline-dot" data-step="5"></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Right Card - Content -->
+                  <div class="process-card process-card-right">
+                     <div class="step-content active" data-step="1">
+                        <p>Schedule a call with Entropy.</p>
+                        <p>We align on outcomes, must-haves, working style, and budget before sourcing begins.</p>
+                     </div>
+                     <div class="step-content" data-step="2">
+                        <p>Our global hiring team acts as your internal recruiter.</p>
+                        <p>We source and screen through trusted networks — delivering a tight shortlist, not job-board noise.</p>
+                     </div>
+                     <div class="step-content" data-step="3">
+                        <p>We screen first. You interview last.</p>
+                        <p>Only execution-ready candidates reach your calendar.</p>
+                     </div>
+                     <div class="step-content" data-step="4">
+                        <p>Once you approve a candidate, Entropy handles everything.</p>
+                        <p>Contracts, compliant employment, payroll setup, and onboarding — end-to-end.</p>
+                     </div>
+                     <div class="step-content" data-step="5">
+                        <p>We stay involved after the hire.</p>
+                        <p>Payroll, compliance, HR administration, and HRBP support — with one point of contact.</p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- CTA appears at the end -->
+               <div class="process-cta-container" id="process-cta">
+                  <h4>Book a 20-min Intro Call</h4>
+                  <p>Get clarity on cost, speed, and talent quality.</p>
+                  <a href="#contact" class="process-cta-btn">Book Now</a>
+               </div>
             </div>
          </div>
       </div>
@@ -1118,6 +1489,117 @@
             renderFeature(btn.dataset.feature);
          });
       });
+   </script>
+
+   <!-- Process Flow Scroll Animation -->
+   <script>
+      (function() {
+         const processSection = document.getElementById('process-section');
+         const stickyWrapper = document.querySelector('.process-sticky-wrapper');
+         const timelineProgress = document.querySelector('.timeline-progress');
+         const timelineDots = document.querySelectorAll('.timeline-dot');
+         const leftSteps = document.querySelectorAll('.process-card-left .step-content');
+         const rightSteps = document.querySelectorAll('.process-card-right .step-content');
+         const processCta = document.getElementById('process-cta');
+         
+         const totalSteps = 5;
+         let currentStep = 1;
+         
+         function updateProcessFlow() {
+            if (!processSection || !stickyWrapper) return;
+            
+            const rect = stickyWrapper.getBoundingClientRect();
+            const stickyHeight = stickyWrapper.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate scroll progress within the sticky section
+            const scrolled = -rect.top;
+            const scrollableDistance = stickyHeight - viewportHeight;
+            let progress = scrolled / scrollableDistance;
+            
+            // Clamp progress between 0 and 1
+            progress = Math.max(0, Math.min(1, progress));
+            
+            // Update timeline progress (the solid line growing)
+            const progressPercent = progress * 100;
+            if (timelineProgress) {
+               timelineProgress.style.height = progressPercent + '%';
+            }
+            
+            // Calculate which step we're on based on progress
+            const stepProgress = progress * 1.15;
+            const stepIndex = Math.min(Math.floor(stepProgress * totalSteps), totalSteps - 1);
+            const newStep = stepIndex + 1;
+            
+            if (newStep !== currentStep) {
+               currentStep = newStep;
+               updateActiveStep(currentStep);
+            }
+            
+            // Update dot states based on progress
+            timelineDots.forEach((dot, index) => {
+               const dotProgress = (index + 1) / totalSteps;
+               if (progress >= dotProgress - 0.02) {
+                  dot.classList.add('completed');
+                  dot.classList.remove('active');
+               } else if (index + 1 === currentStep) {
+                  dot.classList.add('active');
+                  dot.classList.remove('completed');
+               } else {
+                  dot.classList.remove('active', 'completed');
+               }
+            });
+            
+            // Keep current step dot active
+            timelineDots.forEach((dot, index) => {
+               if (index + 1 === currentStep) {
+                  dot.classList.add('active');
+               }
+            });
+            
+            // Show CTA when reaching the end
+            if (processCta) {
+               if (progress > 0.85) {
+                  processCta.classList.add('visible');
+               } else {
+                  processCta.classList.remove('visible');
+               }
+            }
+         }
+         
+         function updateActiveStep(step) {
+            leftSteps.forEach(el => {
+               if (parseInt(el.dataset.step) === step) {
+                  el.classList.add('active');
+               } else {
+                  el.classList.remove('active');
+               }
+            });
+            
+            rightSteps.forEach(el => {
+               if (parseInt(el.dataset.step) === step) {
+                  el.classList.add('active');
+               } else {
+                  el.classList.remove('active');
+               }
+            });
+         }
+         
+         // Throttle scroll events for performance
+         let ticking = false;
+         window.addEventListener('scroll', function() {
+            if (!ticking) {
+               window.requestAnimationFrame(function() {
+                  updateProcessFlow();
+                  ticking = false;
+               });
+               ticking = true;
+            }
+         });
+         
+         // Initial call
+         updateProcessFlow();
+      })();
    </script>
 
 </body>
