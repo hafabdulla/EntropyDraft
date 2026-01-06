@@ -724,8 +724,8 @@
       /* Process Flow Section with Scroll Animation */
       .process-section {
          position: relative;
-         background: var(--dark-bg);
-         color: var(--light);
+         background: #eef3f8;
+         color: var(--text);
       }
 
       .process-sticky-wrapper {
@@ -753,7 +753,7 @@
       .process-header h2 {
          font-size: 2.5rem;
          margin-bottom: 15px;
-         color: var(--light);
+         color: var(--text);
       }
 
       .process-content {
@@ -780,23 +780,29 @@
       .process-card-left {
          text-align: right;
          padding-right: 60px;
+         background: var(--primary);
+         border-radius: var(--radius);
+         box-shadow: 0 4px 20px rgba(207, 45, 45, 0.15);
       }
 
       .process-card-right {
          text-align: left;
          padding-left: 60px;
+         background: white;
+         border-radius: var(--radius);
+         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       }
 
       .process-card-left h3 {
          font-size: 1.8rem;
-         color: var(--light);
+         color: white;
          margin-bottom: 10px;
          transition: all 0.5s ease;
       }
 
       .process-card-left .step-number {
          font-size: 0.9rem;
-         color: var(--primary);
+         color: rgba(255, 255, 255, 0.8);
          text-transform: uppercase;
          letter-spacing: 2px;
          margin-bottom: 10px;
@@ -806,7 +812,7 @@
       .process-card-right p {
          font-size: 1.1rem;
          line-height: 1.8;
-         color: rgba(255, 255, 255, 0.8);
+         color: var(--muted);
          margin-bottom: 10px;
          transition: all 0.5s ease;
       }
@@ -842,8 +848,8 @@
          height: 100%;
          background: repeating-linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 0.3) 0px,
-            rgba(255, 255, 255, 0.3) 8px,
+            #000000 0px,
+            #000000 8px,
             transparent 8px,
             transparent 16px
          );
@@ -857,7 +863,7 @@
          left: 0;
          width: 100%;
          height: 0%;
-         background: linear-gradient(180deg, var(--primary), var(--secondary));
+         background: #CF2D2D;
          border-radius: 2px;
          transition: height 0.1s linear;
       }
@@ -879,22 +885,22 @@
          width: 14px;
          height: 14px;
          border-radius: 50%;
-         background: var(--dark-bg);
-         border: 2px solid rgba(255, 255, 255, 0.3);
+         background: #eef3f8;
+         border: 2px solid #000000;
          transition: all 0.3s ease;
          z-index: 2;
       }
 
       .timeline-dot.active {
-         background: var(--primary);
-         border-color: var(--primary);
+         background: #CF2D2D;
+         border-color: #CF2D2D;
          box-shadow: 0 0 15px rgba(207, 45, 45, 0.5);
          transform: scale(1.2);
       }
 
       .timeline-dot.completed {
-         background: var(--secondary);
-         border-color: var(--secondary);
+         background: #CF2D2D;
+         border-color: #CF2D2D;
       }
 
       /* Step content animation */
@@ -928,11 +934,11 @@
       .process-cta-container h4 {
          font-size: 1.5rem;
          margin-bottom: 15px;
-         color: var(--light);
+         color: var(--text);
       }
 
       .process-cta-container p {
-         color: rgba(255, 255, 255, 0.7);
+         color: var(--muted);
          margin-bottom: 25px;
       }
 
@@ -1003,8 +1009,8 @@
          .timeline-dotted {
             background: repeating-linear-gradient(
                to right,
-               rgba(255, 255, 255, 0.3) 0px,
-               rgba(255, 255, 255, 0.3) 6px,
+               #000000 0px,
+               #000000 6px,
                transparent 6px,
                transparent 12px
             );
