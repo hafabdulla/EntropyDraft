@@ -712,7 +712,7 @@
       @keyframes fadeIn {
          from {
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(10px);  
          }
 
          to {
@@ -721,7 +721,438 @@
          }
       }
 
-      /* Process Flow Section with Circular Dial Animation */
+      /* ========================================
+         VERSION 1: Original Left & Right Cards (Step Switching)
+         ======================================== */
+      .process-section-v1 {
+         position: relative;
+         background: #eef3f8;
+         color: var(--text);
+      }
+
+      .process-sticky-wrapper-v1 {
+         height: 400vh;
+         position: relative;
+      }
+
+      .process-sticky-container-v1 {
+         position: sticky;
+         top: 0;
+         height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         overflow: hidden;
+         padding-top: 80px;
+         box-sizing: border-box;
+      }
+
+      .process-inner-container-v1 {
+         width: 90%;
+         max-width: var(--container-width);
+         margin: 0 auto;
+         padding: 0 20px;
+      }
+
+      .process-header-v1 {
+         text-align: center;
+         margin-bottom: 60px;
+      }
+
+      .process-header-v1 h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
+         color: var(--text);
+         font-weight: 700;
+      }
+
+      .process-content-v1 {
+         display: flex;
+         align-items: stretch;
+         justify-content: center;
+         gap: 0;
+         max-width: 1100px;
+         width: 100%;
+         margin: 0 auto;
+         min-height: 350px;
+      }
+
+      .process-card-v1 {
+         flex: 1;
+         padding: 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         position: relative;
+         min-height: 180px;
+      }
+
+      .process-card-left-v1 {
+         text-align: left;
+         padding: 40px 60px 40px 40px;
+         background: white;
+         border-radius: var(--radius);
+         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+         justify-content: center;
+         align-items: flex-start;
+      }
+
+      .process-card-right-v1 {
+         text-align: left;
+         padding-left: 60px;
+         padding-right: 40px;
+         background: var(--primary);
+         border-radius: var(--radius);
+         box-shadow: 0 4px 20px rgba(207, 45, 45, 0.15);
+      }
+
+      .process-card-left-v1 h3 {
+         font-size: 1.8rem;
+         color: var(--text);
+         margin-bottom: 10px;
+         transition: all 0.5s ease;
+         font-weight: 700;
+      }
+
+      .process-step-number-v1 {
+         font-size: 20px;
+         color: var(--primary);
+         text-transform: uppercase;
+         letter-spacing: 2px;
+         margin-bottom: 10px;
+         font-weight: 700;
+         display: block;
+      }
+
+      .process-card-right-v1 p {
+         font-size: 1.1rem;
+         line-height: 1.8;
+         color: rgba(255, 255, 255, 0.9);
+         margin-bottom: 10px;
+         transition: all 0.5s ease;
+      }
+
+      .process-card-right-v1 p:last-child {
+         margin-bottom: 0;
+      }
+
+      /* Timeline / Dotted Line V1 */
+      .process-timeline-v1 {
+         width: 80px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         position: relative;
+         flex-shrink: 0;
+      }
+
+      .process-timeline-track-v1 {
+         position: relative;
+         width: 3px;
+         height: 280px;
+         background: transparent;
+      }
+
+      .process-timeline-dotted-v1 {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: repeating-linear-gradient(
+            to bottom,
+            #000000 0px,
+            #000000 8px,
+            transparent 8px,
+            transparent 16px
+         );
+         border-radius: 2px;
+      }
+
+      .process-timeline-progress-v1 {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 0%;
+         background: var(--primary);
+         border-radius: 2px;
+         transition: height 0.1s linear;
+      }
+
+      .process-timeline-dots-v1 {
+         position: absolute;
+         top: 0;
+         left: 50%;
+         transform: translateX(-50%);
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         padding: 0;
+      }
+
+      .process-timeline-dot-v1 {
+         width: 14px;
+         height: 14px;
+         border-radius: 50%;
+         background: #eef3f8;
+         border: 2px solid #000000;
+         transition: all 0.3s ease;
+         z-index: 2;
+      }
+
+      .process-dot-active-v1 {
+         background: var(--primary);
+         border-color: var(--primary);
+         box-shadow: 0 0 15px rgba(207, 45, 45, 0.5);
+         transform: scale(1.2);
+      }
+
+      .process-dot-completed-v1 {
+         background: var(--primary);
+         border-color: var(--primary);
+      }
+
+      /* Step content animation V1 */
+      .process-step-content-v1 {
+         opacity: 0;
+         transition: opacity 0.4s ease;
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         left: 0;
+         right: 0;
+         padding: inherit;
+         pointer-events: none;
+      }
+
+      .process-step-active-v1 {
+         opacity: 1;
+         pointer-events: auto;
+      }
+
+      .process-card-right-v1 .process-step-content-v1 {
+         text-align: left;
+         padding-left: 60px;
+         padding-right: 40px;
+      }
+
+      /* Process CTA V1 */
+      .process-cta-container-v1 {
+         opacity: 0;
+         transform: translateY(30px);
+         transition: all 0.6s ease;
+         text-align: center;
+         padding: 40px;
+      }
+
+      .process-cta-visible-v1 {
+         opacity: 1;
+         transform: translateY(0);
+      }
+
+      .process-cta-container-v1 h4 {
+         font-size: 1.5rem;
+         margin-bottom: 15px;
+         color: var(--text);
+         font-weight: 700;
+      }
+
+      .process-cta-container-v1 p {
+         color: var(--muted);
+         margin-bottom: 25px;
+      }
+
+      .process-cta-btn-v1 {
+         display: inline-block;
+         background: var(--primary);
+         color: var(--light);
+         padding: 15px 35px;
+         border-radius: var(--cta-radius);
+         text-decoration: none;
+         font-weight: 500;
+         transition: var(--transition);
+      }
+
+      .process-cta-btn-v1:hover {
+         transform: translateY(-3px);
+         box-shadow: 0 8px 25px rgba(207, 45, 45, 0.3);
+      }
+
+      /* V1 Tablet responsive */
+      @media (max-width: 768px) {
+         .process-sticky-container-v1 {
+            padding-top: 70px;
+            align-items: flex-start;
+         }
+
+         .process-sticky-container-v1 > .process-inner-container-v1 {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding-top: 20px;
+         }
+
+         .process-header-v1 {
+            margin-bottom: 30px;
+            flex-shrink: 0;
+         }
+
+         .process-header-v1 h2 {
+            font-size: 1.5rem;
+            padding: 0 15px;
+         }
+
+         .process-content-v1 {
+            flex-direction: column;
+            padding: 0 15px;
+            min-height: auto;
+            flex: 1;
+            align-items: center;
+         }
+
+         .process-timeline-v1 {
+            order: 0;
+            width: 100%;
+            height: 50px;
+            flex-direction: row;
+            margin-bottom: 25px;
+            flex-shrink: 0;
+         }
+
+         .process-timeline-track-v1 {
+            width: 80%;
+            max-width: 280px;
+            height: 3px;
+         }
+
+         .process-timeline-dotted-v1 {
+            background: repeating-linear-gradient(
+               to right,
+               #000000 0px,
+               #000000 6px,
+               transparent 6px,
+               transparent 12px
+            );
+         }
+
+         .process-timeline-progress-v1 {
+            width: 0%;
+            height: 100%;
+            transition: width 0.1s linear;
+         }
+
+         .process-timeline-dots-v1 {
+            flex-direction: row;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: auto;
+         }
+
+         .process-timeline-dot-v1 {
+            width: 12px;
+            height: 12px;
+         }
+
+         .process-card-left-v1,
+         .process-card-right-v1 {
+            text-align: center;
+            padding: 15px 10px;
+            min-height: auto;
+            width: 100%;
+         }
+
+         .process-card-left-v1 {
+            padding-right: 10px;
+            order: 1;
+            margin-bottom: 15px;
+         }
+
+         .process-card-right-v1 {
+            padding: 20px 15px;
+            order: 2;
+            min-height: auto;
+         }
+
+         .process-card-left-v1 h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+         }
+
+         .process-step-number-v1 {
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+         }
+
+         .process-card-right-v1 p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 6px;
+         }
+
+         .process-cta-container-v1 {
+            padding: 20px 15px;
+         }
+
+         .process-cta-container-v1 h4 {
+            font-size: 1.2rem;
+         }
+
+         .process-cta-container-v1 p {
+            font-size: 0.9rem;
+         }
+      }
+
+      /* V1 Mobile responsive */
+      @media (max-width: 480px) {
+         .process-sticky-container-v1 {
+            padding-top: 60px;
+         }
+
+         .process-header-v1 h2 {
+            font-size: 1.2rem;
+         }
+
+         .process-timeline-track-v1 {
+            width: 70%;
+            max-width: 240px;
+         }
+
+         .process-timeline-dot-v1 {
+            width: 10px;
+            height: 10px;
+         }
+
+         .process-card-left-v1 {
+            padding: 12px 10px;
+         }
+
+         .process-card-left-v1 h3 {
+            font-size: 1rem;
+         }
+
+         .process-step-number-v1 {
+            font-size: 0.7rem;
+         }
+
+         .process-card-right-v1 {
+            padding: 15px 12px;
+         }
+
+         .process-card-right-v1 p {
+            font-size: 0.8rem;
+            line-height: 1.45;
+         }
+      }
+
+      /* ========================================
+         VERSION 2: Table of Contents Style
+         ======================================== */
+      /* Process Flow Section with Left & Right Cards Animation */
       .process-section {
          position: relative;
          background: #eef3f8;
@@ -747,201 +1178,212 @@
 
       .process-inner-container {
          width: 90%;
-         max-width: 1200px;
+         max-width: var(--container-width);
          margin: 0 auto;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         gap: 60px;
+         padding: 0 20px;
       }
 
-      /* Left Side - Text Content */
-      .process-text-side {
-         flex: 1;
-         max-width: 500px;
+      .process-header {
+         text-align: center;
+         margin-bottom: 60px;
       }
 
-      .process-text-side h2 {
-         font-size: 2.8rem;
-         font-weight: 700;
+      .process-header h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
          color: var(--text);
-         margin-bottom: 20px;
-         line-height: 1.2;
+         font-weight: 700;
       }
 
-      .process-text-side .process-subtitle {
-         font-size: 1.1rem;
-         color: var(--muted);
-         margin-bottom: 30px;
-         line-height: 1.7;
+      .process-content {
+         display: flex;
+         align-items: stretch;
+         justify-content: center;
+         gap: 0;
+         max-width: 1100px;
+         width: 100%;
+         margin: 0 auto;
+         min-height: 350px;
       }
 
-      /* Step Info Display */
-      .process-step-info {
+      .process-card {
+         flex: 1;
+         padding: 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         position: relative;
+         min-height: 200px;
+      }
+
+      .process-card-left {
+         text-align: right;
+         padding: 40px 60px 40px 40px;
          background: white;
-         padding: 30px;
          border-radius: var(--radius);
          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-         min-height: 180px;
+         justify-content: center;
+         align-items: flex-end;
       }
 
-      .process-step-info .step-label {
-         font-size: 0.85rem;
-         color: var(--primary);
-         text-transform: uppercase;
-         letter-spacing: 2px;
+      .process-card-right {
+         text-align: left;
+         padding-left: 60px;
+         padding-right: 40px;
+         background: var(--primary);
+         border-radius: var(--radius);
+         box-shadow: 0 4px 20px rgba(207, 45, 45, 0.15);
+      }
+
+      /* Table of Contents Styles */
+      .process-toc {
+         display: flex;
+         flex-direction: column;
+         gap: 18px;
+         width: 100%;
+      }
+
+      .process-toc-item {
+         cursor: pointer;
+         transition: all 0.3s ease;
+      }
+
+      .process-toc-item h3 {
+         font-size: 1.4rem;
+         color: rgba(26, 26, 26, 0.35);
+         margin: 0;
+         transition: all 0.3s ease;
          font-weight: 600;
-         margin-bottom: 10px;
+         line-height: 1.4;
       }
 
-      .process-step-info h3 {
-         font-size: 1.5rem;
+      .process-toc-item.process-toc-active h3 {
          color: var(--text);
-         margin-bottom: 15px;
          font-weight: 700;
+         font-size: 1.5rem;
       }
 
-      .process-step-info p {
-         font-size: 1rem;
-         color: var(--muted);
-         line-height: 1.7;
-         margin-bottom: 8px;
+      .process-toc-item:hover h3 {
+         color: rgba(26, 26, 26, 0.6);
       }
 
-      .process-step-info p:last-child {
+      .process-toc-item.process-toc-active:hover h3 {
+         color: var(--text);
+      }
+
+      .process-card-right p {
+         font-size: 1.1rem;
+         line-height: 1.8;
+         color: rgba(255, 255, 255, 0.9);
+         margin-bottom: 10px;
+         transition: all 0.5s ease;
+      }
+
+      .process-card-right p:last-child {
          margin-bottom: 0;
       }
 
-      /* Step content visibility */
-      .dial-step-content {
-         display: none;
-      }
-
-      .dial-step-content.active {
-         display: block;
-         animation: fadeInStep 0.5s ease;
-      }
-
-      @keyframes fadeInStep {
-         from {
-            opacity: 0;
-            transform: translateY(10px);
-         }
-         to {
-            opacity: 1;
-            transform: translateY(0);
-         }
-      }
-
-      /* Right Side - Circular Dial */
-      .process-dial-side {
-         flex: 1;
+      /* Timeline / Dotted Line */
+      .process-timeline {
+         width: 80px;
          display: flex;
+         flex-direction: column;
          align-items: center;
          justify-content: center;
-      }
-
-      .dial-container {
          position: relative;
-         width: 380px;
-         height: 380px;
+         flex-shrink: 0;
       }
 
-      /* Center dot */
-      .dial-center {
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -50%);
-         width: 100px;
-         height: 100px;
-         background: var(--primary);
-         border-radius: 50%;
-         z-index: 10;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         box-shadow: 0 8px 30px rgba(207, 45, 45, 0.3);
+      .process-timeline-track {
+         position: relative;
+         width: 3px;
+         height: 280px;
+         background: transparent;
       }
 
-      .dial-center-inner {
-         color: white;
-         font-size: 1.2rem;
-         font-weight: 700;
-         text-align: center;
-      }
-
-      /* Surrounding dots container */
-      .dial-dots-wrapper {
+      .process-timeline-dotted {
          position: absolute;
          top: 0;
          left: 0;
          width: 100%;
          height: 100%;
-         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+         background: repeating-linear-gradient(
+            to bottom,
+            #000000 0px,
+            #000000 8px,
+            transparent 8px,
+            transparent 16px
+         );
+         border-radius: 2px;
       }
 
-      /* Individual surrounding dots */
-      .dial-dot {
+      .process-timeline-progress {
          position: absolute;
-         width: 60px;
-         height: 60px;
-         background: #2A3439;
-         border-radius: 50%;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-         cursor: pointer;
-         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-      }
-
-      .dial-dot-number {
-         color: white;
-         font-size: 1.1rem;
-         font-weight: 600;
-      }
-
-      .dial-dot.active {
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 0%;
          background: var(--primary);
-         transform: scale(1.15);
-         box-shadow: 0 6px 25px rgba(207, 45, 45, 0.4);
+         border-radius: 2px;
+         transition: height 0.1s linear;
       }
 
-      /* Position dots in a circle - 5 dots at 72 degree intervals */
-      /* Starting from top position, going clockwise */
-      .dial-dot[data-step="1"] {
+      .process-timeline-dots {
+         position: absolute;
          top: 0;
          left: 50%;
          transform: translateX(-50%);
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         padding: 0;
       }
 
-      .dial-dot[data-step="2"] {
-         top: 29%;
-         right: 5%;
-         transform: translate(0, 0);
+      .process-timeline-dot {
+         width: 14px;
+         height: 14px;
+         border-radius: 50%;
+         background: #eef3f8;
+         border: 2px solid #000000;
+         transition: all 0.3s ease;
+         z-index: 2;
       }
 
-      .dial-dot[data-step="3"] {
-         bottom: 10%;
-         right: 15%;
-         transform: translate(0, 0);
+      .process-dot-active {
+         background: var(--primary);
+         border-color: var(--primary);
+         box-shadow: 0 0 15px rgba(207, 45, 45, 0.5);
+         transform: scale(1.2);
       }
 
-      .dial-dot[data-step="4"] {
-         bottom: 10%;
-         left: 15%;
-         transform: translate(0, 0);
+      .process-dot-completed {
+         background: var(--primary);
+         border-color: var(--primary);
       }
 
-      .dial-dot[data-step="5"] {
-         top: 29%;
-         left: 5%;
-         transform: translate(0, 0);
+      /* Step content animation */
+      .process-step-content {
+         opacity: 0;
+         transition: opacity 0.4s ease;
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         left: 0;
+         right: 0;
+         padding: inherit;
+         pointer-events: none;
       }
 
-      .dial-dot.active[data-step="1"] {
-         transform: translateX(-50%) scale(1.15);
+      .process-step-active {
+         opacity: 1;
+         pointer-events: auto;
+      }
+
+      .process-card-right .process-step-content {
+         text-align: left;
+         padding-left: 60px;
+         padding-right: 40px;
       }
 
       /* Process CTA */
@@ -951,21 +1393,18 @@
          transition: all 0.6s ease;
          text-align: center;
          padding: 40px;
-         position: absolute;
-         bottom: 20px;
-         left: 50%;
-         transform: translateX(-50%) translateY(30px);
       }
 
-      .process-cta-container.visible {
+      .process-cta-visible {
          opacity: 1;
-         transform: translateX(-50%) translateY(0);
+         transform: translateY(0);
       }
 
       .process-cta-container h4 {
          font-size: 1.5rem;
          margin-bottom: 15px;
          color: var(--text);
+         font-weight: 700;
       }
 
       .process-cta-container p {
@@ -989,138 +1428,176 @@
          box-shadow: 0 8px 25px rgba(207, 45, 45, 0.3);
       }
 
-      /* Mobile responsive */
-      @media (max-width: 992px) {
-         .process-inner-container {
-            flex-direction: column;
-            gap: 40px;
-            padding: 20px;
-         }
-
-         .process-text-side {
-            max-width: 100%;
-            text-align: center;
-         }
-
-         .process-text-side h2 {
-            font-size: 2rem;
-         }
-
-         .dial-container {
-            width: 300px;
-            height: 300px;
-         }
-
-         .dial-center {
-            width: 80px;
-            height: 80px;
-         }
-
-         .dial-dot {
-            width: 50px;
-            height: 50px;
-         }
-
-         .dial-dot-number {
-            font-size: 0.95rem;
-         }
-      }
-
+      /* Tablet responsive */
       @media (max-width: 768px) {
          .process-sticky-container {
             padding-top: 70px;
+            align-items: flex-start;
          }
 
-         .process-text-side h2 {
-            font-size: 1.6rem;
+         .process-sticky-container > .process-inner-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding-top: 20px;
          }
 
-         .process-text-side .process-subtitle {
-            font-size: 0.95rem;
+         .process-header {
+            margin-bottom: 30px;
+            flex-shrink: 0;
          }
 
-         .process-step-info {
-            padding: 20px;
-            min-height: 150px;
+         .process-header h2 {
+            font-size: 1.5rem;
+            padding: 0 15px;
          }
 
-         .process-step-info h3 {
+         .process-content {
+            flex-direction: column;
+            padding: 0 15px;
+            min-height: auto;
+            flex: 1;
+            align-items: center;
+         }
+
+         /* Timeline stays at fixed position */
+         .process-timeline {
+            order: 0;
+            width: 100%;
+            height: 50px;
+            flex-direction: row;
+            margin-bottom: 25px;
+            flex-shrink: 0;
+         }
+
+         .process-timeline-track {
+            width: 80%;
+            max-width: 280px;
+            height: 3px;
+         }
+
+         .process-timeline-dotted {
+            background: repeating-linear-gradient(
+               to right,
+               #000000 0px,
+               #000000 6px,
+               transparent 6px,
+               transparent 12px
+            );
+         }
+
+         .process-timeline-progress {
+            width: 0%;
+            height: 100%;
+            transition: width 0.1s linear;
+         }
+
+         .process-timeline-dots {
+            flex-direction: row;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: auto;
+         }
+
+         .process-timeline-dot {
+            width: 12px;
+            height: 12px;
+         }
+
+         /* Cards with fixed height container */
+         .process-card-left,
+         .process-card-right {
+            text-align: center;
+            padding: 15px 10px;
+            min-height: auto;
+            width: 100%;
+         }
+
+         .process-card-left {
+            padding-right: 10px;
+            order: 1;
+            margin-bottom: 15px;
+         }
+
+         .process-card-right {
+            padding: 20px 15px;
+            order: 2;
+            min-height: auto;
+         }
+
+         .process-card-left h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+         }
+
+         .process-step-number {
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+         }
+
+         .process-card-right p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 6px;
+         }
+
+         .process-cta-container {
+            padding: 20px 15px;
+         }
+
+         .process-cta-container h4 {
             font-size: 1.2rem;
          }
 
-         .process-step-info p {
+         .process-cta-container p {
             font-size: 0.9rem;
-         }
-
-         .dial-container {
-            width: 260px;
-            height: 260px;
-         }
-
-         .dial-center {
-            width: 70px;
-            height: 70px;
-         }
-
-         .dial-center-inner {
-            font-size: 1rem;
-         }
-
-         .dial-dot {
-            width: 42px;
-            height: 42px;
-         }
-
-         .dial-dot-number {
-            font-size: 0.85rem;
          }
       }
 
+      /* Mobile responsive */
       @media (max-width: 480px) {
          .process-sticky-container {
             padding-top: 60px;
          }
 
-         .process-text-side h2 {
-            font-size: 1.4rem;
+         .process-header h2 {
+            font-size: 1.2rem;
          }
 
-         .dial-container {
-            width: 220px;
-            height: 220px;
+         .process-timeline-track {
+            width: 70%;
+            max-width: 240px;
          }
 
-         .dial-center {
-            width: 60px;
-            height: 60px;
+         .process-timeline-dot {
+            width: 10px;
+            height: 10px;
          }
 
-         .dial-dot {
-            width: 36px;
-            height: 36px;
+         .process-card-left {
+            padding: 12px 10px;
          }
 
-         .dial-dot-number {
-            font-size: 0.75rem;
+         .process-card-left h3 {
+            font-size: 1rem;
          }
 
-         .process-step-info {
-            padding: 15px;
-            min-height: 130px;
+         .process-step-number {
+            font-size: 0.7rem;
          }
 
-         .process-step-info .step-label {
-            font-size: 0.75rem;
+         .process-card-right {
+            padding: 15px 12px;
          }
 
-         .process-step-info h3 {
-            font-size: 1.1rem;
-         }
-
-         .process-step-info p {
-            font-size: 0.85rem;
+         .process-card-right p {
+            font-size: 0.8rem;
+            line-height: 1.45;
          }
       }
+
    </style>
 </head>
 
@@ -1252,90 +1729,173 @@
       </div>
    </section>
 
-   <!-- Process Flow Section with Circular Dial -->
-   <section class="process-section" id="process-section">
-      <div class="process-sticky-wrapper">
-         <div class="process-sticky-container">
-            <div class="process-inner-container">
-               <!-- Left Side - Text Content -->
-               <div class="process-text-side">
-                  <h2>From Intro Call to Fully Hired — Without Chaos</h2>
-                  <p class="process-subtitle">A streamlined 5-step process that takes the complexity out of global hiring.</p>
-                  
-                  <div class="process-step-info">
-                     <!-- Step 1 -->
-                     <div class="dial-step-content active" data-step="1">
-                        <span class="step-label">Step 01</span>
+   <!-- ========================================
+        VERSION 1: Original Left & Right Cards (Step Switching)
+        ======================================== -->
+   <section class="process-section-v1" id="process-section-v1">
+      <div class="process-sticky-wrapper-v1">
+         <div class="process-sticky-container-v1">
+            <div class="process-inner-container-v1">
+               <div class="process-header-v1">
+                  <h2>Version 1: Step Switching Cards</h2>
+               </div>
+               
+               <div class="process-content-v1">
+                  <!-- Left Card - Headings (switches on scroll) -->
+                  <div class="process-card-v1 process-card-left-v1">
+                     <div class="process-step-content-v1 process-step-active-v1" data-step="1">
+                        <span class="process-step-number-v1">Step 01</span>
                         <h3>Intro Call & Role Alignment</h3>
+                     </div>
+                     <div class="process-step-content-v1" data-step="2">
+                        <span class="process-step-number-v1">Step 02</span>
+                        <h3>Sourcing & Shortlist</h3>
+                     </div>
+                     <div class="process-step-content-v1" data-step="3">
+                        <span class="process-step-number-v1">Step 03</span>
+                        <h3>Interviews & Selection</h3>
+                     </div>
+                     <div class="process-step-content-v1" data-step="4">
+                        <span class="process-step-number-v1">Step 04</span>
+                        <h3>Offer, Employ & Onboard</h3>
+                     </div>
+                     <div class="process-step-content-v1" data-step="5">
+                        <span class="process-step-number-v1">Step 05</span>
+                        <h3>Operate & Support (Ongoing)</h3>
+                     </div>
+                  </div>
+
+                  <!-- Timeline -->
+                  <div class="process-timeline-v1">
+                     <div class="process-timeline-track-v1">
+                        <div class="process-timeline-dotted-v1"></div>
+                        <div class="process-timeline-progress-v1" id="timeline-progress-v1"></div>
+                        <div class="process-timeline-dots-v1">
+                           <div class="process-timeline-dot-v1 process-dot-active-v1" data-step="1"></div>
+                           <div class="process-timeline-dot-v1" data-step="2"></div>
+                           <div class="process-timeline-dot-v1" data-step="3"></div>
+                           <div class="process-timeline-dot-v1" data-step="4"></div>
+                           <div class="process-timeline-dot-v1" data-step="5"></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Right Card - Content (switches on scroll) -->
+                  <div class="process-card-v1 process-card-right-v1">
+                     <div class="process-step-content-v1 process-step-active-v1" data-step="1">
                         <p>Schedule a call with Entropy.</p>
                         <p>We align on outcomes, must-haves, working style, and budget before sourcing begins.</p>
                      </div>
-                     <!-- Step 2 -->
-                     <div class="dial-step-content" data-step="2">
-                        <span class="step-label">Step 02</span>
-                        <h3>Sourcing & Shortlist</h3>
+                     <div class="process-step-content-v1" data-step="2">
                         <p>Our global hiring team acts as your internal recruiter.</p>
                         <p>We source and screen through trusted networks — delivering a tight shortlist, not job-board noise.</p>
                      </div>
-                     <!-- Step 3 -->
-                     <div class="dial-step-content" data-step="3">
-                        <span class="step-label">Step 03</span>
-                        <h3>Interviews & Selection</h3>
+                     <div class="process-step-content-v1" data-step="3">
                         <p>We screen first. You interview last.</p>
                         <p>Only execution-ready candidates reach your calendar.</p>
                      </div>
-                     <!-- Step 4 -->
-                     <div class="dial-step-content" data-step="4">
-                        <span class="step-label">Step 04</span>
-                        <h3>Offer, Employ & Onboard</h3>
+                     <div class="process-step-content-v1" data-step="4">
                         <p>Once you approve a candidate, Entropy handles everything.</p>
                         <p>Contracts, compliant employment, payroll setup, and onboarding — end-to-end.</p>
                      </div>
-                     <!-- Step 5 -->
-                     <div class="dial-step-content" data-step="5">
-                        <span class="step-label">Step 05</span>
-                        <h3>Operate & Support (Ongoing)</h3>
+                     <div class="process-step-content-v1" data-step="5">
                         <p>We stay involved after the hire.</p>
                         <p>Payroll, compliance, HR administration, and HRBP support — with one point of contact.</p>
                      </div>
                   </div>
                </div>
 
-               <!-- Right Side - Circular Dial -->
-               <div class="process-dial-side">
-                  <div class="dial-container">
-                     <!-- Center dot -->
-                     <div class="dial-center">
-                        <span class="dial-center-inner">HOW IT<br>WORKS</span>
-                     </div>
-                     
-                     <!-- Surrounding dots wrapper for rotation -->
-                     <div class="dial-dots-wrapper" id="dial-dots-wrapper">
-                        <div class="dial-dot" data-step="1">
-                           <span class="dial-dot-number">01</span>
+               <!-- CTA appears at the end -->
+               <div class="process-cta-container-v1" id="process-cta-v1">
+                  <h4>Book a 20-min Intro Call</h4>
+                  <p>Get clarity on cost, speed, and talent quality.</p>
+                  <a href="#contact" class="process-cta-btn-v1">Book Now</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- ========================================
+        VERSION 2: Table of Contents Style
+        ======================================== -->
+   <!-- Process Flow Section with Left & Right Cards -->
+   <section class="process-section" id="process-section">
+      <div class="process-sticky-wrapper">
+         <div class="process-sticky-container">
+            <div class="process-inner-container">
+               <div class="process-header">
+                  <h2>From Intro Call to Fully Hired — Without Chaos</h2>
+               </div>
+               
+               <div class="process-content">
+                  <!-- Left Card - Table of Contents -->
+                  <div class="process-card process-card-left">
+                     <div class="process-toc">
+                        <div class="process-toc-item process-toc-active" data-step="1">
+                           <h3>Intro Call & Role Alignment</h3>
                         </div>
-                        <div class="dial-dot" data-step="2">
-                           <span class="dial-dot-number">02</span>
+                        <div class="process-toc-item" data-step="2">
+                           <h3>Sourcing & Shortlist</h3>
                         </div>
-                        <div class="dial-dot" data-step="3">
-                           <span class="dial-dot-number">03</span>
+                        <div class="process-toc-item" data-step="3">
+                           <h3>Interviews & Selection</h3>
                         </div>
-                        <div class="dial-dot" data-step="4">
-                           <span class="dial-dot-number">04</span>
+                        <div class="process-toc-item" data-step="4">
+                           <h3>Offer, Employ & Onboard</h3>
                         </div>
-                        <div class="dial-dot" data-step="5">
-                           <span class="dial-dot-number">05</span>
+                        <div class="process-toc-item" data-step="5">
+                           <h3>Operate & Support (Ongoing)</h3>
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
 
-            <!-- CTA appears at the end -->
-            <div class="process-cta-container" id="process-cta">
-               <h4>Book a 20-min Intro Call</h4>
-               <p>Get clarity on cost, speed, and talent quality.</p>
-               <a href="#contact" class="process-cta-btn">Book Now</a>
+                  <!-- Timeline -->
+                  <div class="process-timeline">
+                     <div class="process-timeline-track">
+                        <div class="process-timeline-dotted"></div>
+                        <div class="process-timeline-progress" id="timeline-progress"></div>
+                        <div class="process-timeline-dots">
+                           <div class="process-timeline-dot process-dot-active" data-step="1"></div>
+                           <div class="process-timeline-dot" data-step="2"></div>
+                           <div class="process-timeline-dot" data-step="3"></div>
+                           <div class="process-timeline-dot" data-step="4"></div>
+                           <div class="process-timeline-dot" data-step="5"></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Right Card - Content -->
+                  <div class="process-card process-card-right">
+                     <div class="process-step-content process-step-active" data-step="1">
+                        <p>Schedule a call with Entropy.</p>
+                        <p>We align on outcomes, must-haves, working style, and budget before sourcing begins.</p>
+                     </div>
+                     <div class="process-step-content" data-step="2">
+                        <p>Our global hiring team acts as your internal recruiter.</p>
+                        <p>We source and screen through trusted networks — delivering a tight shortlist, not job-board noise.</p>
+                     </div>
+                     <div class="process-step-content" data-step="3">
+                        <p>We screen first. You interview last.</p>
+                        <p>Only execution-ready candidates reach your calendar.</p>
+                     </div>
+                     <div class="process-step-content" data-step="4">
+                        <p>Once you approve a candidate, Entropy handles everything.</p>
+                        <p>Contracts, compliant employment, payroll setup, and onboarding — end-to-end.</p>
+                     </div>
+                     <div class="process-step-content" data-step="5">
+                        <p>We stay involved after the hire.</p>
+                        <p>Payroll, compliance, HR administration, and HRBP support — with one point of contact.</p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- CTA appears at the end -->
+               <div class="process-cta-container" id="process-cta">
+                  <h4>Book a 20-min Intro Call</h4>
+                  <p>Get clarity on cost, speed, and talent quality.</p>
+                  <a href="#contact" class="process-cta-btn">Book Now</a>
+               </div>
             </div>
          </div>
       </div>
@@ -1610,23 +2170,141 @@
       });
    </script>
 
-   <!-- Process Flow Circular Dial Animation -->
+   <!-- VERSION 1: Process Flow Step Switching Animation -->
+   <script>
+      (function() {
+         const processSectionV1 = document.getElementById('process-section-v1');
+         const stickyWrapperV1 = document.querySelector('.process-sticky-wrapper-v1');
+         const timelineProgressV1 = document.getElementById('timeline-progress-v1');
+         const timelineDotsV1 = document.querySelectorAll('.process-timeline-dot-v1');
+         const leftStepsV1 = document.querySelectorAll('.process-card-left-v1 .process-step-content-v1');
+         const rightStepsV1 = document.querySelectorAll('.process-card-right-v1 .process-step-content-v1');
+         const processCtaV1 = document.getElementById('process-cta-v1');
+         
+         const totalStepsV1 = 5;
+         let currentStepV1 = 1;
+         
+         function isMobileV1() {
+            return window.innerWidth <= 768;
+         }
+         
+         function updateProcessFlowV1() {
+            if (!processSectionV1 || !stickyWrapperV1) return;
+            
+            const rect = stickyWrapperV1.getBoundingClientRect();
+            const stickyHeight = stickyWrapperV1.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            
+            const scrolled = -rect.top;
+            const scrollableDistance = stickyHeight - viewportHeight;
+            let progress = scrolled / scrollableDistance;
+            
+            progress = Math.max(0, Math.min(1, progress));
+            
+            const progressPercent = progress * 100;
+            if (timelineProgressV1) {
+               if (isMobileV1()) {
+                  timelineProgressV1.style.width = progressPercent + '%';
+                  timelineProgressV1.style.height = '100%';
+               } else {
+                  timelineProgressV1.style.height = progressPercent + '%';
+                  timelineProgressV1.style.width = '100%';
+               }
+            }
+            
+            const stepProgress = progress * 1.15;
+            const stepIndex = Math.min(Math.floor(stepProgress * totalStepsV1), totalStepsV1 - 1);
+            const newStep = stepIndex + 1;
+            
+            if (newStep !== currentStepV1) {
+               currentStepV1 = newStep;
+               updateActiveStepV1(currentStepV1);
+            }
+            
+            timelineDotsV1.forEach((dot, index) => {
+               const dotProgress = (index + 1) / totalStepsV1;
+               if (progress >= dotProgress - 0.02) {
+                  dot.classList.add('process-dot-completed-v1');
+                  dot.classList.remove('process-dot-active-v1');
+               } else if (index + 1 === currentStepV1) {
+                  dot.classList.add('process-dot-active-v1');
+                  dot.classList.remove('process-dot-completed-v1');
+               } else {
+                  dot.classList.remove('process-dot-active-v1', 'process-dot-completed-v1');
+               }
+            });
+            
+            timelineDotsV1.forEach((dot, index) => {
+               if (index + 1 === currentStepV1) {
+                  dot.classList.add('process-dot-active-v1');
+               }
+            });
+            
+            if (processCtaV1) {
+               if (progress > 0.85) {
+                  processCtaV1.classList.add('process-cta-visible-v1');
+               } else {
+                  processCtaV1.classList.remove('process-cta-visible-v1');
+               }
+            }
+         }
+         
+         function updateActiveStepV1(step) {
+            leftStepsV1.forEach(el => {
+               if (parseInt(el.dataset.step) === step) {
+                  el.classList.add('process-step-active-v1');
+               } else {
+                  el.classList.remove('process-step-active-v1');
+               }
+            });
+            
+            rightStepsV1.forEach(el => {
+               if (parseInt(el.dataset.step) === step) {
+                  el.classList.add('process-step-active-v1');
+               } else {
+                  el.classList.remove('process-step-active-v1');
+               }
+            });
+         }
+         
+         let tickingV1 = false;
+         window.addEventListener('scroll', function() {
+            if (!tickingV1) {
+               window.requestAnimationFrame(function() {
+                  updateProcessFlowV1();
+                  tickingV1 = false;
+               });
+               tickingV1 = true;
+            }
+         });
+         
+         window.addEventListener('resize', function() {
+            updateProcessFlowV1();
+         });
+         
+         updateProcessFlowV1();
+      })();
+   </script>
+
+   <!-- VERSION 2: Process Flow Table of Contents Animation -->
    <script>
       (function() {
          const processSection = document.getElementById('process-section');
          const stickyWrapper = document.querySelector('.process-sticky-wrapper');
-         const dialDotsWrapper = document.getElementById('dial-dots-wrapper');
-         const dialDots = document.querySelectorAll('.dial-dot');
-         const stepContents = document.querySelectorAll('.dial-step-content');
+         const timelineProgress = document.getElementById('timeline-progress');
+         const timelineDots = document.querySelectorAll('.process-timeline-dot');
+         const tocItems = document.querySelectorAll('.process-toc-item');
+         const rightSteps = document.querySelectorAll('.process-card-right .process-step-content');
          const processCta = document.getElementById('process-cta');
          
          const totalSteps = 5;
          let currentStep = 1;
          
-         // Angle for each step rotation (72 degrees for 5 steps)
-         const stepAngle = 360 / totalSteps;
+         function isMobile() {
+            return window.innerWidth <= 768;
+         }
          
-         function updateDialAnimation() {
+         function updateProcessFlow() {
             if (!processSection || !stickyWrapper) return;
             
             const rect = stickyWrapper.getBoundingClientRect();
@@ -1641,8 +2319,21 @@
             // Clamp progress between 0 and 1
             progress = Math.max(0, Math.min(1, progress));
             
+            // Update timeline progress (the solid line growing)
+            const progressPercent = progress * 100;
+            if (timelineProgress) {
+               // On mobile, use width; on desktop, use height
+               if (isMobile()) {
+                  timelineProgress.style.width = progressPercent + '%';
+                  timelineProgress.style.height = '100%';
+               } else {
+                  timelineProgress.style.height = progressPercent + '%';
+                  timelineProgress.style.width = '100%';
+               }
+            }
+            
             // Calculate which step we're on based on progress
-            const stepProgress = progress * 1.1; // Slightly extend so last step completes
+            const stepProgress = progress * 1.15;
             const stepIndex = Math.min(Math.floor(stepProgress * totalSteps), totalSteps - 1);
             const newStep = stepIndex + 1;
             
@@ -1651,47 +2342,53 @@
                updateActiveStep(currentStep);
             }
             
-            // Rotate the dial based on current step (anti-clockwise)
-            // Each step rotates the dial by stepAngle degrees anti-clockwise
-            if (dialDotsWrapper) {
-               const rotation = (currentStep - 1) * stepAngle;
-               dialDotsWrapper.style.transform = `rotate(${rotation}deg)`;
-               
-               // Counter-rotate the numbers inside dots so they stay upright
-               dialDots.forEach(dot => {
-                  dot.querySelector('.dial-dot-number').style.transform = `rotate(-${rotation}deg)`;
-               });
-            }
-            
-            // Update dot active states
-            dialDots.forEach((dot, index) => {
-               const dotStep = index + 1;
-               // The active position is always the first position (top)
-               // After rotation, which step is at the top?
-               // With anti-clockwise rotation, step N at top means we've rotated (N-1) * angle
-               if (dotStep === currentStep) {
-                  dot.classList.add('active');
+            // Update dot states based on progress
+            timelineDots.forEach((dot, index) => {
+               const dotProgress = (index + 1) / totalSteps;
+               if (progress >= dotProgress - 0.02) {
+                  dot.classList.add('process-dot-completed');
+                  dot.classList.remove('process-dot-active');
+               } else if (index + 1 === currentStep) {
+                  dot.classList.add('process-dot-active');
+                  dot.classList.remove('process-dot-completed');
                } else {
-                  dot.classList.remove('active');
+                  dot.classList.remove('process-dot-active', 'process-dot-completed');
+               }
+            });
+            
+            // Keep current step dot active
+            timelineDots.forEach((dot, index) => {
+               if (index + 1 === currentStep) {
+                  dot.classList.add('process-dot-active');
                }
             });
             
             // Show CTA when reaching the end
             if (processCta) {
                if (progress > 0.85) {
-                  processCta.classList.add('visible');
+                  processCta.classList.add('process-cta-visible');
                } else {
-                  processCta.classList.remove('visible');
+                  processCta.classList.remove('process-cta-visible');
                }
             }
          }
          
          function updateActiveStep(step) {
-            stepContents.forEach(el => {
+            // Update table of contents items
+            tocItems.forEach(el => {
                if (parseInt(el.dataset.step) === step) {
-                  el.classList.add('active');
+                  el.classList.add('process-toc-active');
                } else {
-                  el.classList.remove('active');
+                  el.classList.remove('process-toc-active');
+               }
+            });
+            
+            // Update right card content
+            rightSteps.forEach(el => {
+               if (parseInt(el.dataset.step) === step) {
+                  el.classList.add('process-step-active');
+               } else {
+                  el.classList.remove('process-step-active');
                }
             });
          }
@@ -1701,7 +2398,7 @@
          window.addEventListener('scroll', function() {
             if (!ticking) {
                window.requestAnimationFrame(function() {
-                  updateDialAnimation();
+                  updateProcessFlow();
                   ticking = false;
                });
                ticking = true;
@@ -1710,11 +2407,11 @@
          
          // Handle resize
          window.addEventListener('resize', function() {
-            updateDialAnimation();
+            updateProcessFlow();
          });
          
          // Initial call
-         updateDialAnimation();
+         updateProcessFlow();
       })();
    </script>
 
